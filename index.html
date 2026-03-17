@@ -11,7 +11,7 @@
     <title>Нутритивная поддержка ОРИТ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { darkMode: 'class' }
+        tailwind.config = { darkMode: 'class', }
     </script>
     <style>
         ::-webkit-scrollbar { width: 0px; background: transparent; }
@@ -821,9 +821,16 @@
                     <input type="number" id="metab-tg" step="0.1" oninput="checkMetabolism()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-white focus:border-blue-400 outline-none" placeholder="Норма: < 5.0">
                     <div id="alert-tg" class="hidden"></div>
                 </div>
+
+                <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100 shadow-inner">
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5" data-ru="Мочевина крови (ммоль/л)" data-en="Blood Urea / BUN (mmol/L)">Мочевина крови (ммоль/л)</label>
+                    <input type="number" id="metab-bun" step="0.1" oninput="checkMetabolism()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-white focus:border-blue-400 outline-none" placeholder="Норма: < 10.0">
+                    <div id="alert-bun" class="hidden"></div>
+                </div>
             </div>
         </div>
 
+        <!-- ИНТЕРАКТИВНЫЙ ККМП С ПРОГРЕССОМ -->
         <div class="card border-2 border-slate-800 bg-white mb-3">
             <h2 class="text-sm font-extrabold text-slate-800 flex items-center justify-between uppercase tracking-wide cursor-pointer select-none" onclick="toggleKKMP()">
                 <div class="flex items-center">
@@ -1258,6 +1265,7 @@
     function checkMetabolism() {
         const gluc = parseFloat(document.getElementById('metab-glucose')?.value);
         const tg = parseFloat(document.getElementById('metab-tg')?.value);
+        const bun = parseFloat(document.getElementById('metab-bun')?.value);
 
         const alertGluc = document.getElementById('alert-glucose');
         if (alertGluc) {
@@ -1291,6 +1299,22 @@
                 }
             } else {
                 alertTg.classList.add('hidden');
+            }
+        }
+
+        const alertBun = document.getElementById('alert-bun');
+        if (alertBun) {
+            if (!isNaN(bun)) {
+                alertBun.classList.remove('hidden');
+                if (bun > 10) {
+                    alertBun.className = "mt-2 p-2 bg-yellow-100 text-yellow-900 rounded-lg border border-yellow-300 text-[11px] leading-tight font-medium shadow-sm";
+                    alertBun.innerHTML = (lang === 'ru') ? "⚠️ <b>> 10 ммоль/л:</b> Уменьшить белок до 0.8-1.0 г/кг (исключив гиповолемию).<br><span class='text-red-700 font-bold mt-1 block uppercase tracking-wide'>При ПЗПТ (CRRT) квоту белка НЕ уменьшают!</span>" : "⚠️ <b>> 10 mmol/L:</b> Reduce protein to 0.8-1.0 g/kg (exclude hypovolemia).<br><span class='text-red-700 font-bold mt-1 block uppercase tracking-wide'>Do NOT reduce protein during CRRT!</span>";
+                } else {
+                    alertBun.className = "mt-2 p-2 bg-green-100 text-green-800 rounded-lg border border-green-200 text-[11px] leading-tight font-medium shadow-sm";
+                    alertBun.innerHTML = (lang === 'ru') ? "✅ Норма." : "✅ Normal.";
+                }
+            } else {
+                alertBun.classList.add('hidden');
             }
         }
     }
@@ -1503,8 +1527,10 @@
         if (!ibw) ibw = parseFloat(document.getElementById('ibw-val')?.innerText) || actualWeight;
 
         const protocolKey = document.getElementById('protocol-select')?.value || 'general';
+        // Deep copy of protocol to allow dynamic updates without altering the original
         const p = JSON.parse(JSON.stringify(protocols[lang][protocolKey]));
 
+        // КОМОРБИДНОСТИ: Адаптация протокола на лету
         let extraNotes = "";
         const isDM = document.getElementById('comorb-dm')?.checked;
         const isHF = document.getElementById('comorb-hf')?.checked;
@@ -1544,6 +1570,7 @@
         const autoEnTargetEl = document.getElementById('auto-en-target');
         if(autoEnTargetEl) autoEnTargetEl.value = aee;
 
+        // ENT CALCULATION
         const enTypeVal = document.getElementById('en-type')?.value || "1.0|4.0";
         const enParts = enTypeVal.split('|');
         const enKcalPerMl = parseFloat(enParts[0]);
@@ -1557,11 +1584,14 @@
         safeSet('en-vol', `${enVol}${u('ml')}`);
         safeSet('en-prot', `${enProt}${u('g')}`);
 
+        // PN CALCULATION - УМНЫЙ ПЕРЕРАСЧЕТ
         const pnType = document.getElementById('pn-type')?.value || 'aa_5';
         
+        // Вычисляем ДЕФИЦИТ белка (Макс потребность минус белок из зонда)
         let targetPnProt = protMax - enProt;
         if (targetPnProt < 0) targetPnProt = 0;
         
+        // Калории для ПП считаем как остаток от цели по энергии
         let targetPnKcal = aee - targetEnKcal;
         if (targetPnKcal < 0) targetPnKcal = 0;
 
@@ -1666,7 +1696,7 @@
 
     window.onload = () => {
         setLang('ru'); 
-        updateKKMP(); 
+        updateKKMP(); // Инициализация чеклиста
     };
 </script>
 
