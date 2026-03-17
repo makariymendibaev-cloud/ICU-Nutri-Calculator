@@ -11,7 +11,7 @@
     <title>Нутритивная поддержка ОРИТ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { darkMode: 'class', }
+        tailwind.config = { darkMode: 'class' }
     </script>
     <style>
         ::-webkit-scrollbar { width: 0px; background: transparent; }
@@ -1503,10 +1503,8 @@
         if (!ibw) ibw = parseFloat(document.getElementById('ibw-val')?.innerText) || actualWeight;
 
         const protocolKey = document.getElementById('protocol-select')?.value || 'general';
-        // Deep copy of protocol to allow dynamic updates without altering the original
         const p = JSON.parse(JSON.stringify(protocols[lang][protocolKey]));
 
-        // КОМОРБИДНОСТИ: Адаптация протокола на лету
         let extraNotes = "";
         const isDM = document.getElementById('comorb-dm')?.checked;
         const isHF = document.getElementById('comorb-hf')?.checked;
@@ -1546,7 +1544,6 @@
         const autoEnTargetEl = document.getElementById('auto-en-target');
         if(autoEnTargetEl) autoEnTargetEl.value = aee;
 
-        // ENT CALCULATION
         const enTypeVal = document.getElementById('en-type')?.value || "1.0|4.0";
         const enParts = enTypeVal.split('|');
         const enKcalPerMl = parseFloat(enParts[0]);
@@ -1560,14 +1557,11 @@
         safeSet('en-vol', `${enVol}${u('ml')}`);
         safeSet('en-prot', `${enProt}${u('g')}`);
 
-        // PN CALCULATION - УМНЫЙ ПЕРЕРАСЧЕТ
         const pnType = document.getElementById('pn-type')?.value || 'aa_5';
         
-        // Вычисляем ДЕФИЦИТ белка (Макс потребность минус белок из зонда)
         let targetPnProt = protMax - enProt;
         if (targetPnProt < 0) targetPnProt = 0;
         
-        // Калории для ПП считаем как остаток от цели по энергии
         let targetPnKcal = aee - targetEnKcal;
         if (targetPnKcal < 0) targetPnKcal = 0;
 
@@ -1672,7 +1666,7 @@
 
     window.onload = () => {
         setLang('ru'); 
-        updateKKMP(); // Инициализация чеклиста
+        updateKKMP(); 
     };
 </script>
 
