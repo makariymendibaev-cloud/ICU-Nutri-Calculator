@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="NutriCalc">
-    <title>Нутритивная поддержка ОРИТ</title>
+    <title>ICU Nutri-Calculator | Dr. Mendibaev</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { darkMode: 'class', }
@@ -62,7 +62,7 @@
         input[type=range] { -webkit-appearance: none; background: transparent; height: 10px; border-radius: 5px; cursor: pointer; }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 26px; width: 26px; border-radius: 50%; background: #ffffff; border: 3px solid #3b82f6; cursor: pointer; margin-top: -8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.1s;}
         input[type=range]::-webkit-slider-thumb:active { transform: scale(1.1); }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 10px; cursor: pointer; background: linear-gradient(to right, #10b981, #6366f1); border-radius: 5px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 10px; cursor: pointer; background: linear-gradient(to right, #10b981, #3b82f6); border-radius: 5px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); }
         input[type=range]:focus { outline: none; }
         
         .bottom-nav { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 0.5rem 0; z-index: 50; padding-bottom: env(safe-area-inset-bottom, 0.75rem); }
@@ -94,11 +94,14 @@
             <button onclick="setLang('en')" id="btn-en" class="px-2.5 py-1 text-[10px] font-bold text-slate-400 hover:text-slate-600 uppercase tracking-wide">EN</button>
         </div>
         
+        <!-- НЕЙТРАЛЬНАЯ ШАПКА С АВТОРОМ -->
         <h1 class="text-2xl font-black text-slate-800 text-center tracking-tight mt-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-500" data-ru="ICU Nutri-Calculator" data-en="ICU Nutri-Calculator">ICU Nutri-Calculator</h1>
         <p class="text-[10px] text-blue-600 font-extrabold uppercase tracking-widest text-center mt-1.5" data-ru="КАЛЬКУЛЯТОР НУТРИТИВНОЙ ПОДДЕРЖКИ" data-en="NUTRITIONAL SUPPORT CALCULATOR">КАЛЬКУЛЯТОР НУТРИТИВНОЙ ПОДДЕРЖКИ</p>
-        <p class="text-[10px] text-slate-400 font-medium text-center mt-0.5" data-ru="На базе алгоритмов ФАР и ESPEN" data-en="Based on FAR & ESPEN Guidelines">На базе алгоритмов ФАР и ESPEN</p>
+        <p class="text-[10px] text-slate-500 font-bold text-center mt-2 mb-0.5" data-ru="Автор: Макарий Мендибаев" data-en="Author: Makariy Mendibaev">Автор: Макарий Мендибаев</p>
+        <p class="text-[9px] text-slate-400 font-medium text-center" data-ru="makariy.mendibaev@yandex.ru" data-en="makariy.mendibaev@yandex.ru">makariy.mendibaev@yandex.ru</p>
     </header>
 
+    <!-- TAB 1: ПАЦИЕНТ -->
     <div id="tab-patient" class="tab-content active">
         <div class="card">
             <div class="card-header border-none pb-0">
@@ -138,7 +141,7 @@
                 </div>
                 <div class="flex justify-between items-center" id="ajbw-row" style="display: none;">
                     <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide" data-ru="Скорр. масса (СМТ):" data-en="Adjusted Wt (AjBW):">Скорр. масса (СМТ):</span>
-                    <span id="ajbw-val" class="font-extrabold text-indigo-600 text-sm">75 кг</span>
+                    <span id="ajbw-val" class="font-extrabold text-blue-600 text-sm">75 кг</span>
                 </div>
             </div>
         </div>
@@ -150,14 +153,15 @@
                 <div id="bmi-status" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-green-100 text-green-700 text-center uppercase tracking-wide shadow-sm">Норма</div>
             </div>
             
-            <div id="ajbw-hint" style="display: none;" class="mt-3 p-2 bg-indigo-50 border border-indigo-100 rounded-lg">
-                <h3 class="text-[10px] font-bold text-indigo-800 mb-0.5 uppercase tracking-wide" data-ru="Ниша СМТ (Ожирение)" data-en="AjBW Niche (Obesity)">Ниша СМТ (Ожирение)</h3>
-                <p class="text-[10px] text-indigo-900 leading-tight" data-ru="Жировая ткань менее метаболически активна. Расчет потребностей ведется на <b>Скорректированную массу тела (СМТ)</b> во избежание overfeeding." data-en="Adipose tissue is less metabolically active. Needs are calculated on <b>Adjusted Body Weight (AjBW)</b> to avoid overfeeding.">
+            <div id="ajbw-hint" style="display: none;" class="mt-3 p-2 bg-blue-50 border border-blue-100 rounded-lg">
+                <h3 class="text-[10px] font-bold text-blue-800 mb-0.5 uppercase tracking-wide" data-ru="Ниша СМТ (Ожирение)" data-en="AjBW Niche (Obesity)">Ниша СМТ (Ожирение)</h3>
+                <p class="text-[10px] text-blue-900 leading-tight" data-ru="Жировая ткань менее метаболически активна. Расчет потребностей ведется на <b>Скорректированную массу тела (СМТ)</b> во избежание overfeeding." data-en="Adipose tissue is less metabolically active. Needs are calculated on <b>Adjusted Body Weight (AjBW)</b> to avoid overfeeding.">
                     Жировая ткань менее метаболически активна. Расчет потребностей ведется на <b>Скорректированную массу тела (СМТ)</b> во избежание overfeeding.
                 </p>
             </div>
         </div>
 
+        <!-- МОДУЛЬ СКРИНИНГА -->
         <div class="card">
             <div class="card-header border-none pb-0">
                 <svg class="card-icon text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -172,6 +176,7 @@
                 </select>
             </div>
 
+            <!-- Шкала NRS-2002 -->
             <div id="screen-nrs" class="screening-block space-y-3">
                 <label class="flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg transition-colors -mx-2">
                     <input type="checkbox" id="nrs-bmi" onclick="return false;" class="auto-check">
@@ -191,6 +196,7 @@
                 </label>
             </div>
 
+            <!-- Шкала MNA-SF -->
             <div id="screen-mna" class="screening-block space-y-2 hidden">
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Снижение аппетита (за 3 мес)?" data-en="Decline in food intake (past 3 mo)?">Снижение аппетита (за 3 мес)?</label>
@@ -234,6 +240,7 @@
                 </div>
             </div>
 
+            <!-- Шкала ESMO -->
             <div id="screen-esmo" class="screening-block space-y-2 hidden">
                 <label class="flex items-start gap-3 bg-slate-50 p-2.5 rounded-lg border border-slate-100 cursor-pointer hover:bg-slate-100 transition-colors">
                     <input type="checkbox" class="mt-0.5" id="esmo-1" onchange="runScreening()">
@@ -253,6 +260,7 @@
         </div>
     </div>
 
+    <!-- TAB 2: ЭНЕРГИЯ -->
     <div id="tab-energy" class="tab-content px-4 py-5">
         <div class="card">
             <div class="card-header border-none pb-0 mb-3">
@@ -357,6 +365,7 @@
         </div>
     </div>
 
+    <!-- TAB 3: ТЕРАПИЯ И ПРОТОКОЛЫ -->
     <div id="tab-macro" class="tab-content px-4 py-5">
         <div class="card border-l-4 border-l-blue-500 pb-4">
             <h2 class="text-xs font-extrabold text-slate-500 uppercase tracking-wide mb-2" data-ru="Клинический профиль" data-en="Clinical Profile">Клинический профиль</h2>
@@ -364,6 +373,7 @@
                 <option value="general" data-ru="Общий профиль ОРИТ" data-en="General ICU Profile">Общий профиль ОРИТ</option>
                 <option value="pneumonia" data-ru="Пневмония / ОРДС" data-en="Pneumonia / ARDS">Пневмония / ОРДС</option>
                 <option value="sepsis" data-ru="Сепсис / Септический шок" data-en="Sepsis / Septic Shock">Сепсис / Септический шок</option>
+                <option value="polytrauma" data-ru="Сочетанная травма (Политравма)" data-en="Polytrauma">Сочетанная травма (Политравма)</option>
                 <option value="pancreatitis" data-ru="Острый панкреатит" data-en="Acute Pancreatitis">Острый панкреатит</option>
                 <option value="burns" data-ru="Термическая травма" data-en="Severe Burns">Термическая травма</option>
                 <option value="tbi" data-ru="ЧМТ" data-en="Traumatic Brain Injury">ЧМТ</option>
@@ -378,6 +388,7 @@
                 <option value="rehab" data-ru="РеабИТ" data-en="ICU Rehabilitation">РеабИТ</option>
             </select>
 
+            <!-- КОМОРБИДНОСТИ (МУЛЬТИВЫБОР) -->
             <div class="mt-3">
                 <h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2" data-ru="Сопутствующие патологии:" data-en="Comorbidities:">Сопутствующие патологии:</h3>
                 <label class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg border border-slate-100 cursor-pointer mb-1 transition-colors hover:bg-slate-100">
@@ -394,6 +405,7 @@
                 </label>
             </div>
 
+            <!-- ПРЕДОПЕРАЦИОННАЯ ПОДГОТОВКА (ERAS) -->
             <label class="flex items-center gap-3 p-2.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-xl cursor-pointer transition-colors mt-3">
                 <input type="checkbox" id="preop-eras" onchange="togglePreop()" class="w-5 h-5 text-indigo-600 rounded">
                 <span class="text-[11px] font-bold text-indigo-900 leading-tight uppercase" data-ru="Плановая хирургия (ERAS)" data-en="Elective Surgery (ERAS)">Плановая хирургия (ERAS)</span>
@@ -412,7 +424,7 @@
             <div class="absolute -right-10 -top-10 opacity-10">
                 <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13.5h-13L12 6.5z"/></svg>
             </div>
-            <h3 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-3" data-ru="Суточные цели белка и жиров" data-en="Daily Protein & Fat Goals">Суточные цели белка и жиров</h3>
+            <h3 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-3" data-ru="Суточные цели макронутриентов" data-en="Daily Macronutrient Goals">Суточные цели макронутриентов</h3>
             <div class="grid grid-cols-2 gap-4 relative z-10">
                 <div>
                     <div class="text-[10px] font-bold text-blue-300 uppercase tracking-wide mb-1" data-ru="БЕЛКИ" data-en="PROTEIN">БЕЛКИ</div>
@@ -433,6 +445,7 @@
             </div>
         </div>
 
+        <!-- ПРОТИВОПОКАЗАНИЯ (МИНИ-ВКЛАДКИ) -->
         <div class="card border-l-4 border-l-red-500">
             <h2 class="text-sm font-extrabold text-slate-800 mb-3 flex items-center uppercase tracking-wide">
                 <span data-ru="Противопоказания" data-en="Contraindications">Противопоказания</span>
@@ -471,21 +484,23 @@
             </div>
         </div>
 
+        <!-- БЛОК ПОЛЗУНКА ПРОПОРЦИЙ И ОЦЕНКИ ЖКТ -->
         <div class="card border-none shadow-md bg-gradient-to-b from-white to-slate-50">
             <h3 class="text-sm font-extrabold text-slate-800 mb-4 uppercase tracking-wide text-center" data-ru="Пропорция энергии (ЭП / ПП)" data-en="Energy Ratio (EN / PN)">Пропорция энергии (ЭП / ПП)</h3>
             
             <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-2 uppercase tracking-widest px-1">
                 <span class="text-green-600" data-ru="Энтерально" data-en="Enteral">Энтерально</span>
-                <span class="text-indigo-600" data-ru="Парентерально" data-en="Parenteral">Парентерально</span>
+                <span class="text-blue-600" data-ru="Парентерально" data-en="Parenteral">Парентерально</span>
             </div>
             
             <input type="range" id="en-ratio" min="0" max="100" value="100" class="w-full mb-2" oninput="calculateAll()">
             
             <div class="flex justify-between text-2xl font-black mb-6 px-1">
                 <span id="en-pct-disp" class="text-green-500">100%</span>
-                <span id="pn-pct-disp" class="text-indigo-500">0%</span>
+                <span id="pn-pct-disp" class="text-blue-500">0%</span>
             </div>
 
+            <!-- АВТОРАСЧЕТ ДОЛИ -->
             <div class="mb-5 p-3 bg-slate-100 rounded-xl border border-slate-200 shadow-inner">
                 <h4 class="text-xs font-bold text-slate-700 mb-1 flex items-center uppercase tracking-wide">
                     <svg class="w-4 h-4 mr-1.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
@@ -505,6 +520,7 @@
                 <div id="auto-en-calc-result" class="text-[10px] text-blue-700 font-medium mt-2 hidden"></div>
             </div>
 
+            <!-- ИНТЕРАКТИВ КАЛЬКУЛЯТОР ФУНКЦИИ ЖКТ -->
             <div class="pt-4 border-t border-slate-200">
                 <h4 class="text-xs font-bold text-slate-800 mb-3 uppercase tracking-wide" data-ru="Оценка функции ЖКТ (ESPEN)" data-en="GI Function Assessment (ESPEN)">Оценка функции ЖКТ (ESPEN)</h4>
                 
@@ -544,6 +560,7 @@
             </div>
         </div>
 
+        <!-- КАРТОЧКА ЭНТЕРАЛЬНОГО ПИТАНИЯ -->
         <div class="card border-l-4 border-l-green-500">
             <h3 class="text-xs font-extrabold text-slate-500 mb-3 uppercase tracking-wide" data-ru="Энтеральное Питание (ЭП)" data-en="Enteral Nutrition (EN)">Энтеральное Питание (ЭП)</h3>
             <div class="mb-3">
@@ -571,63 +588,68 @@
             </div>
         </div>
 
-        <div class="card border-l-4 border-l-indigo-500">
+        <!-- КАРТОЧКА ПАРЕНТЕРАЛЬНОГО ПИТАНИЯ (АКАДЕМИЧЕСКАЯ ВЕРСИЯ) -->
+        <div class="card border-l-4 border-l-blue-500">
             <h3 class="text-xs font-extrabold text-slate-500 mb-3 uppercase tracking-wide" data-ru="Парентеральное Питание (ПП)" data-en="Parenteral Nutrition (PN)">Парентеральное Питание (ПП)</h3>
             
-            <div class="mb-3">
-                <select id="pn-type" onchange="calculateAll()" class="w-full text-xs font-bold text-slate-700 p-2.5 border-2 border-slate-200 rounded-xl bg-slate-50 outline-none focus:border-indigo-500 appearance-none cursor-pointer">
-                    <option value="aa_5" data-ru="Аминокислоты 5% (стандартные)" data-en="Amino Acids 5% (standard)">Аминокислоты 5% (стандартные)</option>
-                    <option value="aa_10" data-ru="Аминокислоты 10% (высокобелковые)" data-en="Amino Acids 10% (high pro)">Аминокислоты 10% (высокобелковые)</option>
-                    <option value="aa_hepa" data-ru="Аминокислоты для печени 10% (с BCAA)" data-en="Liver Amino Acids 10% (with BCAA)">Аминокислоты для печени 10% (с BCAA)</option>
+            <!-- Скрытый Select -->
+            <div class="mb-3 hidden">
+                <select id="pn-type" onchange="calculateAll()" class="w-full text-xs font-bold text-slate-700 p-2.5 border-2 border-blue-300 rounded-xl bg-blue-50 outline-none focus:border-blue-500 appearance-none cursor-pointer shadow-sm text-blue-800">
+                    <option value="aa5" data-ru="5% АМ (Аминокислоты + Электролиты)" data-en="5% AA (Amino Acids + Lytes)">5% АМ (Аминокислоты + Электролиты)</option>
+                    <option value="aa10" selected data-ru="10% АМ (Высокобелковый для ЦВ)" data-en="10% AA (High protein for CVC)">10% АМ (Высокобелковый для ЦВ)</option>
                     <option value="3in1" data-ru="Смесь «Три-в-одном» (Белки + Жиры + Углеводы)" data-en="All-in-one mix (Protein + Fat + Carbs)">Смесь «Три-в-одном» (Белки + Жиры + Углеводы)</option>
                 </select>
             </div>
 
-            <div id="pn-images" class="flex gap-2 mb-3 items-stretch">
-                <div class="w-1/2 flex flex-col bg-slate-50 p-2.5 rounded-xl border border-slate-200 shadow-sm justify-center items-center text-center">
-                    <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-2 shadow-inner">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+            <!-- ИНТЕРАКТИВНЫЕ ИКОНКИ -->
+            <div id="pn-images" class="grid grid-cols-3 gap-1.5 mb-3 items-stretch">
+                <!-- 5% АМ (Голубенькая) -->
+                <div id="card-aa5" onclick="selectBrand('aa5')" class="cursor-pointer flex flex-col bg-slate-50 p-2 rounded-xl border border-slate-200 shadow-sm justify-start items-center text-center transition-all duration-300 opacity-50 grayscale scale-95 hover:bg-sky-50">
+                    <div class="w-8 h-8 rounded-full bg-sky-400 text-white flex items-center justify-center mb-1.5 shadow-md">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                     </div>
-                    <span class="font-extrabold text-slate-700 text-[11px] uppercase tracking-wide">Стандартные АК</span>
-                    <div class="mt-1 text-[9px] text-slate-500 leading-tight">
-                        <span data-ru="Концентрация 5% и 10%" data-en="5% and 10% solutions">Концентрация 5% и 10%</span>
-                    </div>
-                </div>
-                <div class="w-1/2 flex flex-col bg-slate-50 p-2.5 rounded-xl border border-slate-200 shadow-sm justify-center items-center text-center">
-                    <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mb-2 shadow-inner">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                    </div>
-                    <span class="font-extrabold text-slate-700 text-[11px] uppercase tracking-wide">Печеночные АК</span>
-                    <div class="mt-1 text-[9px] text-slate-500 leading-tight">
-                        <span data-ru="Обогащены BCAA 10%" data-en="BCAA enriched 10%">Обогащены BCAA 10%</span>
+                    <span class="font-extrabold text-sky-900 text-[9px] uppercase tracking-wide">5% АМ</span>
+                    <div class="mt-1 text-[8px] text-sky-800 leading-tight font-medium">
+                        <span data-ru="Аминокислоты + электролиты." data-en="Amino acids + Lytes.">Аминокислоты + электролиты.</span>
                     </div>
                 </div>
-            </div>
-
-            <div id="pn-aa-note" class="mt-2 mb-4 p-2.5 bg-indigo-50 border border-indigo-100 rounded-xl text-[10px] text-indigo-900 leading-tight">
-                <strong class="text-xs text-indigo-800 block mb-1" data-ru="Чистые Аминокислоты (показания):" data-en="Pure Amino Acids (indications):">Чистые Аминокислоты (показания):</strong>
-                <ul class="list-disc pl-4 space-y-1">
-                    <li data-ru="Выраженная гипертриглицеридемия > 5 ммоль/л." data-en="Severe hypertriglyceridemia > 5 mmol/L.">Выраженная гипертриглицеридемия > 5 ммоль/л.</li>
-                    <li data-ru="Тяжелая, неконтролируемая гипергликемия." data-en="Severe, uncontrolled hyperglycemia.">Тяжелая, неконтролируемая гипергликемия.</li>
-                    <li data-ru="Глубокий белковый дефицит (отр. азотистый баланс) при закрытой потребности в энергии." data-en="Profound protein deficit with met energy needs.">Глубокий белковый дефицит (отр. азотистый баланс) при закрытой потребности в энергии.</li>
-                    <li data-ru="Печеночная энцефалопатия (показание для растворов с BCAA)." data-en="Hepatic encephalopathy (indication for BCAA solutions).">Печеночная энцефалопатия (показание для растворов с BCAA).</li>
-                </ul>
+                <!-- 10% АМ (Салатовая) -->
+                <div id="card-aa10" onclick="selectBrand('aa10')" class="cursor-pointer flex flex-col bg-emerald-50 p-2 rounded-xl border-2 border-emerald-400 shadow-md justify-start items-center text-center transition-all duration-300 transform scale-105 z-10 hover:bg-emerald-100">
+                    <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center mb-1.5 shadow-md">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <span class="font-extrabold text-emerald-900 text-[9px] uppercase tracking-wide">10% АМ</span>
+                    <div class="mt-1 text-[8px] text-emerald-800 leading-tight font-medium">
+                        <span data-ru="10% белок в ЦВ." data-en="10% protein in CVC.">10% белок в ЦВ.</span>
+                    </div>
+                </div>
+                <!-- 3-в-1 (Фиолетовая) -->
+                <div id="card-3in1" onclick="selectBrand('3in1')" class="cursor-pointer flex flex-col bg-slate-50 p-2 rounded-xl border border-slate-200 shadow-sm justify-start items-center text-center transition-all duration-300 opacity-50 grayscale scale-95 hover:bg-purple-50">
+                    <div class="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center mb-1.5 shadow-md">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <span class="font-extrabold text-purple-900 text-[9px] uppercase tracking-wide">«Три-в-одном»</span>
+                    <div class="mt-1 text-[8px] text-purple-800 leading-tight font-medium">
+                        <span data-ru="Смесь БЖУ (базовое ПП)." data-en="All-in-one PN.">Смесь БЖУ (базовое ПП).</span>
+                    </div>
+                </div>
             </div>
             
-            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100 flex flex-col gap-2">
+            <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 flex flex-col gap-2">
                 <div class="flex justify-between items-center text-xs">
-                    <span id="pn-target-label" class="font-semibold text-indigo-800" data-ru="Дефицит белка (для ПП):" data-en="Protein deficit (for PN):">Дефицит белка (для ПП):</span>
-                    <span id="pn-target-prot" class="font-black text-indigo-700">0 г</span>
+                    <span id="pn-target-label" class="font-semibold text-blue-800" data-ru="Дефицит белка (для ПП):" data-en="Protein deficit (for PN):">Дефицит белка (для ПП):</span>
+                    <span id="pn-target-prot" class="font-black text-blue-700">0 г</span>
                 </div>
-                <div class="flex justify-between items-center text-sm mt-1 pt-2 border-t border-indigo-200">
-                    <span class="font-extrabold text-indigo-900 uppercase tracking-wide" data-ru="Объем раствора АК:" data-en="AA Solution volume:">Объем раствора АК:</span>
-                    <span id="pn-vol" class="font-black text-indigo-600 text-lg">0 мл/сут</span>
+                <div class="flex justify-between items-center text-sm mt-1 pt-2 border-t border-blue-200">
+                    <span id="pn-vol-label" class="font-extrabold text-blue-900 uppercase tracking-wide" data-ru="Объем раствора:" data-en="Solution volume:">Объем раствора:</span>
+                    <span id="pn-vol" class="font-black text-blue-600 text-lg">0 мл/сут</span>
                 </div>
                 <div class="text-right text-[9px] text-slate-500 font-medium">
-                    <span data-ru="Макс:" data-en="Max:">Макс:</span> <span id="pn-max">0 мл/сут</span>
+                    <span data-ru="Макс. объем жидкости:" data-en="Max fluid vol:">Макс. объем жидкости:</span> <span id="pn-max">0 мл/сут</span>
                 </div>
             </div>
 
+            <!-- КАЛЬКУЛЯТОР ЖИРОВ И ГЛЮКОЗЫ -->
             <div id="energy-calc-box" class="mt-4 pt-4 border-t border-slate-100" style="display: none;">
                 <h4 class="text-xs font-extrabold text-slate-700 mb-3 uppercase tracking-wide" data-ru="Восполнение энергии (Жиры/Углеводы)" data-en="Energy coverage (Lipids/Carbs)">Восполнение энергии (Жиры/Углеводы)</h4>
                 
@@ -639,7 +661,7 @@
                 <div class="space-y-3">
                     <div class="border border-slate-200 rounded-xl p-2.5">
                         <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" id="pn-add-lipids" onchange="calculateAll()" class="w-5 h-5 text-indigo-600 rounded cursor-pointer" checked>
+                            <input type="checkbox" id="pn-add-lipids" onchange="calculateAll()" class="w-5 h-5 text-blue-600 rounded cursor-pointer" checked>
                             <span class="text-xs font-bold text-slate-700 leading-tight" data-ru="Жировые эмульсии 20%" data-en="Lipid emulsions 20%">Жировые эмульсии 20%</span>
                         </label>
                         <div id="lipid-details" class="mt-2 pt-2 border-t border-slate-100 flex justify-between items-center text-xs pl-8">
@@ -650,7 +672,7 @@
 
                     <div class="border border-slate-200 rounded-xl p-2.5">
                         <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" id="pn-add-glucose" onchange="calculateAll()" class="w-5 h-5 text-indigo-600 rounded cursor-pointer" checked>
+                            <input type="checkbox" id="pn-add-glucose" onchange="calculateAll()" class="w-5 h-5 text-blue-600 rounded cursor-pointer" checked>
                             <span class="text-xs font-bold text-slate-700 leading-tight" data-ru="Глюкоза (на остаток ккал)" data-en="Glucose (for remaining kcal)">Глюкоза (на остаток ккал)</span>
                         </label>
                         <div id="glucose-details" class="mt-2 pt-2 border-t border-slate-100 pl-8 transition-opacity duration-200">
@@ -669,23 +691,14 @@
             </div>
         </div>
 
-        <div class="card border-l-4 border-l-amber-500 mb-3">
-            <h2 class="text-sm font-extrabold text-slate-800 mb-3 uppercase tracking-wide" data-ru="Фармаконутриенты и Витамины" data-en="Pharmaconutrients & Vitamins">Фармаконутриенты и Витамины</h2>
-            <ul class="text-xs text-slate-600 space-y-2 list-disc pl-4 leading-snug">
-                <li data-ru="<b class='text-slate-800'>Жировые эмульсии (ЖЭ):</b> предпочтительны II и III поколений (МСТ/LCT и Омега-3). Улучшают оксигенацию при ОРДС, протеин-сберегающий эффект." data-en="<b class='text-slate-800'>Lipid emulsions (LE):</b> 2nd/3rd generation preferred. Improve oxygenation in ARDS."><b class='text-slate-800'>Жировые эмульсии (ЖЭ):</b> предпочтительны II и III поколений (МСТ/LCT и Омега-3). Улучшают оксигенацию при ОРДС, протеин-сберегающий эффект.</li>
-                <li data-ru="<b class='text-slate-800'>Омега-3 ЖК:</b> доза 5–6 г/сут в составе эмульсии." data-en="<b class='text-slate-800'>Omega-3 FA:</b> dose 5–6 g/day."><b class='text-slate-800'>Омега-3 ЖК:</b> доза 5–6 г/сут в составе эмульсии.</li>
-                <li data-ru="<b class='text-slate-800'>Глутамин (в/в дипептид):</b> обязателен при полном ПП для снижения инфекций." data-en="<b class='text-slate-800'>IV Glutamine:</b> mandatory in total PN."><b class='text-slate-800'>Глутамин (в/в дипептид):</b> обязателен при полном ПП для снижения инфекций.</li>
-                <li class="bg-amber-50 p-2 rounded text-amber-900 border border-amber-100" data-ru="<b class='text-amber-800'>Витамины и микроэлементы:</b> обязательны при ПП > 5 суток. <br><b>При ПЗПТ (CRRT):</b> удвоенные дозы водорастворимых витаминов (С, гр. В) и микроэлементов (Se, Cu, Zn) из-за потерь с эффлюентом." data-en="<b class='text-amber-800'>Vitamins & Trace Elements:</b> mandatory if PN > 5 days. <br><b>In CRRT:</b> double doses of water-soluble vitamins and trace elements required."><b class='text-amber-800'>Витамины и микроэлементы:</b> обязательны при ПП > 5 суток. <br><b>При ПЗПТ (CRRT):</b> удвоенные дозы водорастворимых витаминов (С, гр. В) и микроэлементов (Se, Cu, Zn) из-за потерь с эффлюентом.</li>
-            </ul>
-        </div>
-        
-        <div class="card bg-slate-50 border-none mb-3">
+        <div class="card bg-slate-50 border-none mb-3 shadow-inner">
             <h3 class="text-xs font-bold text-slate-500 mb-2 uppercase tracking-widest" data-ru="Протокол нозологии" data-en="Pathology Notes">Протокол нозологии</h3>
             <div id="protocol-notes" class="text-xs text-slate-700 space-y-1.5 leading-relaxed font-medium">
             </div>
         </div>
     </div>
 
+    <!-- TAB 4: МОНИТОРИНГ -->
     <div id="tab-monitor" class="tab-content px-4 py-5">
         
         <div class="card border-l-4 border-l-teal-500">
@@ -707,9 +720,9 @@
                         <input type="number" id="nb-diuresis" step="0.1" value="1.5" class="border-slate-200" oninput="calculateAll()">
                     </div>
                 </div>
-                <label class="flex items-center gap-3 p-2.5 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-100 cursor-pointer transition-colors">
+                <label class="flex items-center gap-3 p-2.5 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-100 cursor-pointer transition-colors shadow-inner">
                     <input type="checkbox" id="nb-crrt" class="w-5 h-5 text-teal-600 rounded cursor-pointer" onchange="calculateAll()" checked>
-                    <span class="text-[11px] text-slate-700 font-medium leading-tight" data-ru="Потери в фильтре ПЗПТ (+15 г белка к расходу)" data-en="CRRT filter losses (+15g protein to output)">Потери в фильтре ПЗПТ (+15 г белка к расходу)</span>
+                    <span class="text-[11px] text-slate-700 font-bold leading-tight" data-ru="Потери в контуре ПЗПТ / Эфферон (+15 г белка к расходу)" data-en="CRRT / Efferon filter losses (+15g protein to output)">Потери в контуре ПЗПТ / Эфферон (+15 г белка к расходу)</span>
                 </label>
             </div>
             
@@ -735,74 +748,37 @@
             </div>
         </div>
 
-        <div class="card border-l-4 border-l-yellow-500">
-            <h2 class="text-sm font-extrabold text-slate-800 mb-3 uppercase tracking-wide" data-ru="Рефидинг-синдром (РС)" data-en="Refeeding Syndrome (RS)">Рефидинг-синдром (РС)</h2>
+        <!-- БЛОК ОЦЕНКИ БЭН (БЕЛКОВО-ЭНЕРГЕТИЧЕСКАЯ НЕДОСТАТОЧНОСТЬ) -->
+        <div class="card border-l-4 border-l-purple-500 mb-3">
+            <h2 class="text-sm font-extrabold text-slate-800 mb-4 uppercase tracking-wide">
+                <span data-ru="Оценка БЭН (Лабораторная)" data-en="PEM Assessment (Lab)">Оценка БЭН (Лабораторная)</span>
+            </h2>
             
-            <div class="mb-3">
-                <h3 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2" data-ru="Критерии риска (выберите, если есть):" data-en="Risk criteria (select if present):">Критерии риска (выберите, если есть):</h3>
-                <div class="space-y-2">
-                    <label class="flex items-center gap-3 p-2.5 rounded-xl border transition-colors border-yellow-200 bg-yellow-50 cursor-pointer">
-                        <input type="checkbox" id="rs-bmi" onclick="return false;" class="auto-check">
-                        <span class="text-xs text-slate-700 font-medium" data-ru="ИМТ < 16 кг/м² <span class='text-[9px] text-yellow-600 font-bold uppercase ml-1'>(Авто)</span>" data-en="BMI < 16 kg/m² <span class='text-[9px] text-yellow-600 font-bold uppercase ml-1'>(Auto)</span>">ИМТ < 16 кг/м² <span class='text-[9px] text-yellow-600 font-bold uppercase ml-1'>(Авто)</span></span>
-                    </label>
-                    <label class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-100 cursor-pointer hover:bg-yellow-50 transition-colors">
-                        <input type="checkbox" id="rs-weightloss" onchange="calculateAll()" class="w-5 h-5 text-yellow-500 rounded cursor-pointer">
-                        <span class="text-xs text-slate-700 font-medium" data-ru="Потеря веса > 15% за 3-6 мес." data-en="Weight loss > 15% in 3-6 mos.">Потеря веса > 15% за 3-6 мес.</span>
-                    </label>
-                    <label class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-100 cursor-pointer hover:bg-yellow-50 transition-colors">
-                        <input type="checkbox" id="rs-fasting" onchange="calculateAll()" class="w-5 h-5 text-yellow-500 rounded cursor-pointer">
-                        <span class="text-xs text-slate-700 font-medium" data-ru="Голодание > 10 дней" data-en="Fasting > 10 days">Голодание > 10 дней</span>
-                    </label>
-                    <label class="flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-100 cursor-pointer hover:bg-yellow-50 transition-colors">
-                        <input type="checkbox" id="rs-lytes" onchange="calculateAll()" class="w-5 h-5 text-yellow-500 rounded cursor-pointer">
-                        <span class="text-xs text-slate-700 font-medium" data-ru="Низкие: K < 3.5, Mg < 0.7, P < 0.8" data-en="Low: K < 3.5, Mg < 0.7, P < 0.8">Низкие: K < 3.5, Mg < 0.7, P < 0.8</span>
-                    </label>
+            <div class="grid grid-cols-2 gap-3 mb-2">
+                <div class="input-group !mb-0">
+                    <label class="text-slate-500 text-[10px]" data-ru="Общий белок (г/л)" data-en="Total Protein (g/L)">Общий белок (г/л)</label>
+                    <input type="number" id="ben-prot" class="border-slate-200" oninput="calculateAll()" placeholder="65-85">
+                </div>
+                <div class="input-group !mb-0">
+                    <label class="text-slate-500 text-[10px]" data-ru="Альбумин (г/л)" data-en="Albumin (g/L)">Альбумин (г/л)</label>
+                    <input type="number" id="ben-alb" class="border-slate-200" oninput="calculateAll()" placeholder="35-50">
+                </div>
+                <div class="input-group !mb-0">
+                    <label class="text-slate-500 text-[10px]" data-ru="Трансферрин (г/л)" data-en="Transferrin (g/L)">Трансферрин (г/л)</label>
+                    <input type="number" id="ben-transf" step="0.1" class="border-slate-200" oninput="calculateAll()" placeholder="2.0-4.0">
+                </div>
+                <div class="input-group !mb-0">
+                    <label class="text-slate-500 text-[10px]" data-ru="Лимфоциты (в мкл)" data-en="Lymphocytes (/µL)">Лимфоциты (в мкл)</label>
+                    <input type="number" id="ben-lymph" class="border-slate-200" oninput="calculateAll()" placeholder="> 1500">
                 </div>
             </div>
 
-            <div id="rs-tactics" style="display: none;" class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-xl shadow-sm">
-                <h3 class="text-[10px] font-black text-red-600 mb-2 uppercase tracking-widest" data-ru="Тактика (Start low, go slow):" data-en="Tactics (Start low, go slow):">Тактика (Start low, go slow):</h3>
-                <ul class="text-[11px] text-yellow-900 list-disc pl-4 space-y-1.5 leading-tight font-medium">
-                    <li data-ru="<b>До старта:</b> В/в Тиамин (В1) 200-300 мг + поливитамины (мин. за 30 мин)." data-en="<b>Before start:</b> IV Thiamine (B1) 200-300 mg + multivitamins."><b>До старта:</b> В/в Тиамин (В1) 200-300 мг + поливитамины (мин. за 30 мин).</li>
-                    <li data-ru="<b>Электролиты:</b> Строго восполнить K, Mg, P до и во время питания." data-en="<b>Electrolytes:</b> Replete K, Mg, P before and during feeding."><b>Электролиты:</b> Строго восполнить K, Mg, P до и во время питания.</li>
-                    <li data-ru="<b>Старт:</b> с <b>10 ккал/кг/сут</b>. Квоту белка НЕ урезать (1.0-1.2 г/кг)." data-en="<b>Start:</b> with <b>10 kcal/kg/d</b>. Do NOT restrict protein."><b>Старт:</b> с <b>10 ккал/кг/сут</b>. Квоту белка НЕ урезать (1.0-1.2 г/кг).</li>
-                    <li data-ru="<b>Наращивание:</b> +5 ккал/кг/сут, выход на норму за 4-7 дней (контроль P)." data-en="<b>Increase:</b> +5 kcal/kg/d, reach target in 4-7 days (control P)."><b>Наращивание:</b> +5 ккал/кг/сут, выход на норму за 4-7 дней (контроль P).</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="card border-l-4 border-l-red-500">
-            <h2 class="text-sm font-extrabold text-slate-800 mb-3 uppercase tracking-wide" data-ru="Степень БЭН (Калькулятор)" data-en="Malnutrition Degree Calc">Степень БЭН (Калькулятор)</h2>
-            
-            <div class="space-y-3 mb-4">
-                <div class="flex gap-3">
-                    <div class="w-1/2">
-                        <label class="text-[9px] text-slate-500 font-bold mb-1 uppercase tracking-widest" data-ru="Общий белок" data-en="Total protein">Общий белок</label>
-                        <input type="number" id="ben-prot" oninput="calculateBEN()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-slate-50 focus:border-red-400 focus:bg-white" placeholder="> 65">
-                    </div>
-                    <div class="w-1/2">
-                        <label class="text-[9px] text-slate-500 font-bold mb-1 uppercase tracking-widest" data-ru="Альбумин" data-en="Albumin">Альбумин</label>
-                        <input type="number" id="ben-alb" oninput="calculateBEN()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-slate-50 focus:border-red-400 focus:bg-white" placeholder="> 35">
-                    </div>
-                </div>
-                <div class="flex gap-3">
-                    <div class="w-1/2">
-                        <label class="text-[9px] text-slate-500 font-bold mb-1 uppercase tracking-widest" data-ru="Трансферрин" data-en="Transferrin">Трансферрин</label>
-                        <input type="number" id="ben-transf" step="0.1" oninput="calculateBEN()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-slate-50 focus:border-red-400 focus:bg-white" placeholder="> 2.0">
-                    </div>
-                    <div class="w-1/2">
-                        <label class="text-[9px] text-slate-500 font-bold mb-1 uppercase tracking-widest" data-ru="Лимфоциты" data-en="Lymphocytes">Лимфоциты</label>
-                        <input type="number" id="ben-lymph" oninput="calculateBEN()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-slate-50 focus:border-red-400 focus:bg-white" placeholder="> 1200">
-                    </div>
-                </div>
-            </div>
-
-            <div id="ben-result-box" class="bg-red-50 p-4 rounded-xl border border-red-100 hidden shadow-sm">
+            <div id="ben-result-box" style="display: none;">
                 <div class="flex justify-between items-center mb-2">
-                    <span class="text-xs font-bold text-red-900 uppercase tracking-widest" data-ru="Степень БЭН:" data-en="Malnutrition:">Степень БЭН:</span>
-                    <span id="ben-degree" class="text-lg font-black uppercase tracking-tighter"></span>
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-widest" data-ru="Степень БЭН:" data-en="PEM Degree:">Степень БЭН:</span>
+                    <span id="ben-degree"></span>
                 </div>
-                <div id="ben-advice" class="text-[11px] text-red-800 leading-snug font-medium pt-2 border-t border-red-200/50"></div>
+                <div id="ben-advice"></div>
             </div>
         </div>
 
@@ -821,7 +797,7 @@
                     <input type="number" id="metab-tg" step="0.1" oninput="checkMetabolism()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-white focus:border-blue-400 outline-none" placeholder="Норма: < 5.0">
                     <div id="alert-tg" class="hidden"></div>
                 </div>
-
+                
                 <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100 shadow-inner">
                     <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5" data-ru="Мочевина крови (ммоль/л)" data-en="Blood Urea / BUN (mmol/L)">Мочевина крови (ммоль/л)</label>
                     <input type="number" id="metab-bun" step="0.1" oninput="checkMetabolism()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-white focus:border-blue-400 outline-none" placeholder="Норма: < 10.0">
@@ -878,6 +854,7 @@
         </div>
     </div>
 
+    <!-- Bottom Navigation -->
     <nav class="bottom-nav sm:rounded-b-[2rem]">
         <button class="nav-item active" onclick="switchTab('patient', this)">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
@@ -929,7 +906,7 @@
             nrs_med: "Средний риск (1-2 балла).<br><b class='text-yellow-700'>Что делать:</b> Мониторинг (ежедневная оценка усвоенного объема ЭП, контроль веса). При ухудшении - старт НП.",
             nrs_low: "Низкий риск (0 баллов).<br><b class='text-green-700'>Что делать:</b> Повторный скрининг через 7 дней.",
             
-            nb_neg: "<b>Выраженный отрицательный баланс.</b> Повышение катаболизма. <br><span class='text-red-700 font-bold'>Критический дефицит белка-необходимо восполнять парентерально.</span>",
+            nb_neg: "<b>Выраженный отрицательный баланс.</b> Повышение катаболизма. <br><span class='text-red-700 font-bold'>Критический дефицит белка-необходимо восполнять парентерально (10% АМ).</span>",
             nb_pos: "<b>Выраженный положительный баланс.</b> Избыток поступления белка или задержка азота. Проверьте функцию почек.",
             nb_opt: "<b>Оптимальный баланс.</b> Достигнуто равновесие или легкий анаболизм. Продолжайте текущую терапию.",
             
@@ -949,7 +926,7 @@
             esmo_high: "<b>Синдром кахексии (Высокий риск).</b><br><b class='text-red-700'>Что делать:</b> Раннее агрессивное ЭП/ПП, добавление Омега-3.",
             esmo_low: "<b>Низкий риск кахексии.</b><br><b class='text-green-700'>Что делать:</b> Стандартный мониторинг, переоценка через 1 месяц.",
 
-            gi_full_pn: "<span class='text-red-600 font-bold'>ПОЛНОЕ ПП (0% ЭП).</span> Абсолютные противопоказания к энтеральному питанию.",
+            gi_full_pn: "<span class='text-red-600 font-bold'>ПОЛНОЕ ПП (0% ЭП).</span> Абсолютные противопоказания к энтеральному питанию. Показано стандартное или высокобелковое ПП.",
             gi_mixed: "<span class='text-yellow-600 font-bold'>СМЕШАННОЕ ПИТАНИЕ.</span> Функция ЖКТ снижена. Увеличьте долю ПП.",
             gi_full_en: "<span class='text-green-600 font-bold'>ЭП В ПРИОРИТЕТЕ (100%).</span> ЖКТ функционирует, продолжайте энтеральное питание.",
             
@@ -968,7 +945,7 @@
             nrs_med: "Medium risk (1-2 pts).<br><b class='text-yellow-700'>Action:</b> Monitoring (daily intake tracking, weight control). Start feeding if declines.",
             nrs_low: "Low risk (0 pts).<br><b class='text-green-700'>Action:</b> Rescreen in 7 days.",
             
-            nb_neg: "<b>Severe negative balance.</b> Increased catabolism. <br><span class='text-red-700 font-bold'>Critical protein deficit must be replenished parenterally.</span>",
+            nb_neg: "<b>Severe negative balance.</b> Increased catabolism. <br><span class='text-red-700 font-bold'>Critical protein deficit must be replenished parenterally (10% AA).</span>",
             nb_pos: "<b>Strongly positive balance.</b> Excess protein intake or nitrogen retention. Check renal function.",
             nb_opt: "<b>Optimal balance.</b> Equilibrium or mild anabolism achieved. Continue therapy.",
             
@@ -1004,32 +981,34 @@
 
     const protocols = {
         ru: {
-            general: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4"><li><b>Алгоритм старта:</b> Начинать с 10-15 ккал/кг (≤50% от цели) в 1-2 сутки. Увеличивать на 5-10 ккал/кг каждые 24ч. Полный объем — к 4-7 дню.</li><li>Раннее ЭП (300 мл/сут или 10-20 мл/ч) в первые 24-48 ч для сохранения барьера ЖКТ.</li></ul>` },
+            general: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4"><li><b>Алгоритм старта:</b> Начинать с 10-15 ккал/кг (≤50% от цели) в 1-2 сутки. Увеличивать на 5-10 ккал/кг каждые 24ч. Полный объем — к 4-7 дню.</li><li>Раннее ЭП (300 мл/сут или 10-20 мл/ч) в первые 24-48 ч для сохранения барьера ЖКТ. При недокорме - парентеральная коррекция.</li></ul>` },
             pneumonia: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-900"><li><b>Умеренный стресс:</b> потребность в энергии 25-30 ккал/кг.</li><li><b>Дыхательная недостаточность:</b> избегать перекорма углеводами (увеличивают продукцию CO2). Оптимизировать долю жировых эмульсий.</li></ul>` },
-            sepsis: { protRange: "1.3 - 2.0", protCalc: [1.3, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-red-900"><li><b>Острая фаза (шок):</b> Старт с трофического ЭП (10-15 ккал/кг или 10-20 мл/час).</li><li><b>Ступенчатое увеличение:</b> Прибавлять по 5 ккал/кг (или +10-20 мл/час) каждые 24-48 ч в зависимости от переносимости. Выход на цель строго к 4-7 суткам во избежание overfeeding!</li><li><b>Дефицит Тиамина (В1):</b> высокий риск при сепсисе! Обязательное в/в введение.</li></ul>` },
-            pancreatitis: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "0.8 - 1.2", notes: `<ul class="list-disc pl-4 text-orange-900"><li><b>Тяжелый ОДП:</b> Назоинтестинальный зонд с первых часов.</li><li><b>Глутамин в/в:</b> 2-4 мл/кг для профилактики инфицирования панкреонекроза.</li></ul>` },
-            burns: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-orange-800"><li><b>Токсемия:</b> Энергия 30-40 ккал/кг. Высочайший катаболизм.</li><li>Повышенная потеря микроэлементов с экссудатом (Cu, Se, Zn, Вит С) — потребность увеличена в 1.5-2 раза.</li></ul>` },
+            sepsis: { protRange: "1.3 - 2.0", protCalc: [1.3, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-900"><li><b>Абдоминальный сепсис:</b> На фоне выраженного системного воспаления стандартное ЭП не покрывает потребности. Для снижения дисфункции органов (SOFA) показано раннее применение высокобелкового ПП (10% АМ).</li><li><b>Острая фаза:</b> Старт с трофического ЭП (10-15 ккал/кг). Дефицит белка восполнять внутривенно.</li></ul>` },
+            polytrauma: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-red-900"><li><b>Тяжелый гиперкатаболизм:</b> массивная потеря азота с мочой и экссудатами.</li><li>Показана интенсивная белковая дотация (10% АМ в центральные вены).</li><li>Строгий контроль калия и фосфора при наращивании калорий (риск рефидинг-синдрома).</li></ul>` },
+            pancreatitis: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "0.8 - 1.2", notes: `<ul class="list-disc pl-4 text-orange-900"><li><b>Тяжелый ОДП:</b> Назоинтестинальный зонд с первых часов. Парентеральное питание показано при непереносимости ЭП.</li><li><b>Глутамин в/в:</b> 2-4 мл/кг для профилактики инфицирования панкреонекроза.</li></ul>` },
+            burns: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-orange-800"><li><b>Токсемия:</b> Энергия 30-40 ккал/кг. Высочайший катаболизм требует массивной белковой дотации.</li><li>Повышенная потеря микроэлементов с экссудатом (Cu, Se, Zn, Вит С).</li></ul>` },
             tbi: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-900"><li>Выраженный гиперметаболизм (30-35 ккал/кг).</li><li><b>Контроль гликемии:</b> >10 ммоль/л усугубляет отек мозга.</li></ul>` },
-            gib: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-red-900"><li><b>Острая фаза:</b> энтеральное питание откладывается до достижения надежного эндоскопического гемостаза (минимум на 24-48 ч).</li><li>При высоком риске рецидива и невозможности ЭП более 3 суток — обязателен старт парентерального питания.</li></ul>` },
+            gib: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-red-900"><li><b>Острая фаза:</b> энтеральное питание откладывается до достижения надежного эндоскопического гемостаза (минимум на 24-48 ч).</li><li>При высоком риске рецидива и невозможности ЭП более 3 суток — обязателен старт парентерального питания (10% АМ).</li></ul>` },
             oncology: { protRange: "1.2 - 2.0", protCalc: [1.2, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-indigo-900"><li>Белок до 2.0 г/кг при выраженной кахексии.</li><li>При инсулинорезистентности: увеличение доли жиров, снижение углеводов.</li><li>Иммунное питание (Омега-3, Аргинин) рекомендовано за 5-7 дней до хирургии ЖКТ.</li></ul>` },
-            cirrhosis: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.2", notes: `<ul class="list-disc pl-4 text-yellow-900"><li><b>Важно:</b> Расчет вести на <b>сухой вес</b> (без учета асцита).</li><li>Необходим поздний вечерний перекус для предотвращения ночного катаболизма.</li><li>При тяжелой энцефалопатии — специализированные печеночные смеси (высокое содержание BCAA).</li></ul>` },
+            cirrhosis: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.2", notes: `<ul class="list-disc pl-4 text-yellow-900"><li><b>Важно:</b> Расчет вести на <b>сухой вес</b> (без учета асцита).</li><li>Необходим поздний вечерний перекус для предотвращения ночного катаболизма.</li></ul>` },
             sbs: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-emerald-900"><li>Энергия 30-40 ккал/кг/сут.</li><li>Основа ранней фазы — парентеральное питание.</li><li>Энтеральное: постепенный ввод олигомерных (пептидных) смесей.</li></ul>` },
             ckd_nodialysis: { protRange: "0.6 - 0.8", protCalc: [0.6, 0.8], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-gray-700"><li><b>Без диализа:</b> Ограничение белка для замедления прогрессирования ХБП.</li><li>Энергия: 30-35 ккал/кг для предотвращения белково-энергетической недостаточности.</li><li>Ограничение калия (K), натрия (Na), фосфора (P). Специализированные почечные смеси.</li></ul>` },
             aki_ihd: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-teal-800"><li><b>Интермиттирующий диализ (ИГД):</b> Потери аминокислот ~10-15 г за сеанс.</li><li>Необходима компенсация белка и водорастворимых витаминов в дни диализа.</li></ul>` },
-            aki_crrt: { protRange: "1.5 - 1.7", protCalc: [1.5, 1.7], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-teal-900"><li><b>На ПЗПТ (CRRT):</b> Белок 1.5-1.7 г/кг (до 2.0 при high-volume). Учет потерь АК с эффлюентом.</li><li><b>Опасно:</b> вымывание водорастворимых витаминов (В1, С, фолаты) и микроэлементов (Se, Cu). Строгое в/в восполнение!</li></ul>` },
-            obesity: { protRange: "2.0 (на ИМТ)", protCalc: [2.0, 2.0], fatRange: "0.8 - 1.0", notes: `<ul class="list-disc pl-4 text-pink-900"><li>Гипокалорийное питание с высоким белком.</li><li>Белок: 2.0 г/кг <b>идеальной</b> массы тела.</li><li>Тромбопрофилактика с расчетом дозы гепаринов на общую (фактическую) массу.</li></ul>` },
+            aki_crrt: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-800"><li><b>ПЗПТ:</b> Клиренс нутриентов через мембраны диализаторов приводит к тяжелому гиперкатаболизму. Потери АК в фильтре достигают 15-20 г/сут.</li><li>Обязательна непрерывная компенсация (доза белка увеличена до 1.5-2.0 г/кг, рекомендовано 10% АМ). Строго восполнять водорастворимые витамины.</li></ul>` },
+            obesity: { protRange: "2.0 (на ИМТ)", protCalc: [2.0, 2.0], fatRange: "0.8 - 1.0", notes: `<ul class="list-disc pl-4 text-pink-900"><li>Гипокалорийное питание с высоким белком.</li><li>Белок: 2.0 г/кг <b>идеальной</b> массы тела. Парентеральная коррекция (10% АМ) показана при дефиците.</li><li>Тромбопрофилактика на общую (фактическую) массу.</li></ul>` },
             rehab: { protRange: "1.3 - 2.0", protCalc: [1.3, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-indigo-900"><li>Энергопотребность возрастает при кинезиотерапии.</li><li>Профилактика ПНМКС требует белка (не менее 1.3 г/кг) на фоне мышечной нагрузки.</li><li>Обязательный тест 3-х глотков на дисфагию перед началом перорального питания.</li></ul>` }
         },
         en: {
             general: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4"><li><b>Start Algorithm:</b> 10-15 kcal/kg (≤50% goal) on day 1-2. Increase by 5-10 kcal/kg daily. Full volume by day 4-7.</li><li>Early EN (300 ml/d or 10-20 ml/h) in first 24-48h to preserve gut barrier.</li></ul>` },
             pneumonia: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-900"><li><b>Moderate stress:</b> energy requirement 25-30 kcal/kg.</li><li><b>Respiratory failure:</b> avoid carbohydrate overfeeding (increases CO2 production). Optimize fat ratio.</li></ul>` },
             sepsis: { protRange: "1.3 - 2.0", protCalc: [1.3, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-red-900"><li><b>Acute phase (shock):</b> Start trophic EN (10-15 kcal/kg or 10-20 ml/h).</li><li><b>Stepwise increase:</b> Add 5 kcal/kg (or +10-20 ml/h) every 24-48h based on tolerance. Reach goal strictly by day 4-7 to avoid overfeeding!</li><li><b>Thiamine (B1) deficit:</b> High risk! Mandatory IV supplementation.</li></ul>` },
+            polytrauma: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-red-900"><li><b>Severe hypermetabolism:</b> massive nitrogen loss. Intensive protein supplementation required.</li></ul>` },
             pancreatitis: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "0.8 - 1.2", notes: `<ul class="list-disc pl-4 text-orange-900"><li><b>Severe AP:</b> Nasojejunal tube from first hours.</li><li><b>IV Glutamine:</b> 2-4 ml/kg to prevent infected pancreatic necrosis.</li></ul>` },
             burns: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-orange-800"><li><b>Toxemia:</b> Energy 30-40 kcal/kg. Severe catabolism.</li><li>High trace element loss in exudate (Cu, Se, Zn, Vit C) — requirement increased by 1.5-2x.</li></ul>` },
             tbi: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-900"><li>Severe hypermetabolism (30-35 kcal/kg).</li><li><b>Glycemic control:</b> >10 mmol/L worsens cerebral edema.</li></ul>` },
             gib: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-red-900"><li><b>Acute phase:</b> hold enteral feeding until secure endoscopic hemostasis (at least 24-48h).</li><li>If EN contraindicated for >3 days, start parenteral nutrition.</li></ul>` },
             oncology: { protRange: "1.2 - 2.0", protCalc: [1.2, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-indigo-900"><li>Protein up to 2.0 g/kg in severe cachexia.</li><li>In insulin resistance: increase fats, decrease carbohydrates.</li><li>Immune nutrition (Omega-3, Arginine) 5-7 days prior to GI surgery.</li></ul>` },
-            cirrhosis: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.2", notes: `<ul class="list-disc pl-4 text-yellow-900"><li><b>Important:</b> Calculate based on <b>dry weight</b> (no ascites).</li><li>Late evening snack required to prevent night catabolism.</li><li>Severe encephalopathy — specialized hepatic formulas (high BCAA).</li></ul>` },
+            cirrhosis: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.2", notes: `<ul class="list-disc pl-4 text-yellow-900"><li><b>Important:</b> Calculate based on <b>dry weight</b> (no ascites).</li><li>Late evening snack required to prevent night catabolism.</li></ul>` },
             sbs: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-emerald-900"><li>Energy 30-40 kcal/kg/d.</li><li>Early phase base is parenteral nutrition.</li><li>Enteral: gradual intro of oligomeric (peptide) formulas.</li></ul>` },
             ckd_nodialysis: { protRange: "0.6 - 0.8", protCalc: [0.6, 0.8], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-gray-700"><li><b>No dialysis:</b> Protein restriction to slow CKD progression.</li><li>Energy: 30-35 kcal/kg to prevent malnutrition.</li><li>Restrict K, Na, P. Specialized renal formulas.</li></ul>` },
             aki_ihd: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-teal-800"><li><b>Intermittent HD:</b> Amino acid loss ~10-15g per session.</li><li>Compensate protein and water-soluble vitamins on dialysis days.</li></ul>` },
@@ -1209,7 +1188,9 @@
     }
 
     function switchContraTab(tabId, btnElement) {
-        document.querySelectorAll('.contra-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.contra-content').forEach(el => {
+            el.classList.add('hidden');
+        });
         document.querySelectorAll('.contra-btn').forEach(el => {
             el.classList.remove('bg-white', 'text-red-600', 'shadow-sm');
             el.classList.add('text-slate-500');
@@ -1255,10 +1236,11 @@
         
         if (checkedCount === 6) {
             document.getElementById('kkmp-success').classList.remove('hidden');
-            document.getElementById('kkmp-progress').classList.replace('bg-blue-500', 'bg-green-500');
+            document.getElementById('kkmp-progress').className = 'bg-green-500 h-2 w-full transition-all duration-500 ease-out';
         } else {
             document.getElementById('kkmp-success').classList.add('hidden');
-            document.getElementById('kkmp-progress').classList.replace('bg-green-500', 'bg-blue-500');
+            document.getElementById('kkmp-progress').className = 'bg-blue-500 h-2 transition-all duration-500 ease-out';
+            document.getElementById('kkmp-progress').style.width = `${(checkedCount / 6) * 100}%`;
         }
     }
 
@@ -1273,7 +1255,7 @@
                 alertGluc.classList.remove('hidden');
                 if (gluc > 10) {
                     alertGluc.className = "mt-2 p-2 bg-red-100 text-red-800 rounded-lg border border-red-200 text-[11px] leading-tight font-medium shadow-sm";
-                    alertGluc.innerHTML = (lang === 'ru') ? "⚠️ <b>> 10 ммоль/л:</b> Инсулинотерапия + парентеральные АК." : "⚠️ <b>> 10 mmol/L:</b> Insulin + PN AA.";
+                    alertGluc.innerHTML = (lang === 'ru') ? "⚠️ <b>> 10 ммоль/л:</b> Инсулинотерапия. Рекомендуется использовать для ПП <b>5% АМ</b> (не содержит углеводов)." : "⚠️ <b>> 10 mmol/L:</b> Insulin. Recommend 5% AA (no carbohydrates).";
                 } else if (gluc >= 6 && gluc <= 8) {
                     alertGluc.className = "mt-2 p-2 bg-green-100 text-green-800 rounded-lg border border-green-200 text-[11px] leading-tight font-medium shadow-sm";
                     alertGluc.innerHTML = (lang === 'ru') ? "✅ В пределах цели (6-8 ммоль/л)." : "✅ Within target (6-8 mmol/L).";
@@ -1308,7 +1290,7 @@
                 alertBun.classList.remove('hidden');
                 if (bun > 10) {
                     alertBun.className = "mt-2 p-2 bg-yellow-100 text-yellow-900 rounded-lg border border-yellow-300 text-[11px] leading-tight font-medium shadow-sm";
-                    alertBun.innerHTML = (lang === 'ru') ? "⚠️ <b>> 10 ммоль/л:</b> Уменьшить белок до 0.8-1.0 г/кг (исключив гиповолемию).<br><span class='text-red-700 font-bold mt-1 block uppercase tracking-wide'>При ПЗПТ (CRRT) квоту белка НЕ уменьшают!</span>" : "⚠️ <b>> 10 mmol/L:</b> Reduce protein to 0.8-1.0 g/kg (exclude hypovolemia).<br><span class='text-red-700 font-bold mt-1 block uppercase tracking-wide'>Do NOT reduce protein during CRRT!</span>";
+                    alertBun.innerHTML = (lang === 'ru') ? "⚠️ <b>> 10-15 ммоль/л:</b> Уменьшить белок до 0.8-1.0 г/кг (исключив гиповолемию).<br><span class='text-red-700 font-bold mt-1 block uppercase tracking-wide'>При ПЗПТ квоту белка НЕ уменьшают!</span>" : "⚠️ <b>> 10-15 mmol/L:</b> Reduce protein to 0.8-1.0 g/kg (exclude hypovolemia).<br><span class='text-red-700 font-bold mt-1 block uppercase tracking-wide'>Do NOT reduce protein during CRRT!</span>";
                 } else {
                     alertBun.className = "mt-2 p-2 bg-green-100 text-green-800 rounded-lg border border-green-200 text-[11px] leading-tight font-medium shadow-sm";
                     alertBun.innerHTML = (lang === 'ru') ? "✅ Норма." : "✅ Normal.";
@@ -1337,7 +1319,7 @@
         if (window.currentNitrogenBalance < -1) {
             safeSetDisplay('gi-catabolism-alert', 'block');
             safeSet('gi-catabolism-alert', (lang === 'ru') ? 
-                "⚠️ Внимание: При повышении катаболизма по азотистому балансу (выраженный отрицательный баланс) <br><span class='font-black uppercase text-[10px] tracking-wide mt-1 block'>Критический дефицит белка-необходимо восполнять парентерально!</span>" : 
+                "⚠️ Внимание: При повышении катаболизма по азотистому балансу (выраженный отрицательный баланс) <br><span class='font-black uppercase text-[10px] tracking-wide mt-1 block'>Критический дефицит белка-необходимо восполнять парентерально (10% АМ)!</span>" : 
                 "⚠️ Warning: With increased catabolism per nitrogen balance (severe negative balance) <br><span class='font-black uppercase text-[10px] tracking-wide mt-1 block'>Critical protein deficit must be replenished parenterally!</span>");
         } else {
             safeSetDisplay('gi-catabolism-alert', 'none');
@@ -1351,9 +1333,8 @@
         const isCRRT = document.getElementById('nb-crrt')?.checked || false;
 
         const nIn = proteinIn / 6.25;
-        // Расчет UUN = Мочевина мочи (ммоль/л) * Диурез (л) * 0.028 (масса азота)
         const uun = urineUreaMmolL * diuresis * 0.028;
-        let nOut = uun + 4.0; // 4.0 - скрытые потери (кожа, кал)
+        let nOut = uun + 4.0; 
         if (isCRRT) nOut += 2.4; 
 
         const balance = nIn - nOut;
@@ -1421,6 +1402,15 @@
         if (!isNaN(actualVolume) && actualVolume > 0) {
             autoSetRatio(); 
         } else {
+            calculateAll();
+        }
+    }
+
+    // ФУНКЦИЯ ДЛЯ КЛИКОВ ПО КАРТОЧКАМ
+    function selectBrand(brandValue) {
+        const selectEl = document.getElementById('pn-type');
+        if (selectEl) {
+            selectEl.value = brandValue;
             calculateAll();
         }
     }
@@ -1527,17 +1517,15 @@
         if (!ibw) ibw = parseFloat(document.getElementById('ibw-val')?.innerText) || actualWeight;
 
         const protocolKey = document.getElementById('protocol-select')?.value || 'general';
-        // Deep copy of protocol to allow dynamic updates without altering the original
         const p = JSON.parse(JSON.stringify(protocols[lang][protocolKey]));
 
-        // КОМОРБИДНОСТИ: Адаптация протокола на лету
         let extraNotes = "";
         const isDM = document.getElementById('comorb-dm')?.checked;
         const isHF = document.getElementById('comorb-hf')?.checked;
         const isCKD = document.getElementById('comorb-ckd')?.checked;
 
         if (isDM) {
-            extraNotes += "<li class='text-red-800'><b>СД/Гипергликемия:</b> Жесткий контроль глюкозы (6-8 ммоль/л). Рекомендуется снизить долю углеводов и увеличить долю жировых эмульсий (смеси типа 'Диабет').</li>";
+            extraNotes += "<li class='text-red-800'><b>СД / Стресс-гипергликемия:</b> Препарат выбора для парентеральной коррекции — <b>5% АМ</b> (сбалансирован по электролитам, не содержит углеводов, не усугубляет гипергликемию). Жесткий контроль глюкозы (6-8 ммоль/л).</li>";
         }
         if (isHF) {
             extraNotes += "<li class='text-blue-800'><b>ХСН:</b> Риск перегрузки объемом! Строгое ограничение жидкости (< 1.5 л/сут). Использовать концентрированные смеси (ЭП ≥ 1.5 ккал/мл, парентеральные АК 10-15%).</li>";
@@ -1570,7 +1558,6 @@
         const autoEnTargetEl = document.getElementById('auto-en-target');
         if(autoEnTargetEl) autoEnTargetEl.value = aee;
 
-        // ENT CALCULATION
         const enTypeVal = document.getElementById('en-type')?.value || "1.0|4.0";
         const enParts = enTypeVal.split('|');
         const enKcalPerMl = parseFloat(enParts[0]);
@@ -1584,14 +1571,37 @@
         safeSet('en-vol', `${enVol}${u('ml')}`);
         safeSet('en-prot', `${enProt}${u('g')}`);
 
-        // PN CALCULATION - УМНЫЙ ПЕРЕРАСЧЕТ
-        const pnType = document.getElementById('pn-type')?.value || 'aa_5';
+        const pnType = document.getElementById('pn-type')?.value || 'aa10';
         
-        // Вычисляем ДЕФИЦИТ белка (Макс потребность минус белок из зонда)
+        // Подсветка активной карточки препарата
+        const cardAA5 = document.getElementById('card-aa5');
+        const cardAA10 = document.getElementById('card-aa10');
+        const card3in1 = document.getElementById('card-3in1');
+        
+        const activeClass = "cursor-pointer flex flex-col p-2 rounded-xl shadow-md justify-start items-center text-center transition-all duration-300 transform scale-105 z-10 border-2 ";
+        const inactiveClass = "cursor-pointer flex flex-col bg-slate-50 p-2 rounded-xl border border-slate-200 shadow-sm justify-start items-center text-center transition-all duration-300 opacity-50 grayscale scale-95 ";
+
+        if (pnType === 'aa5') {
+            if(cardAA5) cardAA5.className = activeClass + "bg-sky-50 border-sky-400";
+            if(cardAA10) cardAA10.className = inactiveClass + "hover:bg-emerald-50";
+            if(card3in1) card3in1.className = inactiveClass + "hover:bg-purple-50";
+        } else if (pnType === 'aa10') {
+            if(cardAA10) cardAA10.className = activeClass + "bg-emerald-50 border-emerald-400";
+            if(cardAA5) cardAA5.className = inactiveClass + "hover:bg-sky-50";
+            if(card3in1) card3in1.className = inactiveClass + "hover:bg-purple-50";
+        } else if (pnType === '3in1') {
+            if(card3in1) card3in1.className = activeClass + "bg-purple-50 border-purple-400";
+            if(cardAA5) cardAA5.className = inactiveClass + "hover:bg-sky-50";
+            if(cardAA10) cardAA10.className = inactiveClass + "hover:bg-emerald-50";
+        } else {
+            if(cardAA5) cardAA5.className = inactiveClass + "hover:bg-sky-50";
+            if(cardAA10) cardAA10.className = inactiveClass + "hover:bg-emerald-50";
+            if(card3in1) card3in1.className = inactiveClass + "hover:bg-purple-50";
+        }
+        
         let targetPnProt = protMax - enProt;
         if (targetPnProt < 0) targetPnProt = 0;
         
-        // Калории для ПП считаем как остаток от цели по энергии
         let targetPnKcal = aee - targetEnKcal;
         if (targetPnKcal < 0) targetPnKcal = 0;
 
@@ -1604,22 +1614,34 @@
             
             safeSet('pn-target-label', t('pn_target_kcal'));
             safeSet('pn-target-prot', `${targetPnKcal}${u('kcal')}`);
+            safeSet('pn-vol-label', (lang === 'ru') ? 'Объем 3-в-1:' : '3-in-1 Volume:');
             safeSet('pn-vol', pnVol > 0 ? `~ ${pnVol}${u('ml_day')} (${Math.round((pnVol/100)*5)}${u('g')} белка)` : `0${u('ml_day')}`);
             
-            safeSetDisplay('pn-images', 'none');
-            safeSetDisplay('pn-aa-note', 'none');
             safeSetDisplay('energy-calc-box', 'none');
         } else {
-            const mlPerGram = (pnType === 'aa_5') ? 20 : 10;
-            pnVol = targetPnProt * mlPerGram;
-            pnMaxAllowed = Math.round(calcWeight * 20); 
+            // Расчет разницы концентраций для стандартных АМ
+            let mlPerGram = 10; 
+            if (pnType === 'aa10') {
+                mlPerGram = 10; // 10% раствор (100 г/л)
+            } else if (pnType === 'aa5') {
+                mlPerGram = 20; // 5% раствор (50 г/л) - 20 мл на 1 грамм белка
+            }
+            
+            pnVol = Math.round(targetPnProt * mlPerGram);
+            
+            // Расчет максимально допустимой жидкости по весу
+            pnMaxAllowed = Math.round(calcWeight * 40); // Для низкоконцентрированных лимит выше
+            if (pnType === 'aa10') pnMaxAllowed = Math.round(calcWeight * 20); // Для 10% лимит строже
+            
+            let volLabel = (lang === 'ru') ? 'Объем раствора:' : 'Solution volume:';
+            if (pnType === 'aa10') volLabel = (lang === 'ru') ? 'Объем 10% АМ:' : '10% AA Vol:';
+            if (pnType === 'aa5') volLabel = (lang === 'ru') ? 'Объем 5% АМ:' : '5% AA Vol:';
             
             safeSet('pn-target-label', t('pn_target_prot'));
             safeSet('pn-target-prot', `${targetPnProt}${u('g')}`);
+            safeSet('pn-vol-label', volLabel);
             safeSet('pn-vol', pnVol > 0 ? `~ ${pnVol}${u('ml_day')}` : `0${u('ml_day')}`);
             
-            safeSetDisplay('pn-images', 'flex');
-            safeSetDisplay('pn-aa-note', 'block');
             safeSetDisplay('energy-calc-box', 'block');
             
             let nonProtKcal = targetPnKcal - (targetPnProt * 4);
@@ -1696,7 +1718,7 @@
 
     window.onload = () => {
         setLang('ru'); 
-        updateKKMP(); // Инициализация чеклиста
+        updateKKMP(); 
     };
 </script>
 
