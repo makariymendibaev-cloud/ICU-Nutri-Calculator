@@ -266,10 +266,38 @@
             
             <div id="screen-result" class="mt-4 p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs shadow-sm"></div>
         </div>
-        
-        <!-- Медицинский дисклеймер (Внизу вкладки) -->
-        <div class="mx-4 mt-6 mb-2 p-3 bg-yellow-50 rounded-xl border border-yellow-200 shadow-sm">
-            <p class="text-[9px] leading-relaxed text-yellow-800 text-center font-medium" data-ru="⚠️ ВНИМАНИЕ: Калькулятор носит исключительно справочный характер. Результаты расчетов требуют клинической верификации лечащим врачом." data-en="⚠️ DISCLAIMER: For informational purposes only. Calculation results require clinical verification by a physician.">⚠️ ВНИМАНИЕ: Калькулятор носит исключительно справочный характер. Результаты расчетов требуют клинической верификации лечащим врачом.</p>
+
+        <!-- ОЦЕНКА БЭН (ЛАБОРАТОРНАЯ) -->
+        <div class="card border-l-4 border-l-purple-500 mb-3">
+            <h2 class="text-sm font-extrabold text-slate-800 mb-1 uppercase tracking-wide" data-ru="Лабораторная оценка БЭН" data-en="Lab PEM Assessment">Лабораторная оценка БЭН</h2>
+            <p class="text-[9px] text-slate-500 mb-3 leading-tight font-medium" data-ru="💡 По ESPEN альбумин в ОРИТ падает из-за воспаления (СПОН), а не только от голода. Но при неясном анамнезе критические сдвиги обосновывают ранний старт ПП." data-en="💡 Per ESPEN, albumin drops due to inflammation, not just starvation. However, in unclear anamnesis, critical shifts justify early PN.">💡 По ESPEN альбумин в ОРИТ падает из-за воспаления (СПОН), а не только от голода. Но при неясном анамнезе критические сдвиги обосновывают ранний старт ПП.</p>
+            
+            <div class="grid grid-cols-2 gap-3 mb-2">
+                <div class="input-group !mb-0">
+                    <label class="text-slate-500 text-[10px]" data-ru="Общий белок (г/л)" data-en="Total Protein (g/L)">Общий белок (г/л)</label>
+                    <input type="number" id="ben-prot" class="border-slate-200" oninput="calculateAll()" placeholder="65-85">
+                </div>
+                <div class="input-group !mb-0">
+                    <label class="text-slate-500 text-[10px]" data-ru="Альбумин (г/л)" data-en="Albumin (g/L)">Альбумин (г/л)</label>
+                    <input type="number" id="ben-alb" class="border-slate-200" oninput="calculateAll()" placeholder="35-50">
+                </div>
+                <div class="input-group !mb-0">
+                    <label class="text-slate-500 text-[10px]" data-ru="Трансферрин (г/л)" data-en="Transferrin (g/L)">Трансферрин (г/л)</label>
+                    <input type="number" id="ben-transf" step="0.1" class="border-slate-200" oninput="calculateAll()" placeholder="2.0-4.0">
+                </div>
+                <div class="input-group !mb-0">
+                    <label class="text-slate-500 text-[10px]" data-ru="Лимфоциты (в мкл)" data-en="Lymphocytes (/µL)">Лимфоциты (в мкл)</label>
+                    <input type="number" id="ben-lymph" class="border-slate-200" oninput="calculateAll()" placeholder="> 1500">
+                </div>
+            </div>
+
+            <div id="ben-result-box" style="display: none;">
+                <div class="flex justify-between items-center mb-2 mt-3 pt-3 border-t border-purple-100">
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-widest" data-ru="Степень БЭН:" data-en="PEM Degree:">Степень БЭН:</span>
+                    <span id="ben-degree"></span>
+                </div>
+                <div id="ben-advice"></div>
+            </div>
         </div>
     </div>
 
@@ -672,7 +700,7 @@
                 </div>
             </div>
 
-            <!-- ПРОПОФОЛ -->
+            <!-- ПРОПОФОЛ: ИСправлено отображение скорости -->
             <div id="propofol-box" class="mt-4 pt-4 border-t border-slate-100">
                 <div class="border-2 border-purple-100 rounded-xl p-3 bg-purple-50">
                     <label class="flex items-center gap-3 cursor-pointer">
@@ -696,7 +724,7 @@
             </div>
 
             <!-- КАЛЬКУЛЯТОР ЖИРОВ И ГЛЮКОЗЫ -->
-            <div id="energy-calc-box" class="mt-4 pt-4 border-t border-slate-100" style="display: none;">
+            <div id="energy-calc-box" class="mt-3 pt-3 border-t border-slate-100" style="display: none;">
                 <h4 class="text-xs font-extrabold text-slate-700 mb-3 uppercase tracking-wide" data-ru="Восполнение энергии (Жиры/Углеводы)" data-en="Energy coverage (Lipids/Carbs)">Восполнение энергии (Жиры/Углеводы)</h4>
                 
                 <div class="flex justify-between items-center text-xs mb-3 bg-slate-50 p-2 rounded-lg">
@@ -804,40 +832,6 @@
             </div>
         </div>
 
-        <!-- ОЦЕНКА БЭН -->
-        <div class="card border-l-4 border-l-purple-500 mb-3">
-            <h2 class="text-sm font-extrabold text-slate-800 mb-4 uppercase tracking-wide">
-                <span data-ru="Оценка БЭН (Лабораторная)" data-en="PEM Assessment (Lab)">Оценка БЭН (Лабораторная)</span>
-            </h2>
-            
-            <div class="grid grid-cols-2 gap-3 mb-2">
-                <div class="input-group !mb-0">
-                    <label class="text-slate-500 text-[10px]" data-ru="Общий белок (г/л)" data-en="Total Protein (g/L)">Общий белок (г/л)</label>
-                    <input type="number" id="ben-prot" class="border-slate-200" oninput="calculateBEN()" placeholder="65-85">
-                </div>
-                <div class="input-group !mb-0">
-                    <label class="text-slate-500 text-[10px]" data-ru="Альбумин (г/л)" data-en="Albumin (g/L)">Альбумин (г/л)</label>
-                    <input type="number" id="ben-alb" class="border-slate-200" oninput="calculateBEN()" placeholder="35-50">
-                </div>
-                <div class="input-group !mb-0">
-                    <label class="text-slate-500 text-[10px]" data-ru="Трансферрин (г/л)" data-en="Transferrin (g/L)">Трансферрин (г/л)</label>
-                    <input type="number" id="ben-transf" step="0.1" class="border-slate-200" oninput="calculateBEN()" placeholder="2.0-4.0">
-                </div>
-                <div class="input-group !mb-0">
-                    <label class="text-slate-500 text-[10px]" data-ru="Лимфоциты (в мкл)" data-en="Lymphocytes (/µL)">Лимфоциты (в мкл)</label>
-                    <input type="number" id="ben-lymph" class="border-slate-200" oninput="calculateBEN()" placeholder="> 1500">
-                </div>
-            </div>
-
-            <div id="ben-result-box" style="display: none;">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-xs font-bold text-slate-500 uppercase tracking-widest" data-ru="Степень БЭН:" data-en="PEM Degree:">Степень БЭН:</span>
-                    <span id="ben-degree"></span>
-                </div>
-                <div id="ben-advice"></div>
-            </div>
-        </div>
-
         <div class="card border-l-4 border-l-blue-500 mb-3">
             <h2 class="text-sm font-extrabold text-slate-800 mb-4 uppercase tracking-wide" data-ru="Метаболический контроль" data-en="Metabolic Control">Метаболический контроль</h2>
             
@@ -937,12 +931,12 @@
 </div>
 
 <script>
+    let lang = 'ru';
+    let gender = 'male';
+    window.currentNitrogenBalance = 0;
+
     function t(key) { return tDict[lang][key] || key; }
     function u(key) { return tDict[lang].units[key] || ""; }
-
-    let gender = 'male';
-    let lang = 'ru';
-    window.currentNitrogenBalance = 0;
 
     function safeSet(id, text) {
         const el = document.getElementById(id);
@@ -1138,7 +1132,20 @@
         const contentEl = document.getElementById('screen-' + tool);
         if (contentEl) contentEl.classList.remove('hidden');
         
-        runScreening();
+        runScreening(false);
+    }
+
+    function getLabPemSeverity() {
+        const p = parseFloat(document.getElementById('ben-prot')?.value);
+        const a = parseFloat(document.getElementById('ben-alb')?.value);
+        const t_val = parseFloat(document.getElementById('ben-transf')?.value);
+        const l = parseFloat(document.getElementById('ben-lymph')?.value);
+        let maxSev = 0;
+        if (!isNaN(p)) { if (p < 50) maxSev = Math.max(maxSev, 3); else if (p <= 54) maxSev = Math.max(maxSev, 2); else if (p <= 59) maxSev = Math.max(maxSev, 1); }
+        if (!isNaN(a)) { if (a < 25) maxSev = Math.max(maxSev, 3); else if (a <= 30) maxSev = Math.max(maxSev, 2); else if (a <= 35) maxSev = Math.max(maxSev, 1); }
+        if (!isNaN(t_val)) { if (t_val < 1.25) maxSev = Math.max(maxSev, 3); else if (t_val <= 1.8) maxSev = Math.max(maxSev, 2); else if (t_val <= 2.0) maxSev = Math.max(maxSev, 1); }
+        if (!isNaN(l)) { if (l < 800) maxSev = Math.max(maxSev, 3); else if (l <= 1000) maxSev = Math.max(maxSev, 2); else if (l <= 1200) maxSev = Math.max(maxSev, 1); }
+        return maxSev;
     }
 
     function getMalnutritionRisk(bmi) {
@@ -1266,29 +1273,13 @@
 
         safeSetDisplay('ben-result-box', 'block');
 
-        let maxSev = 0; 
+        let maxSev = getLabPemSeverity(); 
         let reasons = [];
 
-        if (!isNaN(p)) {
-            if (p < 50) { maxSev = Math.max(maxSev, 3); reasons.push('критическое падение общего белка (<50)'); }
-            else if (p <= 54) maxSev = Math.max(maxSev, 2);
-            else if (p <= 59) maxSev = Math.max(maxSev, 1);
-        }
-        if (!isNaN(a)) {
-            if (a < 25) { maxSev = Math.max(maxSev, 3); reasons.push('опасное снижение альбумина (<25)'); }
-            else if (a <= 30) maxSev = Math.max(maxSev, 2);
-            else if (a <= 35) maxSev = Math.max(maxSev, 1);
-        }
-        if (!isNaN(t_val)) {
-            if (t_val < 1.25) { maxSev = Math.max(maxSev, 3); reasons.push('острый дефицит по трансферрину (<1.25)'); }
-            else if (t_val <= 1.8) maxSev = Math.max(maxSev, 2);
-            else if (t_val <= 2.0) maxSev = Math.max(maxSev, 1);
-        }
-        if (!isNaN(l)) {
-            if (l < 800) { maxSev = Math.max(maxSev, 3); reasons.push('алиментарный иммунодефицит (<800)'); }
-            else if (l <= 1000) maxSev = Math.max(maxSev, 2);
-            else if (l <= 1200) maxSev = Math.max(maxSev, 1);
-        }
+        if (!isNaN(p) && p < 50) reasons.push('общий белок <50');
+        if (!isNaN(a) && a < 25) reasons.push('альбумин <25');
+        if (!isNaN(t_val) && t_val < 1.25) reasons.push('трансферрин <1.25');
+        if (!isNaN(l) && l < 800) reasons.push('лимфоциты <800');
 
         const degreeEl = document.getElementById('ben-degree');
         const adviceEl = document.getElementById('ben-advice');
@@ -1297,7 +1288,7 @@
             safeSet('ben-degree', (lang==='ru') ? "Тяжелая" : "Severe");
             safeSetClass('ben-degree', "text-lg font-black uppercase tracking-tighter text-red-600");
             safeSetClass('ben-result-box', "bg-red-50 p-4 rounded-xl border border-red-200 mt-4 block shadow-sm");
-            let txt = (lang==='ru') ? `Высокий риск осложнений. Обнаружено: <b>${reasons.join(', ')}</b>. <br><br><b>Тактика:</b> Агрессивное восполнение белка (1.5–2.0 г/кг) и старт смешанного (ЭП+ПП) питания. Альбумин не устраняет дефицит!` : `High complication risk. <b>Action:</b> Aggressive protein repletion (1.5-2.0 g/kg) and mixed (EN+PN) feeding. Albumin doesn't fix malnutrition!`;
+            let txt = (lang==='ru') ? `Высокий риск осложнений. Обнаружено: <b>${reasons.join(', ')}</b>. <br><br><b>Тактика:</b> Агрессивное восполнение белка (1.5–2.0 г/кг) и старт смешанного (ЭП+ПП) питания.` : `High complication risk. <b>Action:</b> Aggressive protein repletion (1.5-2.0 g/kg) and mixed (EN+PN) feeding.`;
             safeSet('ben-advice', txt);
         } else if (maxSev === 2) {
             safeSet('ben-degree', (lang==='ru') ? "Средняя" : "Moderate");
@@ -1389,7 +1380,7 @@
                 alertGluc.classList.remove('hidden');
                 if (gluc > 10) {
                     alertGluc.className = "mt-2 p-2 bg-red-100 text-red-800 rounded-lg border border-red-200 text-[11px] leading-tight font-medium shadow-sm";
-                    alertGluc.innerHTML = (lang === 'ru') ? "⚠️ <b>> 10 ммоль/л:</b> Инсулинотерапия. Рекомендуется использовать для ПП <b>5% АМ</b> (не содержит углеводов)." : "⚠️ <b>> 10 mmol/L:</b> Insulin. Recommend 5% AA (no carbohydrates).";
+                    alertGluc.innerHTML = (lang === 'ru') ? "⚠️ <b>> 10 ммоль/л:</b> Инсулинотерапия. Рекомендуется использовать для ПП <b>10% АМ</b> (не содержит углеводов)." : "⚠️ <b>> 10 mmol/L:</b> Insulin. Recommend 10% AA (no carbohydrates).";
                 } else if (gluc >= 6 && gluc <= 8) {
                     alertGluc.className = "mt-2 p-2 bg-green-100 text-green-800 rounded-lg border border-green-200 text-[11px] leading-tight font-medium shadow-sm";
                     alertGluc.innerHTML = (lang === 'ru') ? "✅ В пределах цели (6-8 ммоль/л)." : "✅ Within target (6-8 mmol/L).";
@@ -1448,13 +1439,15 @@
         const bmiVal = parseFloat(document.getElementById('bmi-val')?.innerText) || 20;
         const factorDef = parseFloat(document.getElementById('factor-def')?.value) || 1.0;
         const highRiskScreening = getMalnutritionRisk(bmiVal);
-        const isMalnourished = bmiVal < 18.5 || factorDef > 1.0 || highRiskScreening;
+        const labPemSev = getLabPemSeverity();
+        
+        const isMalnourished = bmiVal < 18.5 || factorDef > 1.0 || highRiskScreening || labPemSev >= 3;
         
         if (iap === 'acs' || absContra) {
             if (isEarlyPhase && !isMalnourished) {
                 safeSet('gi-recommendation', (lang === 'ru') ? "<span class='text-red-600 font-bold'>ПРОТИВОПОКАЗАНИЯ К ЭП (Ранняя фаза):</span> Пациентам без исходной БЭН показан <b>ГОЛОД (1-3 сутки)</b> с базисной инфузией. Старт ПП откладывается до 4-5 суток." : "<span class='text-red-600 font-bold'>EN CONTRAINDICATED (Early Phase):</span> Absolute starvation (1-3 days) for well-nourished patients. Delay PN to days 4-5.");
             } else if (isEarlyPhase && isMalnourished) {
-                safeSet('gi-recommendation', (lang === 'ru') ? "<span class='text-red-600 font-bold'>ПРОТИВОПОКАЗАНИЯ К ЭП (Высокий риск БЭН):</span> Показан немедленный старт ПП (в первые 24-48 ч)." : "<span class='text-red-600 font-bold'>EN CONTRAINDICATED (Malnutrition/High Risk):</span> Start PN immediately (24-48h).");
+                safeSet('gi-recommendation', (lang === 'ru') ? "<span class='text-red-600 font-bold'>ПРОТИВОПОКАЗАНИЯ К ЭП (Высокий риск / БЭН):</span> Показан немедленный старт ПП (в первые 24-48 ч)." : "<span class='text-red-600 font-bold'>EN CONTRAINDICATED (Malnutrition/High Risk):</span> Start PN immediately (24-48h).");
             } else {
                 safeSet('gi-recommendation', t('gi_full_pn'));
             }
@@ -1467,7 +1460,7 @@
         if (window.currentNitrogenBalance < -1) {
             safeSetDisplay('gi-catabolism-alert', 'block');
             safeSet('gi-catabolism-alert', (lang === 'ru') ? 
-                "⚠️ Внимание: При повышении катаболизма по азотистому балансу (выраженный отрицательный баланс) <br><span class='font-black uppercase text-[10px] tracking-wide mt-1 block'>Критический дефицит белка — необходимо восполнять парентерально (10% АМ)!</span>" : 
+                "⚠️ Внимание: При повышении катаболизма по азотистому балансу (выраженный отрицательный баланс) <br><span class='font-black uppercase text-[10px] tracking-wide mt-1 block'>Критический дефицит белка — необходимо восполнять парентерально!</span>" : 
                 "⚠️ Warning: With increased catabolism per nitrogen balance (severe negative balance) <br><span class='font-black uppercase text-[10px] tracking-wide mt-1 block'>Critical protein deficit must be replenished parenterally!</span>");
         } else {
             safeSetDisplay('gi-catabolism-alert', 'none');
@@ -1524,11 +1517,11 @@
             const isHF = document.getElementById('comorb-hf')?.checked;
             
             if (isHF) {
-                recText += "<br><span class='text-blue-900 font-bold mt-1.5 block'>💡 При ограничении объема (ХСН) и энергии рекомендуется 10% АМ.</span>";
+                recText += "<br><span class='text-blue-900 font-bold mt-1.5 block'>💡 При ограничении объема (ХСН) и энергии рекомендуется концентрированный 10% АМ.</span>";
             } else if (isDM) {
-                recText += "<br><span class='text-blue-900 font-bold mt-1.5 block'>💡 При гипергликемии рекомендуется 5% АМ (не содержит углеводов).</span>";
+                recText += "<br><span class='text-blue-900 font-bold mt-1.5 block'>💡 При гипергликемии рекомендуется 10% АМ (не содержит углеводов).</span>";
             } else {
-                recText += "<br><span class='text-blue-900 font-bold mt-1.5 block'>💡 Для коррекции рассмотрите 10% АМ или 5% АМ.</span>";
+                recText += "<br><span class='text-blue-900 font-bold mt-1.5 block'>💡 Для коррекции рассмотрите 10% АМ.</span>";
             }
             safeSet('nb-recommendation', recText);
 
@@ -1728,8 +1721,8 @@
 
         updateProtocolAndMeds(calcWeight, aee, bmi, ibw);
         
-        runScreening(true);
         calculateBEN();
+        runScreening(true);
         checkMetabolism();
         calculateNitrogenBalance();
     }
@@ -1750,11 +1743,11 @@
         const isCKD = document.getElementById('comorb-ckd')?.checked;
 
         if (isDM) {
-            extraNotes += "<li class='text-red-800'><b>СД / Стресс-гипергликемия:</b> Препарат выбора для парентеральной коррекции — <b>5% АМ</b> (сбалансирован по электролитам, не содержит углеводов, не усугубляет гипергликемию). Жесткий контроль глюкозы (6-8 ммоль/л).</li>";
-            smartAlert += "⚠️ <b>СД / Гипергликемия:</b> Рекомендуется <b>5% АМ</b> (без углеводов).<br>";
+            extraNotes += "<li class='text-red-800'><b>СД / Стресс-гипергликемия:</b> Препарат выбора для парентеральной коррекции — <b>10% АМ</b> (не содержит углеводов, не усугубляет гипергликемию). Жесткий контроль глюкозы (6-8 ммоль/л).</li>";
+            smartAlert += "⚠️ <b>СД / Гипергликемия:</b> Рекомендуется <b>10% АМ</b> (без углеводов).<br>";
         }
         if (isHF) {
-            extraNotes += "<li class='text-blue-800'><b>ХСН:</b> Риск перегрузки объемом! Строгое ограничение жидкости (< 1.5 л/сут). Использовать концентрированные смеси (ЭП ≥ 1.5 ккал/мл, парентеральные АК 10-15%).</li>";
+            extraNotes += "<li class='text-blue-800'><b>ХСН:</b> Риск перегрузки объемом! Строгое ограничение жидкости (< 1.5 л/сут). Использовать концентрированные смеси (ЭП ≥ 1.5 ккал/мл, парентеральные АК 10%).</li>";
             smartAlert += "⚠️ <b>ХСН (Ограничение жидкости):</b> Рекомендуется <b>10% АМ</b> для восполнения белка в минимальном объеме.<br>";
         }
         if (isCKD) {
@@ -1848,7 +1841,8 @@
         
         const factorDef = parseFloat(document.getElementById('factor-def')?.value) || 1.0;
         const highRiskScreening = getMalnutritionRisk(bmi);
-        const isMalnourished = bmi < 18.5 || factorDef > 1.0 || highRiskScreening;
+        const labPemSev = getLabPemSeverity();
+        const isMalnourished = bmi < 18.5 || factorDef > 1.0 || highRiskScreening || labPemSev >= 3;
         
         const isHypercatabolic = protocolKey === 'burns' || protocolKey === 'polytrauma' || protocolKey === 'aki_crrt' || document.getElementById('nb-crrt')?.checked;
 
@@ -1869,11 +1863,11 @@
             if (pnRestrictAlert) {
                 pnRestrictAlert.classList.remove('hidden');
                 if (restrictKcal && restrictProt) {
-                    pnRestrictAlert.innerHTML = (lang === 'ru') ? "🛑 <b>Ранняя фаза (1-4 сутки):</b> ПП ограничено (0 ккал, 0 г белка) для профилактики overfeeding и подавления аутофагии. Дотация разрешена только при БЭН (высокий балл скрининга) или сверхпотерях." : "🛑 <b>Early Phase (Days 1-4):</b> PN restricted to prevent overfeeding. Indicated only for malnutrition or hypercatabolism.";
+                    pnRestrictAlert.innerHTML = (lang === 'ru') ? "🛑 <b>Ранняя фаза (1-4 сутки):</b> ПП ограничено (0 ккал, 0 г белка) для профилактики overfeeding и подавления аутофагии. Дотация разрешена только при БЭН (анамнез / тяжелые лабораторные сдвиги) или сверхпотерях." : "🛑 <b>Early Phase (Days 1-4):</b> PN restricted to prevent overfeeding. Indicated only for severe malnutrition or hypercatabolism.";
                 } else if (restrictKcal && !restrictProt) {
                     pnRestrictAlert.innerHTML = (lang === 'ru') ? "🛑 <b>Ранняя фаза:</b> Калории ПП ограничены. Белок ПП разрешен исключительно из-за сверхпотерь (ПЗПТ/Ожоги/Травма)." : "🛑 <b>Early Phase:</b> PN calories restricted. PN protein allowed due to severe losses.";
                 } else {
-                    pnRestrictAlert.innerHTML = (lang === 'ru') ? "⚠️ <b>Ранняя фаза:</b> ПП разрешено из-за высокого риска БЭН (кахексия / высокий балл скрининга) или сверхпотерь. Риск рефидинг-синдрома!" : "⚠️ <b>Early Phase:</b> PN allowed due to malnutrition (high screening score) or hypercatabolism. Refeeding risk!";
+                    pnRestrictAlert.innerHTML = (lang === 'ru') ? "⚠️ <b>Ранняя фаза:</b> ПП разрешено из-за тяжелой БЭН или сверхпотерь. Риск рефидинг-синдрома!" : "⚠️ <b>Early Phase:</b> PN allowed due to severe malnutrition or hypercatabolism. Refeeding risk!";
                 }
             }
         } else {
@@ -1908,7 +1902,6 @@
             safeSetDisplay('propofol-alert', 'none');
         }
 
-        // Вычитаем калории пропофола из общей потребности в энергии ПП
         let netPnKcal = targetPnKcal - propofolKcal;
         if (netPnKcal < 0) netPnKcal = 0;
 
