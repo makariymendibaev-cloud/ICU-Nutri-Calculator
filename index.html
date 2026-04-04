@@ -88,7 +88,7 @@
 </head>
 <body>
 
-<div class="hidden bg-pink-500 text-white text-green-600"></div>
+<div class="hidden bg-pink-500 text-white text-green-600 text-red-600 text-yellow-600 text-blue-600 border-sky-400 border-emerald-400 border-purple-400"></div>
 
 <div class="app-container">
     <header class="bg-white px-5 pt-8 pb-4 border-b border-slate-200 z-10 relative flex-shrink-0 shadow-sm">
@@ -103,7 +103,6 @@
         <p class="text-[10px] text-slate-600 font-bold text-center mt-3 mb-0.5" data-ru="Автор: Макарий Мендибаев" data-en="Author: Makariy Mendibaev">Автор: Макарий Мендибаев</p>
         <p class="text-[9px] text-slate-400 font-medium text-center mb-1.5" data-ru="Врач анестезиолог-реаниматолог ГКБ им. В.П. Демихова ДЗМ" data-en="Anesthesiologist-resuscitator, Demikhov Hospital DZM">Врач анестезиолог-реаниматолог ГКБ им. В.П. Демихова ДЗМ</p>
         
-        <!-- Кнопка копирования почты -->
         <button onclick="copyEmail('makariy.mendibaev@yandex.ru', this)" class="block mx-auto text-[10px] text-blue-500 hover:text-blue-700 font-medium text-center transition-colors mb-1 cursor-pointer focus:outline-none" data-ru="✉️ makariy.mendibaev@yandex.ru" data-en="✉️ makariy.mendibaev@yandex.ru">✉️ makariy.mendibaev@yandex.ru</button>
     </header>
 
@@ -167,7 +166,6 @@
             </div>
         </div>
 
-        <!-- МОДУЛЬ СКРИНИНГА -->
         <div class="card">
             <div class="card-header border-none pb-0">
                 <svg class="card-icon text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -182,7 +180,7 @@
                 </select>
             </div>
 
-            <!-- Шкала NRS-2002 (Окончательный скрининг) -->
+            <!-- Шкала NRS-2002 -->
             <div id="screen-nrs" class="screening-block space-y-2">
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Нарушение питания (0-3):" data-en="Nutritional impairment (0-3):">Нарушение питания (0-3):</label>
@@ -397,7 +395,6 @@
                 <option value="rehab" data-ru="РеабИТ" data-en="ICU Rehabilitation">РеабИТ</option>
             </select>
 
-            <!-- КОМОРБИДНОСТИ (МУЛЬТИВЫБОР) -->
             <div class="mt-3">
                 <h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2" data-ru="Сопутствующие патологии:" data-en="Comorbidities:">Сопутствующие патологии:</h3>
                 <label class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg border border-slate-100 cursor-pointer mb-1 transition-colors hover:bg-slate-100">
@@ -414,7 +411,6 @@
                 </label>
             </div>
 
-            <!-- ПРЕДОПЕРАЦИОННАЯ ПОДГОТОВКА (ERAS) -->
             <label class="flex items-center gap-3 p-2.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-xl cursor-pointer transition-colors mt-3">
                 <input type="checkbox" id="preop-eras" onchange="togglePreop()" class="w-5 h-5 text-indigo-600 rounded">
                 <span class="text-[11px] font-bold text-indigo-900 leading-tight uppercase" data-ru="Плановая хирургия (ERAS)" data-en="Elective Surgery (ERAS)">Плановая хирургия (ERAS)</span>
@@ -493,7 +489,6 @@
             </div>
         </div>
 
-        <!-- БЛОК ПОЛЗУНКА ПРОПОРЦИЙ И ОЦЕНКИ ЖКТ -->
         <div class="card border-none shadow-md bg-gradient-to-b from-white to-slate-50">
             <h3 class="text-sm font-extrabold text-slate-800 mb-4 uppercase tracking-wide text-center" data-ru="Пропорция энергии (ЭП / ПП)" data-en="Energy Ratio (EN / PN)">Пропорция энергии (ЭП / ПП)</h3>
             
@@ -509,7 +504,6 @@
                 <span id="pn-pct-disp" class="text-blue-500">0%</span>
             </div>
 
-            <!-- АВТОРАСЧЕТ ДОЛИ -->
             <div class="mb-5 p-3 bg-slate-100 rounded-xl border border-slate-200 shadow-inner">
                 <h4 class="text-xs font-bold text-slate-700 mb-1 flex items-center uppercase tracking-wide">
                     <svg class="w-4 h-4 mr-1.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
@@ -529,7 +523,6 @@
                 <div id="auto-en-calc-result" class="text-[10px] text-blue-700 font-medium mt-2 hidden"></div>
             </div>
 
-            <!-- ИНТЕРАКТИВ КАЛЬКУЛЯТОР ФУНКЦИИ ЖКТ -->
             <div class="pt-4 border-t border-slate-200">
                 <h4 class="text-xs font-bold text-slate-800 mb-3 uppercase tracking-wide" data-ru="Оценка функции ЖКТ" data-en="GI Function Assessment">Оценка функции ЖКТ</h4>
                 
@@ -569,7 +562,6 @@
             </div>
         </div>
 
-        <!-- КАРТОЧКА ЭНТЕРАЛЬНОГО ПИТАНИЯ -->
         <div class="card border-l-4 border-l-green-500">
             <h3 class="text-xs font-extrabold text-slate-500 mb-3 uppercase tracking-wide" data-ru="Энтеральное Питание (ЭП)" data-en="Enteral Nutrition (EN)">Энтеральное Питание (ЭП)</h3>
             <div class="mb-3">
@@ -597,14 +589,11 @@
             </div>
         </div>
 
-        <!-- КАРТОЧКА ПАРЕНТЕРАЛЬНОГО ПИТАНИЯ (АКАДЕМИЧЕСКАЯ ВЕРСИЯ) -->
         <div class="card border-l-4 border-l-blue-500">
             <h3 class="text-xs font-extrabold text-slate-500 mb-3 uppercase tracking-wide" data-ru="Парентеральное Питание (ПП)" data-en="Parenteral Nutrition (PN)">Парентеральное Питание (ПП)</h3>
             
-            <!-- SMART ALERT ДЛЯ СОПУТСТВУЮЩИХ ПАТОЛОГИЙ -->
             <div id="smart-comorb-alert" class="hidden mb-3 p-3 bg-red-50 border border-red-200 rounded-xl text-[11px] leading-tight text-red-800 shadow-sm"></div>
             
-            <!-- Скрытый Select -->
             <div class="mb-3 hidden">
                 <select id="pn-type" onchange="calculateAll()" class="w-full text-xs font-bold text-slate-700 p-2.5 border-2 border-blue-300 rounded-xl bg-blue-50 outline-none focus:border-blue-500 appearance-none cursor-pointer shadow-sm text-blue-800">
                     <option value="aa5" data-ru="5% АМ (Аминокислоты + Электролиты)" data-en="5% AA (Amino Acids + Lytes)">5% АМ (Аминокислоты + Электролиты)</option>
@@ -613,9 +602,7 @@
                 </select>
             </div>
 
-            <!-- ИНТЕРАКТИВНЫЕ ИКОНКИ -->
             <div id="pn-images" class="grid grid-cols-3 gap-1.5 mb-3 items-stretch">
-                <!-- 5% АМ (Голубенькая) -->
                 <div id="card-aa5" onclick="selectBrand('aa5')" class="cursor-pointer flex flex-col bg-slate-50 p-2 rounded-xl border border-slate-200 shadow-sm justify-start items-center text-center transition-all duration-300 opacity-50 grayscale scale-95 hover:bg-sky-50">
                     <div class="w-8 h-8 rounded-full bg-sky-400 text-white flex items-center justify-center mb-1.5 shadow-md">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
@@ -625,7 +612,6 @@
                         <span data-ru="Аминокислоты + электролиты." data-en="Amino acids + Lytes.">Аминокислоты + электролиты.</span>
                     </div>
                 </div>
-                <!-- 10% АМ (Салатовая) -->
                 <div id="card-aa10" onclick="selectBrand('aa10')" class="cursor-pointer flex flex-col bg-emerald-50 p-2 rounded-xl border-2 border-emerald-400 shadow-md justify-start items-center text-center transition-all duration-300 transform scale-105 z-10 hover:bg-emerald-100">
                     <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center mb-1.5 shadow-md">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
@@ -635,7 +621,6 @@
                         <span data-ru="10% белок в ЦВ." data-en="10% protein in CVC.">10% белок в ЦВ.</span>
                     </div>
                 </div>
-                <!-- 3-в-1 (Фиолетовая) -->
                 <div id="card-3in1" onclick="selectBrand('3in1')" class="cursor-pointer flex flex-col bg-slate-50 p-2 rounded-xl border border-slate-200 shadow-sm justify-start items-center text-center transition-all duration-300 opacity-50 grayscale scale-95 hover:bg-purple-50">
                     <div class="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center mb-1.5 shadow-md">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
@@ -647,8 +632,7 @@
                 </div>
             </div>
 
-            <!-- АЛЕРТ ОГРАНИЧЕНИЯ ПП (РАННЯЯ ФАЗА) -->
-            <div id="pn-restriction-alert" class="hidden mb-3 p-3 bg-orange-50 border border-orange-200 rounded-xl text-[11px] leading-tight text-orange-800 shadow-sm"></div>
+            <div id="pn-restriction-alert" class="hidden mb-3 p-3 bg-yellow-50 border border-yellow-200 rounded-xl text-[11px] leading-tight text-yellow-800 shadow-sm"></div>
             
             <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 flex flex-col gap-2">
                 <div class="flex justify-between items-center text-xs">
@@ -664,24 +648,24 @@
                 </div>
             </div>
 
-            <!-- ПРОПОФОЛ -->
+            <!-- ПРОПОФОЛ: ИСправлено отображение скорости -->
             <div id="propofol-box" class="mt-4 pt-4 border-t border-slate-100">
-                <div class="border border-slate-200 rounded-xl p-2.5 bg-purple-50/50">
+                <div class="border-2 border-purple-100 rounded-xl p-3 bg-purple-50">
                     <label class="flex items-center gap-3 cursor-pointer">
-                        <input type="checkbox" id="has-propofol" onchange="togglePropofol()" class="w-5 h-5 text-purple-600 rounded cursor-pointer">
-                        <span class="text-xs font-bold text-slate-700 leading-tight" data-ru="Седация Пропофолом (1%)" data-en="Propofol Sedation (1%)">Седация Пропофолом (1%)</span>
+                        <input type="checkbox" id="has-propofol" onchange="togglePropofol()" class="w-5 h-5 text-purple-600 rounded cursor-pointer border-purple-300">
+                        <span class="text-xs font-bold text-purple-900 leading-tight uppercase tracking-wide" data-ru="Седация Пропофолом (1%)" data-en="Propofol Sedation (1%)">Седация Пропофолом (1%)</span>
                     </label>
-                    <div id="propofol-input-box" class="hidden mt-2 pt-2 border-t border-purple-100 flex-col gap-2 pl-8">
-                        <div class="flex items-center gap-2">
-                            <span class="text-[10px] font-medium text-slate-600" data-ru="Скорость (мл/ч):" data-en="Rate (ml/h):">Скорость (мл/ч):</span>
-                            <input type="number" id="propofol-rate" oninput="calculateAll()" class="w-16 text-xs p-1.5 border border-slate-300 rounded outline-none focus:border-purple-400" placeholder="0" min="0">
+                    <div id="propofol-input-box" class="hidden mt-3 pt-3 border-t border-purple-200 flex-col gap-2">
+                        <div class="flex items-center gap-3">
+                            <span class="text-[11px] font-bold text-purple-800 uppercase tracking-widest whitespace-nowrap" data-ru="Скорость (мл/ч):" data-en="Rate (ml/h):">Скорость (мл/ч):</span>
+                            <input type="number" id="propofol-rate" oninput="calculateAll()" step="0.1" class="w-full text-sm font-black p-2.5 border-2 border-purple-200 rounded-lg text-purple-900 bg-white focus:border-purple-500 outline-none shadow-sm" placeholder="Напр. 10">
                         </div>
-                        <div id="propofol-info" class="hidden justify-between items-center text-xs mt-1">
-                            <span class="text-purple-600 font-medium" data-ru="Энергия/Жиры:" data-en="Energy/Fat:">Энергия/Жиры:</span>
-                            <span id="propofol-info-text" class="font-bold text-purple-800">0 ккал</span>
+                        <div id="propofol-info" class="hidden justify-between items-center text-xs mt-1 bg-white p-2 rounded-lg border border-purple-100 shadow-sm">
+                            <span class="text-purple-600 font-bold uppercase tracking-widest text-[9px]" data-ru="Дотация (Энергия / Жиры):" data-en="Yield (Energy / Fat):">Дотация (Энергия / Жиры):</span>
+                            <span id="propofol-info-text" class="font-black text-purple-900">0 ккал</span>
                         </div>
-                        <div id="propofol-alert" class="hidden mt-1 p-1.5 bg-red-100 text-red-800 text-[10px] rounded-lg leading-tight font-medium shadow-sm" data-ru="⚠️ Риск PRIS и гипертриглицеридемии! Липиды в ПП снижены. Контроль ТГ сыворотки!" data-en="⚠️ PRIS & hypertriglyceridemia risk! PN lipids restricted. Monitor serum TG!">
-                            ⚠️ Риск PRIS и гипертриглицеридемии! Липиды в ПП снижены. Контроль ТГ сыворотки!
+                        <div id="propofol-alert" class="hidden mt-1 p-2 bg-red-100 text-red-800 text-[10px] rounded-lg leading-tight font-bold shadow-sm" data-ru="⚠️ Риск PRIS и гипертриглицеридемии! Липиды в ПП ограничены. Контроль ТГ сыворотки!" data-en="⚠️ PRIS & hypertriglyceridemia risk! PN lipids restricted. Monitor serum TG!">
+                            ⚠️ Риск PRIS и гипертриглицеридемии! Липиды в ПП ограничены. Контроль ТГ сыворотки!
                         </div>
                     </div>
                 </div>
@@ -694,6 +678,10 @@
                 <div class="flex justify-between items-center text-xs mb-3 bg-slate-50 p-2 rounded-lg">
                     <span class="font-semibold text-slate-600" data-ru="Остаток энергии для ПП:" data-en="Remaining PN energy:">Остаток энергии для ПП:</span>
                     <span id="pn-non-prot-kcal" class="font-black text-slate-800">0 ккал</span>
+                </div>
+                
+                <div id="pn-zero-alert" class="hidden mb-3 p-2 bg-blue-50 text-blue-800 text-[10px] font-bold text-center rounded-lg border border-blue-100 uppercase tracking-wide" data-ru="Доля ПП = 0%. Увеличьте долю парентерального питания в ползунке выше для расчета объемов." data-en="PN Ratio = 0%. Increase PN ratio in the slider above to calculate volumes.">
+                    Доля ПП = 0%. Увеличьте долю парентерального питания в ползунке выше для расчета объемов.
                 </div>
 
                 <div class="space-y-3">
@@ -714,10 +702,11 @@
                             <span class="text-xs font-bold text-slate-700 leading-tight" data-ru="Глюкоза (на остаток ккал)" data-en="Glucose (for remaining kcal)">Глюкоза (на остаток ккал)</span>
                         </label>
                         <div id="glucose-details" class="mt-2 pt-2 border-t border-slate-100 pl-8 transition-opacity duration-200">
+                            <!-- Исправлены клинические значения калоража глюкозы -->
                             <select id="pn-glucose-type" onchange="calculateAll()" class="w-full text-xs font-semibold text-slate-600 border-none bg-slate-50 p-2 rounded-lg outline-none mb-2 appearance-none cursor-pointer">
-                                <option value="0.17" data-ru="5% (17 ккал/100мл)" data-en="5% (17 kcal/100ml)">5% (17 ккал/100мл)</option>
-                                <option value="0.34" data-ru="10% (34 ккал/100мл)" data-en="10% (34 kcal/100ml)">10% (34 ккал/100мл)</option>
-                                <option value="0.68" data-ru="20% (68 ккал/100мл)" data-en="20% (68 kcal/100ml)">20% (68 ккал/100мл)</option>
+                                <option value="0.2" data-ru="5% (~200 ккал/л)" data-en="5% (~200 kcal/L)">5% (~200 ккал/л)</option>
+                                <option value="0.4" data-ru="10% (~400 ккал/л)" data-en="10% (~400 kcal/L)">10% (~400 ккал/л)</option>
+                                <option value="0.8" data-ru="20% (~800 ккал/л)" data-en="20% (~800 kcal/L)">20% (~800 ккал/л)</option>
                             </select>
                             <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-500 font-medium" data-ru="Объем:" data-en="Volume:">Объем:</span>
@@ -735,7 +724,6 @@
             </div>
         </div>
         
-        <!-- Медицинский дисклеймер (Внизу вкладки) -->
         <div class="mx-4 mt-6 mb-2 p-3 bg-yellow-50 rounded-xl border border-yellow-200 shadow-sm">
             <p class="text-[9px] leading-relaxed text-yellow-800 text-center font-medium" data-ru="⚠️ ВНИМАНИЕ: Калькулятор носит исключительно справочный характер. Результаты расчетов требуют клинической верификации лечащим врачом." data-en="⚠️ DISCLAIMER: For informational purposes only. Calculation results require clinical verification by a physician.">⚠️ ВНИМАНИЕ: Калькулятор носит исключительно справочный характер. Результаты расчетов требуют клинической верификации лечащим врачом.</p>
         </div>
@@ -870,7 +858,7 @@
                     </label>
                     <label class="flex items-start gap-3 p-1 cursor-pointer group">
                         <input type="checkbox" onchange="updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
-                        <span class="text-[11px] text-slate-700 leading-tight font-medium" data-ru="<b>3. Предоперационная НП</b> при тяжелой БЭН." data-en="<b>3. Preoperative NP</b> for severe malnutrition."><b>3. Предоперационная НП</b> при тяжелой БЭН.</span>
+                        <span class="text-[11px] text-slate-700 leading-tight font-medium" data-ru="<b>3. Предоперационная НП</b> при тяжелой БЭН." data-en="<b>3. Preoperative NP</b> for severe malnutrition."><b>3. Preoperative NP</b> при тяжелой БЭН.</span>
                     </label>
                     <label class="flex items-start gap-3 p-1 cursor-pointer group">
                         <input type="checkbox" onchange="updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
@@ -1069,7 +1057,7 @@
             ckd_nodialysis: { protRange: "0.6 - 0.8", protCalc: [0.6, 0.8], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-gray-700"><li><b>Без диализа:</b> Ограничение белка для замедления прогрессирования ХБП.</li><li>Энергия: 30-35 ккал/кг для предотвращения белково-энергетической недостаточности.</li><li>Ограничение калия (K), натрия (Na), фосфора (P). Специализированные почечные смеси.</li></ul>` },
             aki_ihd: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-teal-800"><li><b>Интермиттирующий диализ (ИГД):</b> Потери аминокислот ~10-15 г за сеанс.</li><li>Необходима компенсация белка и водорастворимых витаминов в дни диализа.</li></ul>` },
             aki_crrt: { protRange: "1.5 - 1.7", protCalc: [1.5, 1.7], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-teal-900"><li><b>On CRRT:</b> Protein 1.5-1.7 g/kg (up to 2.0 in high-volume). Account for AA loss in effluent.</li><li><b>Danger:</b> washout of water-soluble vitamins (B1, C, folates) and trace elements (Se, Cu). Strict IV supplementation!</li></ul>` },
-            obesity: { protRange: "2.0 (на ИМТ)", protCalc: [2.0, 2.0], fatRange: "0.8 - 1.0", notes: `<ul class="list-disc pl-4 text-pink-900"><li>Hypocaloric high-protein nutrition.</li><li>Protein: 2.0 g/kg of <b>ideal</b> body weight.</li><li>Thromboprophylaxis dosing calculated on total (actual) body weight.</li></ul>` },
+            obesity: { protRange: "2.0 (на ИМТ)", protCalc: [2.0, 2.0], fatRange: "0.8 - 1.0", notes: `<ul class="list-disc pl-4 text-pink-900"><li>Гипокалорийное питание с высоким белком.</li><li>Белок: 2.0 г/кг <b>идеальной</b> массы тела. Парентеральная коррекция показана при дефиците.</li><li>Тромбопрофилактика на общую (фактическую) массу.</li></ul>` },
             rehab: { protRange: "1.3 - 2.0", protCalc: [1.3, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-indigo-900"><li>Энергопотребность возрастает при кинезиотерапии.</li><li>Профилактика ПНМКС требует белка (не менее 1.3 г/кг) на фоне мышечной нагрузки.</li><li>Обязательный тест 3-х глотков на дисфагию перед началом перорального питания.</li></ul>` }
         },
         en: {
@@ -1370,7 +1358,7 @@
                 alertGluc.classList.remove('hidden');
                 if (gluc > 10) {
                     alertGluc.className = "mt-2 p-2 bg-red-100 text-red-800 rounded-lg border border-red-200 text-[11px] leading-tight font-medium shadow-sm";
-                    alertGluc.innerHTML = (lang === 'ru') ? "⚠️ <b>> 10 ммоль/л:</b> Инсулинотерапия. Рекомендуется использовать для ПП <b>5% АМ</b> (не содержит углеводов)." : "⚠️ <b>> 10 mmol/L:</b> Insulin. Recommend 5% AA (no carbohydrates).";
+                    alertGluc.innerHTML = (lang === 'ru') ? "⚠️ <b>> 10 ммоль/л:</b> Инсулинотерапия. Рекомендуется использовать для ПП <b>10% АМ</b> (не содержит углеводов)." : "⚠️ <b>> 10 mmol/L:</b> Insulin. Recommend 10% AA (no carbohydrates).";
                 } else if (gluc >= 6 && gluc <= 8) {
                     alertGluc.className = "mt-2 p-2 bg-green-100 text-green-800 rounded-lg border border-green-200 text-[11px] leading-tight font-medium shadow-sm";
                     alertGluc.innerHTML = (lang === 'ru') ? "✅ В пределах цели (6-8 ммоль/л)." : "✅ Within target (6-8 mmol/L).";
@@ -1581,6 +1569,23 @@
             selectEl.value = brandValue;
             calculateAll();
         }
+    }
+
+    function togglePropofol() {
+        const isChecked = document.getElementById('has-propofol')?.checked;
+        const box = document.getElementById('propofol-input-box');
+        if (box) {
+            if (isChecked) {
+                box.classList.remove('hidden');
+                box.classList.add('flex');
+            } else {
+                box.classList.add('hidden');
+                box.classList.remove('flex');
+                const rateInput = document.getElementById('propofol-rate');
+                if(rateInput) rateInput.value = '';
+            }
+        }
+        calculateAll();
     }
 
     function calculateAll() {
@@ -1899,6 +1904,13 @@
             if (nonProtKcal < 0) nonProtKcal = 0;
             
             safeSet('pn-non-prot-kcal', nonProtKcal + u('kcal'));
+
+            // Показывать алерт, если доля ПП = 0%
+            if (nonProtKcal === 0 && targetPnProt === 0 && pnRatio === 0) {
+                safeSetDisplay('pn-zero-alert', 'block');
+            } else {
+                safeSetDisplay('pn-zero-alert', 'none');
+            }
             
             const addLipids = document.getElementById('pn-add-lipids')?.checked;
             const addGlucose = document.getElementById('pn-add-glucose')?.checked;
@@ -1908,7 +1920,6 @@
             
             if (addLipids) {
                 let targetGramsPerKg = addGlucose ? 1.0 : 1.5;
-                // Считаем макс. липиды и вычитаем жиры из пропофола!
                 let maxLipidGrams = Math.round(calcWeight * targetGramsPerKg * (pnRatio / 100)) - propofolFat;
                 if (maxLipidGrams < 0) maxLipidGrams = 0;
                 
@@ -1938,9 +1949,9 @@
                 if(glucoseDetails) glucoseDetails.style.opacity = '1';
                 if(glucTypeEl) glucTypeEl.disabled = false;
                 
-                const glucTypeVal = parseFloat(glucTypeEl?.value) || 0.17;
-                const glucVol = Math.round(remainingForGluc / glucTypeVal);
-                safeSet('pn-glucose-vol', `~ ${glucVol}${u('ml_day')} (${remainingForGluc} ккал)`);
+                const glucTypeVal = parseFloat(glucTypeEl?.value) || 0.2;
+                const glucVol = Math.round(remainingForGluc / (glucTypeVal * 10)); // e.g. 0.2 kcal/ml * 10 = 2 kcal per 10ml
+                safeSet('pn-glucose-vol', `~ ${Math.round(remainingForGluc/glucTypeVal)}${u('ml_day')} (${remainingForGluc} ккал)`);
             } else {
                 if(glucoseDetails) glucoseDetails.style.opacity = '0.5';
                 if(glucTypeEl) glucTypeEl.disabled = true;
@@ -1971,8 +1982,6 @@
 
     window.onload = () => {
         setLang('ru'); 
-        updateKKMP();
-        calculateAll();
     };
 </script>
 
