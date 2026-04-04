@@ -181,11 +181,11 @@
                 </select>
             </div>
 
-            <!-- Шкала NRS-2002 -->
+            <!-- Шкала NRS-2002 (Окончательный скрининг) -->
             <div id="screen-nrs" class="screening-block space-y-2">
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Нарушение питания (0-3):" data-en="Nutritional impairment (0-3):">Нарушение питания (0-3):</label>
-                    <select id="nrs-nutr" onchange="runScreening()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="nrs-nutr" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" data-ru="0 - Нормальное состояние питания" data-en="0 - Normal nutritional status">0 - Нормальное состояние питания</option>
                         <option value="1" data-ru="1 - Легкое (Потеря >5% за 3 мес ИЛИ еда 50-75%)" data-en="1 - Mild (Wt loss >5% in 3mo OR intake 50-75%)">1 - Легкое (Потеря >5% за 3 мес ИЛИ еда 50-75%)</option>
                         <option value="2" data-ru="2 - Умеренное (Потеря >5% за 2 мес ИЛИ ИМТ 18.5-20.5 ИЛИ еда 25-50%)" data-en="2 - Moderate (Wt loss >5% in 2mo OR BMI 18.5-20.5 OR intake 25-50%)">2 - Умеренное (Потеря >5% за 2 мес ИЛИ ИМТ 18.5-20.5 ИЛИ еда 25-50%)</option>
@@ -194,7 +194,7 @@
                 </div>
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Тяжесть заболевания (0-3):" data-en="Severity of disease (0-3):">Тяжесть заболевания (0-3):</label>
-                    <select id="nrs-sev" onchange="runScreening()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="nrs-sev" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" data-ru="0 - Нормальные потребности" data-en="0 - Normal requirements">0 - Нормальные потребности</option>
                         <option value="1" data-ru="1 - Легкая (Перелом бедра, цирроз, ХОБЛ, диализ, онко)" data-en="1 - Mild (Hip fracture, cirrhosis, COPD, dialysis, oncology)">1 - Легкая (Перелом бедра, цирроз, ХОБЛ, диализ, онко)</option>
                         <option value="2" data-ru="2 - Умеренная (Обширная хирургия ЖКТ, инсульт, пневмония)" data-en="2 - Moderate (Major abd. surgery, stroke, severe pneumonia)">2 - Умеренная (Обширная хирургия ЖКТ, инсульт, пневмония)</option>
@@ -208,7 +208,7 @@
             <div id="screen-mna" class="screening-block space-y-2 hidden">
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Снижение аппетита (за 3 мес)?" data-en="Decline in food intake (past 3 mo)?">Снижение аппетита (за 3 мес)?</label>
-                    <select id="mna-a" onchange="runScreening()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="mna-a" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" data-ru="Сильное снижение (0)" data-en="Severe decrease (0)">Сильное снижение (0)</option>
                         <option value="1" data-ru="Умеренное снижение (1)" data-en="Moderate decrease (1)">Умеренное снижение (1)</option>
                         <option value="2" selected data-ru="Нет снижения (2)" data-en="No decrease (2)">Нет снижения (2)</option>
@@ -216,7 +216,7 @@
                 </div>
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Потеря веса (за 3 мес)?" data-en="Weight loss (past 3 mo)?">Потеря веса (за 3 мес)?</label>
-                    <select id="mna-b" onchange="runScreening()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="mna-b" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" data-ru="Более 3 кг (0)" data-en="> 3 kg (0)">Более 3 кг (0)</option>
                         <option value="1" data-ru="Неизвестно (1)" data-en="Does not know (1)">Неизвестно (1)</option>
                         <option value="2" data-ru="От 1 до 3 кг (2)" data-en="Between 1 and 3 kg (2)">От 1 до 3 кг (2)</option>
@@ -225,7 +225,7 @@
                 </div>
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Подвижность (Мобильность)?" data-en="Mobility?">Подвижность (Мобильность)?</label>
-                    <select id="mna-c" onchange="runScreening()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="mna-c" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" selected data-ru="Прикован к постели / креслу (0)" data-en="Bed or chair bound (0)">Прикован к постели / креслу (0)</option>
                         <option value="1" data-ru="Встает, но не выходит из дома (1)" data-en="Able to get out, but not outdoors (1)">Встает, но не выходит из дома (1)</option>
                         <option value="2" data-ru="Выходит на улицу (2)" data-en="Goes out (2)">Выходит на улицу (2)</option>
@@ -233,14 +233,14 @@
                 </div>
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Острый стресс / болезнь (за 3 мес)?" data-en="Acute stress or disease (past 3 mo)?">Острый стресс / болезнь (за 3 мес)?</label>
-                    <select id="mna-d" onchange="runScreening()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="mna-d" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" selected data-ru="Да (0)" data-en="Yes (0)">Да (0)</option>
                         <option value="2" data-ru="Нет (2)" data-en="No (2)">Нет (2)</option>
                     </select>
                 </div>
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Нейропсихологические проблемы?" data-en="Neuropsychological problems?">Нейропсихологические проблемы?</label>
-                    <select id="mna-e" onchange="runScreening()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="mna-e" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" data-ru="Тяжелая деменция / депрессия (0)" data-en="Severe dementia / depression (0)">Тяжелая деменция / депрессия (0)</option>
                         <option value="1" data-ru="Легкая деменция (1)" data-en="Mild dementia (1)">Легкая деменция (1)</option>
                         <option value="2" selected data-ru="Нет проблем (2)" data-en="No problems (2)">Нет проблем (2)</option>
@@ -251,15 +251,15 @@
             <!-- Шкала ESMO -->
             <div id="screen-esmo" class="screening-block space-y-2 hidden">
                 <label class="flex items-start gap-3 bg-slate-50 p-2.5 rounded-lg border border-slate-100 cursor-pointer hover:bg-slate-100 transition-colors">
-                    <input type="checkbox" class="mt-0.5" id="esmo-1" onchange="runScreening()">
+                    <input type="checkbox" class="mt-0.5" id="esmo-1" onchange="calculateAll()">
                     <span class="text-xs font-medium text-slate-700 leading-tight" data-ru="Потеря массы > 5% за 6 мес (без голодания)" data-en="Weight loss > 5% over past 6 mos (absence of starvation)">Потеря массы > 5% за 6 мес (без голодания)</span>
                 </label>
                 <label class="flex items-start gap-3 bg-slate-50 p-2.5 rounded-lg border border-slate-100 cursor-pointer hover:bg-slate-100 transition-colors">
-                    <input type="checkbox" class="mt-0.5" id="esmo-2" onchange="runScreening()">
+                    <input type="checkbox" class="mt-0.5" id="esmo-2" onchange="calculateAll()">
                     <span class="text-xs font-medium text-slate-700 leading-tight" data-ru="ИМТ < 20 кг/м² <b>И</b> потеря массы > 2%" data-en="BMI < 20 kg/m² <b>AND</b> weight loss > 2%">ИМТ < 20 кг/м² <b>И</b> потеря массы > 2%</span>
                 </label>
                 <label class="flex items-start gap-3 bg-slate-50 p-2.5 rounded-lg border border-slate-100 cursor-pointer hover:bg-slate-100 transition-colors">
-                    <input type="checkbox" class="mt-0.5" id="esmo-3" onchange="runScreening()">
+                    <input type="checkbox" class="mt-0.5" id="esmo-3" onchange="calculateAll()">
                     <span class="text-xs font-medium text-slate-700 leading-tight" data-ru="Признаки саркопении <b>И</b> потеря массы > 2%" data-en="Sarcopenia <b>AND</b> weight loss > 2%">Признаки саркопении <b>И</b> потеря массы > 2%</span>
                 </label>
             </div>
@@ -267,7 +267,7 @@
             <div id="screen-result" class="mt-4 p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs shadow-sm"></div>
         </div>
         
-        <!-- Медицинский дисклеймер -->
+        <!-- Медицинский дисклеймер (Внизу вкладки) -->
         <div class="mx-4 mt-6 mb-2 p-3 bg-yellow-50 rounded-xl border border-yellow-200 shadow-sm">
             <p class="text-[9px] leading-relaxed text-yellow-800 text-center font-medium" data-ru="⚠️ ВНИМАНИЕ: Калькулятор носит исключительно справочный характер. Результаты расчетов требуют клинической верификации лечащим врачом." data-en="⚠️ DISCLAIMER: For informational purposes only. Calculation results require clinical verification by a physician.">⚠️ ВНИМАНИЕ: Калькулятор носит исключительно справочный характер. Результаты расчетов требуют клинической верификации лечащим врачом.</p>
         </div>
@@ -622,7 +622,7 @@
                 </select>
             </div>
 
-            <!-- ИНТЕРАКТИВНЫЕ ИКОНКИ БРЕНДОВ -->
+            <!-- ИНТЕРАКТИВНЫЕ ИКОНКИ -->
             <div id="pn-images" class="grid grid-cols-3 gap-1.5 mb-3 items-stretch">
                 <!-- 5% АМ (Голубенькая) -->
                 <div id="card-aa5" onclick="selectBrand('aa5')" class="cursor-pointer flex flex-col bg-slate-50 p-2 rounded-xl border border-slate-200 shadow-sm justify-start items-center text-center transition-all duration-300 opacity-50 grayscale scale-95 hover:bg-sky-50">
@@ -726,6 +726,7 @@
                             <span class="text-xs font-bold text-slate-700 leading-tight" data-ru="Глюкоза (на остаток ккал)" data-en="Glucose (for remaining kcal)">Глюкоза (на остаток ккал)</span>
                         </label>
                         <div id="glucose-details" class="mt-2 pt-2 border-t border-slate-100 pl-8 transition-opacity duration-200">
+                            <!-- Исправлены клинические значения калоража глюкозы -->
                             <select id="pn-glucose-type" onchange="calculateAll()" class="w-full text-xs font-semibold text-slate-600 border-none bg-slate-50 p-2 rounded-lg outline-none mb-2 appearance-none cursor-pointer">
                                 <option value="0.2" data-ru="5% (~200 ккал/л)" data-en="5% (~200 kcal/L)">5% (~200 ккал/л)</option>
                                 <option value="0.4" data-ru="10% (~400 ккал/л)" data-en="10% (~400 kcal/L)">10% (~400 ккал/л)</option>
@@ -747,7 +748,7 @@
             </div>
         </div>
         
-        <!-- Медицинский дисклеймер -->
+        <!-- Медицинский дисклеймер (Внизу вкладки) -->
         <div class="mx-4 mt-6 mb-2 p-3 bg-yellow-50 rounded-xl border border-yellow-200 shadow-sm">
             <p class="text-[9px] leading-relaxed text-yellow-800 text-center font-medium" data-ru="⚠️ ВНИМАНИЕ: Калькулятор носит исключительно справочный характер. Результаты расчетов требуют клинической верификации лечащим врачом." data-en="⚠️ DISCLAIMER: For informational purposes only. Calculation results require clinical verification by a physician.">⚠️ ВНИМАНИЕ: Калькулятор носит исключительно справочный характер. Результаты расчетов требуют клинической верификации лечащим врачом.</p>
         </div>
@@ -936,12 +937,12 @@
 </div>
 
 <script>
-    let lang = 'ru';
-    let gender = 'male';
-    window.currentNitrogenBalance = 0;
-
     function t(key) { return tDict[lang][key] || key; }
     function u(key) { return tDict[lang].units[key] || ""; }
+
+    let gender = 'male';
+    let lang = 'ru';
+    window.currentNitrogenBalance = 0;
 
     function safeSet(id, text) {
         const el = document.getElementById(id);
@@ -989,7 +990,8 @@
             overweight: "Избыток",
             obesity: "Ожирение",
             
-            nrs_high: "Высокий риск (≥3 баллов).<br><b class='text-red-700'>Что делать:</b> Старт нутритивной поддержки в первые 24–48 ч. <b>Метод выбора — Энтеральное (ЭП).</b><br>💉 <b>При противопоказаниях к ЭП:</b> ПОКАЗАН НЕМЕДЛЕННЫЙ СТАРТ ПП (первые 24-48 ч).",
+            nrs_high_malnourished: "Высокий риск (≥3 баллов). Выраженное истощение.<br><b class='text-red-700'>Что делать:</b> Старт нутритивной поддержки в первые 24–48 ч. <b>Метод выбора — Энтеральное (ЭП).</b><br>💉 <b>При противопоказаниях к ЭП:</b> ПОКАЗАН НЕМЕДЛЕННЫЙ СТАРТ ПП (первые 24-48 ч).",
+            nrs_high_stable: "Высокий риск (≥3 баллов). Исходный статус сохранен.<br><b class='text-orange-700'>Что делать:</b> Старт ЭП в первые 24-48 ч.<br>💉 <b>При противопоказаниях к ЭП:</b> ПОКАЗАН ГОЛОД. Раннее ПП увеличивает летальность! Старт ПП откладывается до 4-5 суток.",
             nrs_med: "Средний риск (1-2 балла).<br><b class='text-yellow-700'>Что делать:</b> Пероральный сипинг или базовое зондовое питание.<br>💉 <b>При противопоказаниях к ЭП:</b> ПОКАЗАН ГОЛОД. Старт ПП откладывается до 4-5 суток.",
             nrs_low: "Низкий риск (0 баллов).<br><b class='text-green-700'>Что делать:</b> Специфическая НП не требуется. Обычная диета.<br>💉 <b>При противопоказаниях к ЭП:</b> ПОКАЗАН ГОЛОД. Старт ПП откладывается до 4-5 суток.",
             
@@ -1028,7 +1030,8 @@
             overweight: "Overweight",
             obesity: "Obesity",
             
-            nrs_high: "High risk (≥3 pts).<br><b class='text-red-700'>Action:</b> Start nutritional support within 24-48h. <b>EN is the first choice.</b><br>💉 <b>If EN contraindicated:</b> IMMEDIATE PN START INDICATED (first 24-48h).",
+            nrs_high_malnourished: "High risk (≥3 pts). Severe malnutrition.<br><b class='text-red-700'>Action:</b> Start nutritional support within 24-48h. <b>EN is the first choice.</b><br>💉 <b>If EN contraindicated:</b> IMMEDIATE PN START INDICATED (first 24-48h).",
+            nrs_high_stable: "High risk (≥3 pts). Baseline status preserved.<br><b class='text-orange-700'>Action:</b> Start EN within 24-48h.<br>💉 <b>If EN contraindicated:</b> FASTING INDICATED. Early PN increases mortality! PN start delayed until 4-5 days.",
             nrs_med: "Medium risk (1-2 pts).<br><b class='text-yellow-700'>Action:</b> Oral nutritional supplements (ONS) or basal tube feeding.<br>💉 <b>If EN contraindicated:</b> FASTING INDICATED. PN start delayed until 4-5 days.",
             nrs_low: "Low risk (0 pts).<br><b class='text-green-700'>Action:</b> No specific nutritional support needed. Standard diet.<br>💉 <b>If EN contraindicated:</b> FASTING INDICATED. PN start delayed until 4-5 days.",
             
@@ -1081,6 +1084,24 @@
             aki_crrt: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-800"><li><b>ПЗПТ:</b> Клиренс нутриентов через мембраны диализаторов приводит к тяжелому гиперкатаболизму. Потери АК в фильтре достигают 15-20 г/сут.</li><li>Обязательна непрерывная компенсация (доза белка увеличена до 1.5-2.0 г/кг, рекомендовано высокобелковое ПП). Строго восполнять водорастворимые витамины.</li></ul>` },
             obesity: { protRange: "2.0 (на ИМТ)", protCalc: [2.0, 2.0], fatRange: "0.8 - 1.0", notes: `<ul class="list-disc pl-4 text-pink-900"><li>Гипокалорийное питание с высоким белком.</li><li>Белок: 2.0 г/кг <b>идеальной</b> массы тела. Парентеральная коррекция показана при дефиците.</li><li>Тромбопрофилактика на общую (фактическую) массу.</li></ul>` },
             rehab: { protRange: "1.3 - 2.0", protCalc: [1.3, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-indigo-900"><li>Энергопотребность возрастает при кинезиотерапии.</li><li>Профилактика ПНМКС требует белка (не менее 1.3 г/кг) на фоне мышечной нагрузки.</li><li>Обязательный тест 3-х глотков на дисфагию перед началом перорального питания.</li></ul>` }
+        },
+        en: {
+            general: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4"><li><b>Start Algorithm:</b> 10-15 kcal/kg (≤50% goal) on day 1-2. Increase by 5-10 kcal/kg daily. Full volume by day 4-7.</li><li>Early EN (300 ml/d or 10-20 ml/h) in first 24-48h to preserve gut barrier.</li></ul>` },
+            pneumonia: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-900"><li><b>Moderate stress:</b> energy requirement 25-30 kcal/kg.</li><li><b>Respiratory failure:</b> avoid carbohydrate overfeeding (increases CO2 production). Optimize fat ratio.</li></ul>` },
+            sepsis: { protRange: "1.3 - 2.0", protCalc: [1.3, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-red-900"><li><b>Acute phase (shock):</b> Start trophic EN (10-15 kcal/kg or 10-20 ml/h).</li><li><b>Stepwise increase:</b> Add 5 kcal/kg (or +10-20 ml/h) every 24-48h based on tolerance. Reach goal strictly by day 4-7 to avoid overfeeding!</li><li><b>Thiamine (B1) deficit:</b> High risk! Mandatory IV supplementation.</li></ul>` },
+            polytrauma: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-red-900"><li><b>Severe hypermetabolism:</b> massive nitrogen loss. Intensive protein supplementation required.</li></ul>` },
+            pancreatitis: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "0.8 - 1.2", notes: `<ul class="list-disc pl-4 text-orange-900"><li><b>Severe AP:</b> Nasojejunal tube from first hours.</li><li><b>IV Glutamine:</b> 2-4 ml/kg to prevent infected pancreatic necrosis.</li></ul>` },
+            burns: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-orange-800"><li><b>Toxemia:</b> Energy 30-40 kcal/kg. Severe catabolism.</li><li>High trace element loss in exudate (Cu, Se, Zn, Vit C) — requirement increased by 1.5-2x.</li></ul>` },
+            tbi: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-900"><li>Severe hypermetabolism (30-35 kcal/kg).</li><li><b>Glycemic control:</b> >10 mmol/L worsens cerebral edema.</li></ul>` },
+            gib: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-red-900"><li><b>Acute phase:</b> hold enteral feeding until secure endoscopic hemostasis (at least 24-48h).</li><li>If EN contraindicated for >3 days, start parenteral nutrition.</li></ul>` },
+            oncology: { protRange: "1.2 - 2.0", protCalc: [1.2, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-indigo-900"><li>Protein up to 2.0 g/kg in severe cachexia.</li><li>In insulin resistance: increase fats, decrease carbohydrates.</li><li>Immune nutrition (Omega-3, Arginine) 5-7 days prior to GI surgery.</li></ul>` },
+            cirrhosis: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.2", notes: `<ul class="list-disc pl-4 text-yellow-900"><li><b>Important:</b> Calculate based on <b>dry weight</b> (no ascites).</li><li>Late evening snack required to prevent night catabolism.</li></ul>` },
+            sbs: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-emerald-900"><li>Energy 30-40 kcal/kg/d.</li><li>Early phase base is parenteral nutrition.</li><li>Enteral: gradual intro of oligomeric (peptide) formulas.</li></ul>` },
+            ckd_nodialysis: { protRange: "0.6 - 0.8", protCalc: [0.6, 0.8], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-gray-700"><li><b>No dialysis:</b> Protein restriction to slow CKD progression.</li><li>Energy: 30-35 kcal/kg to prevent malnutrition.</li><li>Restrict K, Na, P. Specialized renal formulas.</li></ul>` },
+            aki_ihd: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-teal-800"><li><b>Intermittent HD:</b> Amino acid loss ~10-15g per session.</li><li>Compensate protein and water-soluble vitamins on dialysis days.</li></ul>` },
+            aki_crrt: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-teal-900"><li><b>On CRRT:</b> Protein 1.5-1.7 g/kg (up to 2.0 in high-volume). Account for AA loss in effluent.</li><li><b>Danger:</b> washout of water-soluble vitamins (B1, C, folates) and trace elements (Se, Cu). Strict IV supplementation!</li></ul>` },
+            obesity: { protRange: "2.0 (on IBW)", protCalc: [2.0, 2.0], fatRange: "0.8 - 1.0", notes: `<ul class="list-disc pl-4 text-pink-900"><li>Hypocaloric high-protein nutrition.</li><li>Protein: 2.0 g/kg of <b>ideal</b> body weight.</li><li>Thromboprophylaxis dosing calculated on total (actual) body weight.</li></ul>` },
+            rehab: { protRange: "1.3 - 2.0", protCalc: [1.3, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-indigo-900"><li>Energy demand increases during kinesiotherapy.</li><li>ICU-AW prevention requires protein (≥1.3 g/kg) during physical loading.</li><li>Mandatory 3-swallow test for dysphagia before starting oral feeding.</li></ul>` }
         }
     };
 
@@ -1126,7 +1147,8 @@
             const nutr = parseInt(document.getElementById('nrs-nutr')?.value || "0");
             const sev = parseInt(document.getElementById('nrs-sev')?.value || "0");
             const age = parseFloat(document.getElementById('age')?.value) || 0;
-            return (nutr + sev + (age >= 70 ? 1 : 0)) >= 3;
+            const score = nutr + sev + (age >= 70 ? 1 : 0);
+            return score >= 3 && (nutr >= 2 || bmi < 18.5);
         } else if (tool === 'mna') {
             const a = parseInt(document.getElementById('mna-a')?.value || "0");
             const b = parseInt(document.getElementById('mna-b')?.value || "0");
@@ -1172,8 +1194,16 @@
             let score = nutr + sev + ageBonus;
             
             if (score >= 3) {
-                resEl.className = "mt-4 p-3 bg-red-50 border border-red-200 rounded-xl text-xs shadow-sm";
-                resEl.innerHTML = `<strong class="text-xs uppercase text-red-900">NRS-2002: ${score} ${u('pts')}</strong><br><span class="text-red-800">${t('nrs_high')}</span>`;
+                if (nutr >= 2 || bmiVal < 18.5) {
+                    resEl.className = "mt-4 p-3 bg-red-50 border border-red-200 rounded-xl text-xs shadow-sm";
+                    resEl.innerHTML = `<strong class="text-xs uppercase text-red-900">NRS-2002: ${score} ${u('pts')}</strong><br><span class="text-red-800">${t('nrs_high_malnourished')}</span>`;
+                } else {
+                    resEl.className = "mt-4 p-3 bg-orange-50 border border-orange-200 rounded-xl text-xs shadow-sm";
+                    resEl.innerHTML = `<strong class="text-xs uppercase text-orange-900">NRS-2002: ${score} ${u('pts')}</strong><br><span class="text-orange-800">${t('nrs_high_stable')}</span>`;
+                }
+            } else if (score > 0) {
+                resEl.className = "mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-xl text-xs shadow-sm";
+                resEl.innerHTML = `<strong class="text-xs uppercase text-yellow-900">NRS-2002: ${score} ${u('pts')}</strong><br><span class="text-yellow-800">${t('nrs_med')}</span>`;
             } else {
                 resEl.className = "mt-4 p-3 bg-green-50 border border-green-200 rounded-xl text-xs shadow-sm";
                 resEl.innerHTML = `<strong class="text-xs uppercase text-green-900">NRS-2002: ${score} ${u('pts')}</strong><br><span class="text-green-800">${t('nrs_low')}</span>`;
@@ -1972,7 +2002,7 @@
                 // Клинические расчеты глюкозы (5% ~200 ккал/л, 10% ~400 ккал/л, 20% ~800 ккал/л)
                 const glucTypeVal = parseFloat(glucTypeEl?.value) || 0.2;
                 const glucVol = Math.round(remainingForGluc / (glucTypeVal * 10)); // e.g. 0.2 kcal/ml * 10 = 2 kcal per 10ml = 200 kcal/L
-                safeSet('pn-glucose-vol', `~ ${Math.round(remainingForGluc/glucTypeVal)}${u('ml_day')} (${remainingForGluc} ккал)`);
+                safeSet('pn-glucose-vol', `~ ${glucVol}${u('ml_day')} (${remainingForGluc} ккал)`);
             } else {
                 if(glucoseDetails) glucoseDetails.style.opacity = '0.5';
                 if(glucTypeEl) glucTypeEl.disabled = true;
