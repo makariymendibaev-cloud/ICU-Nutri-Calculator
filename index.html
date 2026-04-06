@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="NutriCalc">
-    <title>ICU Nutri-Calculator | Dr. Mendibaev</title>
+    <title>ICU Nutri-Calculator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { darkMode: 'class', }
@@ -33,11 +33,10 @@
 
         header { flex-shrink: 0; }
 
-        .tab-content { display: none; flex-grow: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: 2rem; padding-top: 1rem; }
+        .tab-content { display: none; flex-grow: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-bottom: 6rem; padding-top: 1rem; }
         .tab-content.active { display: block; animation: fadeIn 0.2s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Исправленная фиксация нижней панели */
         .bottom-nav { flex-shrink: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding-top: 0.5rem; padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px)); z-index: 50; }
         
         .input-group { margin-bottom: 0.875rem; }
@@ -86,17 +85,18 @@
 </head>
 <body>
 
-<div class="hidden bg-pink-500 text-white text-green-600 text-red-600 text-yellow-600 text-blue-600 border-sky-400 border-emerald-400 border-purple-400"></div>
+<div class="hidden bg-pink-500 text-white text-teal-300"></div>
 
 <div class="app-container">
-    <header class="bg-white px-5 pt-8 pb-4 border-b border-slate-200 z-10 relative flex-shrink-0 shadow-sm">
+    <header class="bg-white px-5 pt-8 pb-6 border-b border-slate-200 z-10 relative flex-shrink-0 shadow-sm">
         <div class="absolute top-4 right-4 bg-slate-100 rounded-lg p-1 flex shadow-inner">
-            <button onclick="setLang('ru')" id="btn-ru" class="px-2.5 py-1 text-[10px] font-bold bg-white text-blue-600 rounded shadow-sm uppercase tracking-wide">RU</button>
-            <button onclick="setLang('en')" id="btn-en" class="px-2.5 py-1 text-[10px] font-bold text-slate-400 hover:text-slate-600 uppercase tracking-wide">EN</button>
+            <button onclick="window.setLang('ru')" id="btn-ru" class="px-2.5 py-1 text-[10px] font-bold bg-white text-blue-600 rounded shadow-sm uppercase tracking-wide">RU</button>
+            <button onclick="window.setLang('en')" id="btn-en" class="px-2.5 py-1 text-[10px] font-bold text-slate-400 hover:text-slate-600 uppercase tracking-wide">EN</button>
         </div>
         
         <h1 class="text-2xl font-black text-slate-800 text-center tracking-tight mt-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-800 to-slate-500" data-ru="ICU Nutri-Calculator" data-en="ICU Nutri-Calculator">ICU Nutri-Calculator</h1>
         <p class="text-[10px] text-blue-600 font-extrabold uppercase tracking-widest text-center mt-1.5" data-ru="АКАДЕМИЧЕСКАЯ ВЕРСИЯ" data-en="ACADEMIC VERSION">АКАДЕМИЧЕСКАЯ ВЕРСИЯ</p>
+        <p class="text-[10px] text-slate-400 font-medium text-center mt-2" data-ru="На базе актуальных клинических рекомендаций" data-en="Based on current clinical guidelines">На базе актуальных клинических рекомендаций</p>
     </header>
 
     <!-- TAB 1: ПАЦИЕНТ -->
@@ -106,7 +106,7 @@
         <div class="mb-5 mt-2 flex flex-col items-center justify-center text-center">
             <h3 class="text-[13px] font-black text-blue-900 tracking-wide mb-0.5" data-ru="Автор: Макарий Мендибаев" data-en="Author: Makariy Mendibaev">Автор: Макарий Мендибаев</h3>
             <p class="text-[10px] text-blue-600 font-bold mb-1.5 leading-tight" data-ru="Врач анестезиолог-реаниматолог<br>ГКБ им. В.П. Демихова ДЗМ" data-en="Anesthesiologist-resuscitator<br>Demikhov Hospital DZM">Врач анестезиолог-реаниматолог<br>ГКБ им. В.П. Демихова ДЗМ</p>
-            <button onclick="copyEmail('makariy.mendibaev@yandex.ru', this)" class="text-[11px] text-blue-500 hover:text-blue-700 font-medium transition-colors cursor-pointer focus:outline-none" data-ru="✉️ makariy.mendibaev@yandex.ru" data-en="✉️ makariy.mendibaev@yandex.ru">✉️ makariy.mendibaev@yandex.ru</button>
+            <button onclick="window.copyEmail('makariy.mendibaev@yandex.ru', this)" class="text-[11px] text-blue-500 hover:text-blue-700 font-medium transition-colors cursor-pointer focus:outline-none" data-ru="✉️ makariy.mendibaev@yandex.ru" data-en="✉️ makariy.mendibaev@yandex.ru">✉️ makariy.mendibaev@yandex.ru</button>
         </div>
 
         <div class="card">
@@ -119,24 +119,24 @@
                 <div class="w-1/2">
                     <label class="block text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wide" data-ru="ПОЛ" data-en="SEX">ПОЛ</label>
                     <div class="flex bg-slate-100 rounded-xl p-1 border border-slate-200">
-                        <button type="button" id="btn-male" class="w-1/2 py-2 rounded-lg font-bold text-sm bg-blue-500 text-white shadow-sm" onclick="setGender('male')" data-ru="М" data-en="M">М</button>
-                        <button type="button" id="btn-female" class="w-1/2 py-2 rounded-lg font-bold text-sm text-slate-500" onclick="setGender('female')" data-ru="Ж" data-en="F">Ж</button>
+                        <button type="button" id="btn-male" class="w-1/2 py-2 rounded-lg font-bold text-sm bg-blue-500 text-white shadow-sm" onclick="window.setGender('male')" data-ru="М" data-en="M">М</button>
+                        <button type="button" id="btn-female" class="w-1/2 py-2 rounded-lg font-bold text-sm text-slate-500" onclick="window.setGender('female')" data-ru="Ж" data-en="F">Ж</button>
                     </div>
                 </div>
                 <div class="input-group w-1/2 !mb-0">
                     <label data-ru="ВОЗРАСТ (лет)" data-en="AGE (years)">ВОЗРАСТ (лет)</label>
-                    <input type="number" id="age" value="45" min="18" max="120" oninput="calculateAll()">
+                    <input type="number" id="age" value="45" min="18" max="120" oninput="window.calculateAll()">
                 </div>
             </div>
 
             <div class="flex gap-3">
                 <div class="input-group w-1/2 !mb-0">
                     <label data-ru="ВЕС (кг)" data-en="WEIGHT (kg)">ВЕС (кг)</label>
-                    <input type="number" id="weight" value="70" min="30" max="250" oninput="calculateAll()">
+                    <input type="number" id="weight" value="70" min="30" max="250" oninput="window.calculateAll()">
                 </div>
                 <div class="input-group w-1/2 !mb-0">
                     <label data-ru="РОСТ (см)" data-en="HEIGHT (cm)">РОСТ (см)</label>
-                    <input type="number" id="height" value="175" min="100" max="250" oninput="calculateAll()">
+                    <input type="number" id="height" value="175" min="100" max="250" oninput="window.calculateAll()">
                 </div>
             </div>
             
@@ -175,7 +175,7 @@
             </div>
             
             <div class="mt-2 mb-4">
-                <select id="screening-tool" onchange="switchScreeningTool()" class="w-full p-2.5 border-2 border-purple-200 rounded-xl bg-purple-50 text-xs font-bold text-purple-900 outline-none focus:border-purple-500 cursor-pointer appearance-none">
+                <select id="screening-tool" onchange="window.switchScreeningTool()" class="w-full p-2.5 border-2 border-purple-200 rounded-xl bg-purple-50 text-xs font-bold text-purple-900 outline-none focus:border-purple-500 cursor-pointer appearance-none">
                     <option value="nrs" data-ru="NRS-2002 (Общий профиль ОРИТ)" data-en="NRS-2002 (General ICU)">NRS-2002 (Общий профиль ОРИТ)</option>
                     <option value="mna" data-ru="MNA-SF (Гериатрия ≥ 65 лет)" data-en="MNA-SF (Geriatrics ≥ 65 y.o.)">MNA-SF (Гериатрия ≥ 65 лет)</option>
                     <option value="esmo" data-ru="ESMO (Онкологическая кахексия)" data-en="ESMO (Cancer Cachexia)">ESMO (Онкологическая кахексия)</option>
@@ -186,7 +186,7 @@
             <div id="screen-nrs" class="screening-block space-y-2">
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Нарушение питания (0-3):" data-en="Nutritional impairment (0-3):">Нарушение питания (0-3):</label>
-                    <select id="nrs-nutr" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="nrs-nutr" onchange="window.calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" data-ru="0 - Нормальное состояние питания" data-en="0 - Normal nutritional status">0 - Нормальное состояние питания</option>
                         <option value="1" data-ru="1 - Легкое (Потеря >5% за 3 мес ИЛИ еда 50-75%)" data-en="1 - Mild (Wt loss >5% in 3mo OR intake 50-75%)">1 - Легкое (Потеря >5% за 3 мес ИЛИ еда 50-75%)</option>
                         <option value="2" data-ru="2 - Умеренное (Потеря >5% за 2 мес ИЛИ ИМТ 18.5-20.5 ИЛИ еда 25-50%)" data-en="2 - Moderate (Wt loss >5% in 2mo OR BMI 18.5-20.5 OR intake 25-50%)">2 - Умеренное (Потеря >5% за 2 мес ИЛИ ИМТ 18.5-20.5 ИЛИ еда 25-50%)</option>
@@ -195,7 +195,7 @@
                 </div>
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Тяжесть заболевания (0-3):" data-en="Severity of disease (0-3):">Тяжесть заболевания (0-3):</label>
-                    <select id="nrs-sev" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="nrs-sev" onchange="window.calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" data-ru="0 - Нормальные потребности" data-en="0 - Normal requirements">0 - Нормальные потребности</option>
                         <option value="1" data-ru="1 - Легкая (Перелом бедра, цирроз, ХОБЛ, диализ, онко)" data-en="1 - Mild (Hip fracture, cirrhosis, COPD, dialysis, oncology)">1 - Легкая (Перелом бедра, цирроз, ХОБЛ, диализ, онко)</option>
                         <option value="2" data-ru="2 - Умеренная (Обширная хирургия ЖКТ, инсульт, пневмония)" data-en="2 - Moderate (Major abd. surgery, stroke, severe pneumonia)">2 - Умеренная (Обширная хирургия ЖКТ, инсульт, пневмония)</option>
@@ -209,7 +209,7 @@
             <div id="screen-mna" class="screening-block space-y-2 hidden">
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Снижение аппетита (за 3 мес)?" data-en="Decline in food intake (past 3 mo)?">Снижение аппетита (за 3 мес)?</label>
-                    <select id="mna-a" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="mna-a" onchange="window.calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" data-ru="Сильное снижение (0)" data-en="Severe decrease (0)">Сильное снижение (0)</option>
                         <option value="1" data-ru="Умеренное снижение (1)" data-en="Moderate decrease (1)">Умеренное снижение (1)</option>
                         <option value="2" selected data-ru="Нет снижения (2)" data-en="No decrease (2)">Нет снижения (2)</option>
@@ -217,7 +217,7 @@
                 </div>
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Потеря веса (за 3 мес)?" data-en="Weight loss (past 3 mo)?">Потеря веса (за 3 мес)?</label>
-                    <select id="mna-b" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="mna-b" onchange="window.calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" data-ru="Более 3 кг (0)" data-en="> 3 kg (0)">Более 3 кг (0)</option>
                         <option value="1" data-ru="Неизвестно (1)" data-en="Does not know (1)">Неизвестно (1)</option>
                         <option value="2" data-ru="От 1 до 3 кг (2)" data-en="Between 1 and 3 kg (2)">От 1 до 3 кг (2)</option>
@@ -226,7 +226,7 @@
                 </div>
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Подвижность (Мобильность)?" data-en="Mobility?">Подвижность (Мобильность)?</label>
-                    <select id="mna-c" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="mna-c" onchange="window.calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" selected data-ru="Прикован к постели / креслу (0)" data-en="Bed or chair bound (0)">Прикован к постели / креслу (0)</option>
                         <option value="1" data-ru="Встает, но не выходит из дома (1)" data-en="Able to get out, but not outdoors (1)">Встает, но не выходит из дома (1)</option>
                         <option value="2" data-ru="Выходит на улицу (2)" data-en="Goes out (2)">Выходит на улицу (2)</option>
@@ -234,14 +234,14 @@
                 </div>
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Острый стресс / болезнь (за 3 мес)?" data-en="Acute stress or disease (past 3 mo)?">Острый стресс / болезнь (за 3 мес)?</label>
-                    <select id="mna-d" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="mna-d" onchange="window.calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" selected data-ru="Да (0)" data-en="Yes (0)">Да (0)</option>
                         <option value="2" data-ru="Нет (2)" data-en="No (2)">Нет (2)</option>
                     </select>
                 </div>
                 <div class="input-group !mb-1">
                     <label class="text-slate-600 text-[10px]" data-ru="Нейропсихологические проблемы?" data-en="Neuropsychological problems?">Нейропсихологические проблемы?</label>
-                    <select id="mna-e" onchange="calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
+                    <select id="mna-e" onchange="window.calculateAll()" class="text-xs py-2 px-3 border-slate-200 cursor-pointer">
                         <option value="0" data-ru="Тяжелая деменция / депрессия (0)" data-en="Severe dementia / depression (0)">Тяжелая деменция / депрессия (0)</option>
                         <option value="1" data-ru="Легкая деменция (1)" data-en="Mild dementia (1)">Легкая деменция (1)</option>
                         <option value="2" selected data-ru="Нет проблем (2)" data-en="No problems (2)">Нет проблем (2)</option>
@@ -252,15 +252,15 @@
             <!-- Шкала ESMO -->
             <div id="screen-esmo" class="screening-block space-y-2 hidden">
                 <label class="flex items-start gap-3 bg-slate-50 p-2.5 rounded-lg border border-slate-100 cursor-pointer hover:bg-slate-100 transition-colors">
-                    <input type="checkbox" class="mt-0.5" id="esmo-1" onchange="calculateAll()">
+                    <input type="checkbox" class="mt-0.5" id="esmo-1" onchange="window.calculateAll()">
                     <span class="text-xs font-medium text-slate-700 leading-tight" data-ru="Потеря массы > 5% за 6 мес (без голодания)" data-en="Weight loss > 5% over past 6 mos (absence of starvation)">Потеря массы > 5% за 6 мес (без голодания)</span>
                 </label>
                 <label class="flex items-start gap-3 bg-slate-50 p-2.5 rounded-lg border border-slate-100 cursor-pointer hover:bg-slate-100 transition-colors">
-                    <input type="checkbox" class="mt-0.5" id="esmo-2" onchange="calculateAll()">
+                    <input type="checkbox" class="mt-0.5" id="esmo-2" onchange="window.calculateAll()">
                     <span class="text-xs font-medium text-slate-700 leading-tight" data-ru="ИМТ < 20 кг/м² <b>И</b> потеря массы > 2%" data-en="BMI < 20 kg/m² <b>AND</b> weight loss > 2%">ИМТ < 20 кг/м² <b>И</b> потеря массы > 2%</span>
                 </label>
                 <label class="flex items-start gap-3 bg-slate-50 p-2.5 rounded-lg border border-slate-100 cursor-pointer hover:bg-slate-100 transition-colors">
-                    <input type="checkbox" class="mt-0.5" id="esmo-3" onchange="calculateAll()">
+                    <input type="checkbox" class="mt-0.5" id="esmo-3" onchange="window.calculateAll()">
                     <span class="text-xs font-medium text-slate-700 leading-tight" data-ru="Признаки саркопении <b>И</b> потеря массы > 2%" data-en="Sarcopenia <b>AND</b> weight loss > 2%">Признаки саркопении <b>И</b> потеря массы > 2%</span>
                 </label>
             </div>
@@ -268,27 +268,27 @@
             <div id="screen-result" class="mt-4 p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs shadow-sm"></div>
         </div>
 
-        <!-- ОЦЕНКА БЭН (ЛАБОРАТОРНАЯ) В НАЧАЛЕ -->
+        <!-- ОЦЕНКА БЭН (ЛАБОРАТОРНАЯ) -->
         <div class="card border-l-4 border-l-purple-500 mb-3">
             <h2 class="text-sm font-extrabold text-slate-800 mb-1 uppercase tracking-wide" data-ru="Лабораторная оценка БЭН" data-en="Lab PEM Assessment">Лабораторная оценка БЭН</h2>
-            <p class="text-[9px] text-slate-500 mb-3 leading-tight font-medium" data-ru="💡 Альбумин в ОРИТ падает из-за системного воспаления (капиллярной утечки). Однако, при неясном анамнезе критические сдвиги обосновывают раннюю дотацию." data-en="💡 Albumin drops due to systemic inflammation. However, in unclear anamnesis, critical shifts justify early nutritional support.">💡 Альбумин в ОРИТ падает из-за системного воспаления (капиллярной утечки). Однако, при неясном анамнезе критические сдвиги обосновывают раннюю дотацию.</p>
+            <p class="text-[9px] text-slate-500 mb-3 leading-tight font-medium" data-ru="💡 Альбумин в ОРИТ падает из-за системного воспаления (капиллярной утечки). Однако, при неясном анамнезе критические сдвиги обосновывают раннюю дотацию ПП." data-en="💡 Albumin drops due to systemic inflammation. However, in unclear anamnesis, critical shifts justify early nutritional support.">💡 Альбумин в ОРИТ падает из-за системного воспаления (капиллярной утечки). Однако, при неясном анамнезе критические сдвиги обосновывают раннюю дотацию ПП.</p>
             
             <div class="grid grid-cols-2 gap-3 mb-2">
                 <div class="input-group !mb-0">
                     <label class="text-slate-500 text-[10px]" data-ru="Общий белок (г/л)" data-en="Total Protein (g/L)">Общий белок (г/л)</label>
-                    <input type="number" id="ben-prot" class="border-slate-200" oninput="calculateAll()" placeholder="65-85">
+                    <input type="number" id="ben-prot" class="border-slate-200" oninput="window.calculateAll()" placeholder="65-85">
                 </div>
                 <div class="input-group !mb-0">
                     <label class="text-slate-500 text-[10px]" data-ru="Альбумин (г/л)" data-en="Albumin (g/L)">Альбумин (г/л)</label>
-                    <input type="number" id="ben-alb" class="border-slate-200" oninput="calculateAll()" placeholder="35-50">
+                    <input type="number" id="ben-alb" class="border-slate-200" oninput="window.calculateAll()" placeholder="35-50">
                 </div>
                 <div class="input-group !mb-0">
                     <label class="text-slate-500 text-[10px]" data-ru="Трансферрин (г/л)" data-en="Transferrin (g/L)">Трансферрин (г/л)</label>
-                    <input type="number" id="ben-transf" step="0.1" class="border-slate-200" oninput="calculateAll()" placeholder="2.0-4.0">
+                    <input type="number" id="ben-transf" step="0.1" class="border-slate-200" oninput="window.calculateAll()" placeholder="2.0-4.0">
                 </div>
                 <div class="input-group !mb-0">
                     <label class="text-slate-500 text-[10px]" data-ru="Лимфоциты (в мкл)" data-en="Lymphocytes (/µL)">Лимфоциты (в мкл)</label>
-                    <input type="number" id="ben-lymph" class="border-slate-200" oninput="calculateAll()" placeholder="> 1500">
+                    <input type="number" id="ben-lymph" class="border-slate-200" oninput="window.calculateAll()" placeholder="> 1500">
                 </div>
             </div>
 
@@ -308,8 +308,9 @@
         <!-- КЛИНИЧЕСКИЙ ПРОФИЛЬ -->
         <div class="card border-l-4 border-l-blue-500 pb-4">
             <h2 class="text-xs font-extrabold text-slate-500 uppercase tracking-wide mb-2" data-ru="Клинический профиль и Нозология" data-en="Clinical Profile & Nosology">Клинический профиль и Нозология</h2>
-            <select id="protocol-select" onchange="onProtocolChange()" class="w-full p-3 border-2 border-slate-200 rounded-xl bg-slate-50 text-sm font-bold text-slate-800 outline-none focus:border-blue-500 mb-3 appearance-none cursor-pointer">
+            <select id="protocol-select" onchange="window.onProtocolChange()" class="w-full p-3 border-2 border-slate-200 rounded-xl bg-slate-50 text-sm font-bold text-slate-800 outline-none focus:border-blue-500 mb-3 appearance-none cursor-pointer">
                 <option value="general" data-ru="Общий профиль ОРИТ" data-en="General ICU Profile">Общий профиль ОРИТ</option>
+                <option value="abd_surgery" data-ru="ОРИТ (Абдоминальная хирургия)" data-en="ICU (Abdominal Surgery)">ОРИТ (Абдоминальная хирургия)</option>
                 <option value="pneumonia" data-ru="Пневмония / ОРДС" data-en="Pneumonia / ARDS">Пневмония / ОРДС</option>
                 <option value="sepsis" data-ru="Сепсис / Септический шок" data-en="Sepsis / Septic Shock">Сепсис / Септический шок</option>
                 <option value="polytrauma" data-ru="Сочетанная травма (Политравма)" data-en="Polytrauma">Сочетанная травма (Политравма)</option>
@@ -330,21 +331,25 @@
             <div class="mt-3">
                 <h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2" data-ru="Сопутствующие патологии:" data-en="Comorbidities:">Сопутствующие патологии:</h3>
                 <label class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg border border-slate-100 cursor-pointer mb-1 transition-colors hover:bg-slate-100">
-                    <input type="checkbox" id="comorb-dm" onchange="calculateAll()" class="mt-0.5 text-blue-600 rounded">
+                    <input type="checkbox" id="comorb-dm" onchange="window.calculateAll()" class="mt-0.5 text-blue-600 rounded">
                     <span class="text-[11px] font-medium text-slate-700 leading-tight" data-ru="Сахарный диабет / Стресс-гипергликемия" data-en="Diabetes / Stress Hyperglycemia">Сахарный диабет / Стресс-гипергликемия</span>
                 </label>
                 <label class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg border border-slate-100 cursor-pointer mb-1 transition-colors hover:bg-slate-100">
-                    <input type="checkbox" id="comorb-hf" onchange="calculateAll()" class="mt-0.5 text-blue-600 rounded">
+                    <input type="checkbox" id="comorb-hf" onchange="window.calculateAll()" class="mt-0.5 text-blue-600 rounded">
                     <span class="text-[11px] font-medium text-slate-700 leading-tight" data-ru="ХСН (Риск перегрузки объемом)" data-en="Heart Failure (Volume overload risk)">ХСН (Риск перегрузки объемом)</span>
                 </label>
                 <label class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg border border-slate-100 cursor-pointer transition-colors hover:bg-slate-100">
-                    <input type="checkbox" id="comorb-ckd" onchange="calculateAll()" class="mt-0.5 text-blue-600 rounded">
+                    <input type="checkbox" id="comorb-ckd" onchange="window.calculateAll()" class="mt-0.5 text-blue-600 rounded">
                     <span class="text-[11px] font-medium text-slate-700 leading-tight" data-ru="ХБП (Снижение СКФ)" data-en="CKD (Reduced GFR)">ХБП (Снижение СКФ)</span>
+                </label>
+                <label class="flex items-center gap-3 p-2 bg-teal-50 rounded-lg border border-teal-100 cursor-pointer mt-1 transition-colors hover:bg-teal-100">
+                    <input type="checkbox" id="comorb-crrt" onchange="window.syncCRRT(this)" class="mt-0.5 text-teal-600 rounded">
+                    <span class="text-[11px] font-medium text-teal-800 leading-tight" data-ru="ПЗПТ (CRRT) — компенсация АМ (+15 г белка)" data-en="CRRT — Amino Acid compensation (+15g pro)">ПЗПТ (CRRT) — компенсация АМ (+15 г белка)</span>
                 </label>
             </div>
 
             <label class="flex items-center gap-3 p-2.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-xl cursor-pointer transition-colors mt-3">
-                <input type="checkbox" id="preop-eras" onchange="togglePreop()" class="w-5 h-5 text-indigo-600 rounded">
+                <input type="checkbox" id="preop-eras" onchange="window.togglePreop()" class="w-5 h-5 text-indigo-600 rounded">
                 <span class="text-[11px] font-bold text-indigo-900 leading-tight uppercase" data-ru="Плановая хирургия (ERAS)" data-en="Elective Surgery (ERAS)">Плановая хирургия (ERAS)</span>
             </label>
             
@@ -361,7 +366,7 @@
         <div class="card border-none bg-slate-50 mt-3 mb-3 shadow-inner">
             <h3 class="text-[11px] font-extrabold text-slate-500 uppercase tracking-widest mb-3" data-ru="Фаза состояния (Дни в ОРИТ)" data-en="Phase of Illness (ICU Days)">Фаза состояния (Дни в ОРИТ)</h3>
             
-            <select id="phase-select" onchange="calculateAll()" class="w-full p-2.5 border-2 border-slate-200 rounded-xl bg-white text-xs font-bold text-blue-700 outline-none focus:border-blue-500 mb-3 appearance-none cursor-pointer shadow-sm">
+            <select id="phase-select" onchange="window.calculateAll()" class="w-full p-2.5 border-2 border-slate-200 rounded-xl bg-white text-xs font-bold text-blue-700 outline-none focus:border-blue-500 mb-3 appearance-none cursor-pointer shadow-sm">
                 <option value="0.25" data-ru="1 сутки (Ранняя острая) — 25% энергии" data-en="Day 1 (Early acute) — 25% energy">1 сутки (Ранняя острая) — 25% энергии</option>
                 <option value="0.50" data-ru="2 сутки (Ранняя острая) — 50% энергии" data-en="Day 2 (Early acute) — 50% energy">2 сутки (Ранняя острая) — 50% энергии</option>
                 <option value="0.70" data-ru="3-4 сутки (Ранняя острая) — 70% энергии" data-en="Days 3-4 (Early acute) — 70% energy">3-4 сутки (Ранняя острая) — 70% энергии</option>
@@ -409,7 +414,7 @@
             <div class="space-y-3">
                 <div class="input-group !mb-0">
                     <label data-ru="Фактор активности" data-en="Activity Factor">Фактор активности</label>
-                    <select id="factor-act" onchange="calculateAll()" class="border-slate-200 shadow-sm cursor-pointer">
+                    <select id="factor-act" onchange="window.calculateAll()" class="border-slate-200 shadow-sm cursor-pointer">
                         <option value="1.1" selected data-ru="1.1 - Постельный режим" data-en="1.1 - Bed rest">1.1 - Постельный режим</option>
                         <option value="1.2" data-ru="1.2 - Палатный режим" data-en="1.2 - Ward rest">1.2 - Палатный режим</option>
                         <option value="1.3" data-ru="1.3 - Общий режим" data-en="1.3 - Active">1.3 - Общий режим</option>
@@ -417,7 +422,7 @@
                 </div>
                 <div class="input-group !mb-0">
                     <label data-ru="Термальный фактор (t°)" data-en="Thermal Factor (t°)">Термальный фактор (t°)</label>
-                    <select id="factor-temp" onchange="calculateAll()" class="border-slate-200 shadow-sm cursor-pointer">
+                    <select id="factor-temp" onchange="window.calculateAll()" class="border-slate-200 shadow-sm cursor-pointer">
                         <option value="1.0" selected data-ru="1.0 - Нормальная" data-en="1.0 - Normal">1.0 - Нормальная</option>
                         <option value="1.1" data-ru="1.1 - До 38 °C" data-en="1.1 - Up to 38 °C">1.1 - До 38 °C</option>
                         <option value="1.2" data-ru="1.2 - До 39 °C" data-en="1.2 - Up to 39 °C">1.2 - До 39 °C</option>
@@ -426,7 +431,7 @@
                 </div>
                 <div class="input-group !mb-0">
                     <label data-ru="Фактор повреждения" data-en="Injury Factor">Фактор повреждения</label>
-                    <select id="factor-inj" onchange="calculateAll()" class="border-slate-200 shadow-sm cursor-pointer">
+                    <select id="factor-inj" onchange="window.calculateAll()" class="border-slate-200 shadow-sm cursor-pointer">
                         <option value="1.0" selected data-ru="1.0 - Нет/Незначительно" data-en="1.0 - Minor/None">1.0 - Нет/Незначительно</option>
                         <option value="1.2" data-ru="1.2 - Переломы" data-en="1.2 - Fractures">1.2 - Переломы</option>
                         <option value="1.3" data-ru="1.3 - Большие операции" data-en="1.3 - Major Surgery">1.3 - Большие операции</option>
@@ -438,7 +443,7 @@
                 </div>
                 <div class="input-group !mb-0">
                     <label data-ru="Дефицит массы тела" data-en="Weight Deficit">Дефицит массы тела</label>
-                    <select id="factor-def" onchange="calculateAll()" class="border-slate-200 shadow-sm cursor-pointer">
+                    <select id="factor-def" onchange="window.calculateAll()" class="border-slate-200 shadow-sm cursor-pointer">
                         <option value="1.0" selected data-ru="1.0 - Нет дефицита" data-en="1.0 - No deficit">1.0 - Нет дефицита</option>
                         <option value="1.1" data-ru="1.1 - Дефицит 10-20%" data-en="1.1 - Deficit 10-20%">1.1 - Дефицит 10-20%</option>
                         <option value="1.2" data-ru="1.2 - Дефицит 20-30%" data-en="1.2 - Deficit 20-30%">1.2 - Дефицит 20-30%</option>
@@ -462,7 +467,7 @@
         </div>
     </div>
 
-    <!-- TAB 3: ТЕРАПИЯ (Только расчеты и макронутриенты) -->
+    <!-- TAB 3: ТЕРАПИЯ И ПРОТОКОЛЫ -->
     <div id="tab-macro" class="tab-content px-4 py-5">
         
         <!-- СУТОЧНЫЕ ЦЕЛИ МАКРОНУТРИЕНТОВ -->
@@ -498,9 +503,9 @@
             </h2>
             
             <div class="flex rounded-lg bg-slate-100 p-1 mb-3">
-                <button class="contra-btn flex-1 text-[11px] font-bold py-2 px-1 rounded-md bg-white text-red-600 shadow-sm transition-all" onclick="switchContraTab('general', this)" data-ru="Общие" data-en="General">Общие</button>
-                <button class="contra-btn flex-1 text-[11px] font-bold py-2 px-1 rounded-md text-slate-500 hover:text-slate-800 transition-all" onclick="switchContraTab('en', this)" data-ru="К ЭП" data-en="To EN">К ЭП</button>
-                <button class="contra-btn flex-1 text-[11px] font-bold py-2 px-1 rounded-md text-slate-500 hover:text-slate-800 transition-all" onclick="switchContraTab('pn', this)" data-ru="К ПП" data-en="To PN">К ПП</button>
+                <button class="contra-btn flex-1 text-[11px] font-bold py-2 px-1 rounded-md bg-white text-red-600 shadow-sm transition-all" onclick="window.switchContraTab('general', this)" data-ru="Общие" data-en="General">Общие</button>
+                <button class="contra-btn flex-1 text-[11px] font-bold py-2 px-1 rounded-md text-slate-500 hover:text-slate-800 transition-all" onclick="window.switchContraTab('en', this)" data-ru="К ЭП" data-en="To EN">К ЭП</button>
+                <button class="contra-btn flex-1 text-[11px] font-bold py-2 px-1 rounded-md text-slate-500 hover:text-slate-800 transition-all" onclick="window.switchContraTab('pn', this)" data-ru="К ПП" data-en="To PN">К ПП</button>
             </div>
             
             <div id="contra-general" class="contra-content text-xs text-slate-700">
@@ -540,7 +545,7 @@
                 <span class="text-blue-600" data-ru="Парентерально" data-en="Parenteral">Парентерально</span>
             </div>
             
-            <input type="range" id="en-ratio" min="0" max="100" value="100" class="w-full mb-2" oninput="syncSliderToVolume()">
+            <input type="range" id="en-ratio" min="0" max="100" value="100" class="w-full mb-2" oninput="window.syncSliderToVolume()">
             
             <div class="flex justify-between text-2xl font-black mb-6 px-1">
                 <span id="en-pct-disp" class="text-green-500">100%</span>
@@ -561,7 +566,7 @@
                     </div>
                     <div class="w-2/3">
                         <label class="block text-[9px] text-blue-600 font-bold mb-1 uppercase tracking-widest" data-ru="Усвоенный объем ЭП (мл)" data-en="Tolerated EN Volume (ml)">Усвоенный объем ЭП (мл)</label>
-                        <input type="number" id="auto-en-actual" class="w-full p-2 border-2 border-blue-200 rounded-lg focus:border-blue-500 text-slate-800 bg-white shadow-sm" oninput="autoSetRatio()" placeholder="Например, 500">
+                        <input type="number" id="auto-en-actual" class="w-full p-2 border-2 border-blue-200 rounded-lg focus:border-blue-500 text-slate-800 bg-white shadow-sm" oninput="window.autoSetRatio()" placeholder="Например, 500">
                     </div>
                 </div>
                 <div id="auto-en-calc-result" class="text-[10px] text-blue-700 font-medium mt-2 hidden"></div>
@@ -574,7 +579,7 @@
                 <div class="space-y-3 mb-4">
                     <div class="flex flex-col">
                         <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1" data-ru="Внутрибрюшное давление:" data-en="Intra-abdominal pressure:">Внутрибрюшное давление:</label>
-                        <select id="gi-iap" onchange="calculateAll()" class="border-slate-200 rounded-lg p-2 text-xs bg-slate-50 font-medium cursor-pointer">
+                        <select id="gi-iap" onchange="window.calculateAll()" class="border-slate-200 rounded-lg p-2 text-xs bg-slate-50 font-medium cursor-pointer">
                             <option value="normal" data-ru="≤ 11 мм рт. ст. (Норма)" data-en="≤ 11 mmHg (Normal)">≤ 11 мм рт. ст. (Норма)</option>
                             <option value="elevated" data-ru="12 - 15 мм рт. ст. (Внутрибрюшная гипертензия)" data-en="12 - 15 mmHg (Intra-abdominal hypertension)">12 - 15 мм рт. ст. (Внутрибрюшная гипертензия)</option>
                             <option value="high" data-ru="16 - 20 мм рт. ст. (Выраженная ВБГ)" data-en="16 - 20 mmHg (Severe IAH)">16 - 20 мм рт. ст. (Выраженная ВБГ)</option>
@@ -583,19 +588,19 @@
                     </div>
                     
                     <label class="flex items-start gap-3 p-2 bg-slate-50 rounded-lg border border-slate-100 cursor-pointer">
-                        <input type="checkbox" id="gi-grv" onchange="calculateAll()" class="mt-0.5 text-blue-600 rounded">
+                        <input type="checkbox" id="gi-grv" onchange="window.calculateAll()" class="mt-0.5 text-blue-600 rounded">
                         <span class="text-[11px] font-medium text-slate-700 leading-tight" data-ru="ООЖ > 500 мл за 6 часов (или >50% от введенного)" data-en="GRV > 500 ml/6h (or >50% of infused)">ООЖ > 500 мл за 6 часов (или >50% от введенного)</span>
                     </label>
                     <label class="flex items-start gap-3 p-2 bg-slate-50 rounded-lg border border-slate-100 cursor-pointer">
-                        <input type="checkbox" id="gi-diarrhea" onchange="calculateAll()" class="mt-0.5 text-blue-600 rounded">
+                        <input type="checkbox" id="gi-diarrhea" onchange="window.calculateAll()" class="mt-0.5 text-blue-600 rounded">
                         <span class="text-[11px] font-medium text-slate-700 leading-tight" data-ru="Стойкая диарея (>3-5 раз/сут или >500 мл/сут)" data-en="Persistent diarrhea (>3-5 times/day or >500 ml/day)">Стойкая диарея (>3-5 раз/сут или >500 мл/сут)</span>
                     </label>
                     <label class="flex items-start gap-3 p-2 bg-slate-50 rounded-lg border border-slate-100 cursor-pointer">
-                        <input type="checkbox" id="gi-paresis" onchange="calculateAll()" class="mt-0.5 text-blue-600 rounded">
+                        <input type="checkbox" id="gi-paresis" onchange="window.calculateAll()" class="mt-0.5 text-blue-600 rounded">
                         <span class="text-[11px] font-medium text-slate-700 leading-tight" data-ru="Кишечный парез, выраженное вздутие кишки" data-en="Ileus, severe bloating">Кишечный парез, выраженное вздутие кишки</span>
                     </label>
                     <label class="flex items-start gap-3 p-2 bg-red-50 rounded-lg border border-red-100 cursor-pointer">
-                        <input type="checkbox" id="gi-abs-contra" onchange="calculateAll()" class="danger-check mt-0.5 rounded">
+                        <input type="checkbox" id="gi-abs-contra" onchange="window.calculateAll()" class="danger-check mt-0.5 rounded">
                         <span class="text-[11px] font-bold text-red-900 leading-tight" data-ru="Абсолютные противопоказания к ЭП (см. вкладку выше)" data-en="Absolute contraindications to EN (see tab above)">Абсолютные противопоказания к ЭП (см. вкладку выше)</span>
                     </label>
                 </div>
@@ -611,7 +616,7 @@
         <div class="card border-l-4 border-l-green-500">
             <h3 class="text-xs font-extrabold text-slate-500 mb-3 uppercase tracking-wide" data-ru="Энтеральное Питание (ЭП)" data-en="Enteral Nutrition (EN)">Энтеральное Питание (ЭП)</h3>
             <div class="mb-3">
-                <select id="en-type" onchange="updateAutoRatioFromDropdown()" class="w-full text-xs font-bold text-slate-700 p-2.5 border-2 border-slate-200 rounded-xl bg-slate-50 outline-none focus:border-green-500 appearance-none cursor-pointer">
+                <select id="en-type" onchange="window.updateAutoRatioFromDropdown()" class="w-full text-xs font-bold text-slate-700 p-2.5 border-2 border-slate-200 rounded-xl bg-slate-50 outline-none focus:border-green-500 appearance-none cursor-pointer">
                     <option value="1.0|4.0" data-ru="Стандартная изокалорическая (1.0 ккал/мл, белок 4 г)" data-en="Standard isocaloric (1.0 kcal/ml, pro 4g)">Стандартная изокалорическая (1.0 ккал/мл, белок 4 г)</option>
                     <option value="1.0|6.0" data-ru="Изокалорическая высокобелковая (1.0 ккал/мл, белок 6 г)" data-en="Isocaloric high protein (1.0 kcal/ml, pro 6g)">Изокалорическая высокобелковая (1.0 ккал/мл, белок 6 г)</option>
                     <option value="1.5|7.5" data-ru="Гиперкалорическая (1.5 ккал/мл, белок 7.5 г)" data-en="Hypercaloric (1.5 kcal/ml, pro 7.5g)">Гиперкалорическая (1.5 ккал/мл, белок 7.5 г)</option>
@@ -644,7 +649,7 @@
             
             <!-- Скрытый Select -->
             <div class="mb-3 hidden">
-                <select id="pn-type" onchange="calculateAll()" class="w-full text-xs font-bold text-slate-700 p-2.5 border-2 border-blue-300 rounded-xl bg-blue-50 outline-none focus:border-blue-500 appearance-none cursor-pointer shadow-sm text-blue-800">
+                <select id="pn-type" onchange="window.calculateAll()" class="w-full text-xs font-bold text-slate-700 p-2.5 border-2 border-blue-300 rounded-xl bg-blue-50 outline-none focus:border-blue-500 appearance-none cursor-pointer shadow-sm text-blue-800">
                     <option value="aa5" data-ru="5% АМ (Аминокислоты + Электролиты)" data-en="5% AA (Amino Acids + Lytes)">5% АМ (Аминокислоты + Электролиты)</option>
                     <option value="aa10" selected data-ru="10% АМ (Высокобелковый для ЦВ)" data-en="10% AA (High protein for CVC)">10% АМ (Высокобелковый для ЦВ)</option>
                     <option value="3in1" data-ru="Смесь «Три-в-одном» (Белки + Жиры + Углеводы)" data-en="All-in-one mix (Protein + Fat + Carbs)">Смесь «Три-в-одном» (Белки + Жиры + Углеводы)</option>
@@ -654,7 +659,7 @@
             <!-- ИНТЕРАКТИВНЫЕ ИКОНКИ -->
             <div id="pn-images" class="grid grid-cols-3 gap-1.5 mb-3 items-stretch">
                 <!-- 5% АМ -->
-                <div id="card-aa5" onclick="selectBrand('aa5')" class="cursor-pointer flex flex-col bg-slate-50 p-2 rounded-xl border border-slate-200 shadow-sm justify-start items-center text-center transition-all duration-300 opacity-50 grayscale scale-95 hover:bg-sky-50">
+                <div id="card-aa5" onclick="window.selectBrand('aa5')" class="cursor-pointer flex flex-col bg-slate-50 p-2 rounded-xl border border-slate-200 shadow-sm justify-start items-center text-center transition-all duration-300 opacity-50 grayscale scale-95 hover:bg-sky-50">
                     <div class="w-8 h-8 rounded-full bg-sky-400 text-white flex items-center justify-center mb-1.5 shadow-md">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                     </div>
@@ -664,7 +669,7 @@
                     </div>
                 </div>
                 <!-- 10% АМ -->
-                <div id="card-aa10" onclick="selectBrand('aa10')" class="cursor-pointer flex flex-col bg-emerald-50 p-2 rounded-xl border-2 border-emerald-400 shadow-md justify-start items-center text-center transition-all duration-300 transform scale-105 z-10 hover:bg-emerald-100">
+                <div id="card-aa10" onclick="window.selectBrand('aa10')" class="cursor-pointer flex flex-col bg-emerald-50 p-2 rounded-xl border-2 border-emerald-400 shadow-md justify-start items-center text-center transition-all duration-300 transform scale-105 z-10 hover:bg-emerald-100">
                     <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center mb-1.5 shadow-md">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                     </div>
@@ -674,7 +679,7 @@
                     </div>
                 </div>
                 <!-- 3-в-1 -->
-                <div id="card-3in1" onclick="selectBrand('3in1')" class="cursor-pointer flex flex-col bg-slate-50 p-2 rounded-xl border border-slate-200 shadow-sm justify-start items-center text-center transition-all duration-300 opacity-50 grayscale scale-95 hover:bg-purple-50">
+                <div id="card-3in1" onclick="window.selectBrand('3in1')" class="cursor-pointer flex flex-col bg-slate-50 p-2 rounded-xl border border-slate-200 shadow-sm justify-start items-center text-center transition-all duration-300 opacity-50 grayscale scale-95 hover:bg-purple-50">
                     <div class="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center mb-1.5 shadow-md">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                     </div>
@@ -705,13 +710,13 @@
             <div id="propofol-box" class="mt-4 pt-4 border-t border-slate-100">
                 <div class="border-2 border-purple-100 rounded-xl p-3 bg-purple-50">
                     <label class="flex items-center gap-3 cursor-pointer">
-                        <input type="checkbox" id="has-propofol" onchange="togglePropofol()" class="w-5 h-5 text-purple-600 rounded cursor-pointer border-purple-300">
+                        <input type="checkbox" id="has-propofol" onchange="window.togglePropofol()" class="w-5 h-5 text-purple-600 rounded cursor-pointer border-purple-300">
                         <span class="text-xs font-bold text-purple-900 leading-tight uppercase tracking-wide" data-ru="Седация Пропофолом (1%)" data-en="Propofol Sedation (1%)">Седация Пропофолом (1%)</span>
                     </label>
                     <div id="propofol-input-box" class="hidden mt-3 pt-3 border-t border-purple-200 flex-col gap-2">
                         <div class="flex items-center gap-3">
                             <span class="text-[11px] font-bold text-purple-800 uppercase tracking-widest whitespace-nowrap" data-ru="Скорость (мл/ч):" data-en="Rate (ml/h):">Скорость (мл/ч):</span>
-                            <input type="number" id="propofol-rate" oninput="calculateAll()" step="0.1" class="w-full text-sm font-black p-2.5 border-2 border-purple-200 rounded-lg text-purple-900 bg-white focus:border-purple-500 outline-none shadow-sm" placeholder="Напр. 10">
+                            <input type="number" id="propofol-rate" oninput="window.calculateAll()" step="0.1" class="w-full text-sm font-black p-2.5 border-2 border-purple-200 rounded-lg text-purple-900 bg-white focus:border-purple-500 outline-none shadow-sm" placeholder="Напр. 10">
                         </div>
                         <div id="propofol-info" class="hidden justify-between items-center text-xs mt-1 bg-white p-2 rounded-lg border border-purple-100 shadow-sm">
                             <span class="text-purple-600 font-bold uppercase tracking-widest text-[9px]" data-ru="Дотация (Энергия / Жиры):" data-en="Yield (Energy / Fat):">Дотация (Энергия / Жиры):</span>
@@ -740,7 +745,7 @@
                 <div class="space-y-3">
                     <div class="border border-slate-200 rounded-xl p-2.5">
                         <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" id="pn-add-lipids" onchange="calculateAll()" class="w-5 h-5 text-blue-600 rounded cursor-pointer" checked>
+                            <input type="checkbox" id="pn-add-lipids" onchange="window.calculateAll()" class="w-5 h-5 text-blue-600 rounded cursor-pointer" checked>
                             <span class="text-xs font-bold text-slate-700 leading-tight" data-ru="Жировые эмульсии 20%" data-en="Lipid emulsions 20%">Жировые эмульсии 20%</span>
                         </label>
                         <div id="lipid-details" class="mt-2 pt-2 border-t border-slate-100 flex justify-between items-center text-xs pl-8">
@@ -751,15 +756,14 @@
 
                     <div class="border border-slate-200 rounded-xl p-2.5">
                         <label class="flex items-center gap-3 cursor-pointer">
-                            <input type="checkbox" id="pn-add-glucose" onchange="calculateAll()" class="w-5 h-5 text-blue-600 rounded cursor-pointer" checked>
-                            <span class="text-xs font-bold text-slate-700 leading-tight" data-ru="Глюкоза (на остаток ккал)" data-en="Glucose (for remaining kcal)">Глюкоза (на остаток ккал)</span>
+                            <input type="checkbox" id="pn-add-glucose" onchange="window.calculateAll()" class="w-5 h-5 text-blue-600 rounded cursor-pointer" checked>
+                            <span class="text-xs font-bold text-slate-700 leading-tight" data-ru="Раствор глюкозы" data-en="Glucose solution">Раствор глюкозы</span>
                         </label>
                         <div id="glucose-details" class="mt-2 pt-2 border-t border-slate-100 pl-8 transition-opacity duration-200">
-                            <!-- Исправлены клинические значения калоража глюкозы -->
-                            <select id="pn-glucose-type" onchange="calculateAll()" class="w-full text-xs font-semibold text-slate-600 border-none bg-slate-50 p-2 rounded-lg outline-none mb-2 appearance-none cursor-pointer">
-                                <option value="0.2" data-ru="5% (~200 ккал/л)" data-en="5% (~200 kcal/L)">5% (~200 ккал/л)</option>
-                                <option value="0.4" data-ru="10% (~400 ккал/л)" data-en="10% (~400 kcal/L)">10% (~400 ккал/л)</option>
-                                <option value="0.8" data-ru="20% (~800 ккал/л)" data-en="20% (~800 kcal/L)">20% (~800 ккал/л)</option>
+                            <select id="pn-glucose-type" onchange="window.calculateAll()" class="w-full text-xs font-semibold text-slate-600 border-none bg-slate-50 p-2 rounded-lg outline-none mb-2 appearance-none cursor-pointer">
+                                <option value="0.17" data-ru="5% (~170 ккал/л)" data-en="5% (~170 kcal/L)">5% (~170 ккал/л)</option>
+                                <option value="0.34" data-ru="10% (~340 ккал/л)" data-en="10% (~340 kcal/L)">10% (~340 ккал/л)</option>
+                                <option value="0.68" data-ru="20% (~680 ккал/л)" data-en="20% (~680 kcal/L)">20% (~680 ккал/л)</option>
                             </select>
                             <div class="flex justify-between items-center text-xs">
                                 <span class="text-slate-500 font-medium" data-ru="Объем:" data-en="Volume:">Объем:</span>
@@ -793,20 +797,20 @@
             <div class="space-y-3 mb-4">
                 <div class="input-group !mb-0">
                     <label class="text-slate-500 text-[10px]" data-ru="Поступление белка с питанием (г/сут)" data-en="Protein intake with nutrition (g/day)">Поступление белка с питанием (г/сут)</label>
-                    <input type="number" id="nb-protein-in" placeholder="Напр. 80" class="border-slate-200" oninput="calculateNitrogenBalance()">
+                    <input type="number" id="nb-protein-in" placeholder="Напр. 80" class="border-slate-200" oninput="window.calculateNitrogenBalance()">
                 </div>
                 <div class="flex gap-2">
                     <div class="input-group !mb-0 w-1/2">
                         <label class="text-slate-500 text-[10px]" data-ru="Мочевина в сут. моче (ммоль/л)" data-en="Urine Urea (mmol/L)">Мочевина в сут. моче (ммоль/л)</label>
-                        <input type="number" id="nb-urine-urea" placeholder="Напр. 250" class="border-slate-200" oninput="calculateNitrogenBalance()">
+                        <input type="number" id="nb-urine-urea" placeholder="Напр. 250" class="border-slate-200" oninput="window.calculateNitrogenBalance()">
                     </div>
                     <div class="input-group !mb-0 w-1/2">
                         <label class="text-slate-500 text-[10px]" data-ru="Диурез (л/сут)" data-en="Diuresis (L/day)">Диурез (л/сут)</label>
-                        <input type="number" id="nb-diuresis" step="0.1" placeholder="Напр. 1.5" class="border-slate-200" oninput="calculateNitrogenBalance()">
+                        <input type="number" id="nb-diuresis" step="0.1" placeholder="Напр. 1.5" class="border-slate-200" oninput="window.calculateNitrogenBalance()">
                     </div>
                 </div>
                 <label class="flex items-center gap-3 p-2.5 bg-slate-50 hover:bg-slate-100 rounded-xl border border-slate-100 cursor-pointer transition-colors shadow-inner">
-                    <input type="checkbox" id="nb-crrt" class="w-5 h-5 text-teal-600 rounded cursor-pointer" onchange="calculateNitrogenBalance()">
+                    <input type="checkbox" id="nb-crrt" class="w-5 h-5 text-teal-600 rounded cursor-pointer" onchange="window.syncCRRT(this)">
                     <span class="text-[11px] text-slate-700 font-bold leading-tight" data-ru="Потери в контуре ПЗПТ (+15 г белка к расходу)" data-en="CRRT filter losses (+15g protein to output)">Потери в контуре ПЗПТ (+15 г белка к расходу)</span>
                 </label>
             </div>
@@ -839,19 +843,19 @@
             <div class="space-y-3">
                 <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100 shadow-inner">
                     <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5" data-ru="Глюкоза крови (ммоль/л)" data-en="Glucose (mmol/L)">Глюкоза крови (ммоль/л)</label>
-                    <input type="number" id="metab-glucose" step="0.1" oninput="checkMetabolism()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-white focus:border-blue-400 outline-none" placeholder="Цель: 6.0 - 8.0">
+                    <input type="number" id="metab-glucose" step="0.1" oninput="window.checkMetabolism()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-white focus:border-blue-400 outline-none" placeholder="Цель: 6.0 - 8.0">
                     <div id="alert-glucose" class="hidden"></div>
                 </div>
 
                 <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100 shadow-inner">
                     <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5" data-ru="Триглицериды (ммоль/л)" data-en="Triglycerides (mmol/L)">Триглицериды (ммоль/л)</label>
-                    <input type="number" id="metab-tg" step="0.1" oninput="checkMetabolism()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-white focus:border-blue-400 outline-none" placeholder="Норма: < 5.0">
+                    <input type="number" id="metab-tg" step="0.1" oninput="window.checkMetabolism()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-white focus:border-blue-400 outline-none" placeholder="Норма: < 5.0">
                     <div id="alert-tg" class="hidden"></div>
                 </div>
                 
                 <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100 shadow-inner">
                     <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5" data-ru="Мочевина крови (ммоль/л)" data-en="Blood Urea / BUN (mmol/L)">Мочевина крови (ммоль/л)</label>
-                    <input type="number" id="metab-bun" step="0.1" oninput="checkMetabolism()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-white focus:border-blue-400 outline-none" placeholder="Норма: < 10.0">
+                    <input type="number" id="metab-bun" step="0.1" oninput="window.checkMetabolism()" class="w-full text-xs p-2 border-2 border-slate-200 rounded-lg bg-white focus:border-blue-400 outline-none" placeholder="Норма: < 10.0">
                     <div id="alert-bun" class="hidden"></div>
                 </div>
             </div>
@@ -859,7 +863,7 @@
 
         <!-- ИНТЕРАКТИВНЫЙ ККМП С ПРОГРЕССОМ -->
         <div class="card border-2 border-slate-800 bg-white mb-3">
-            <h2 class="text-sm font-extrabold text-slate-800 flex items-center justify-between uppercase tracking-wide cursor-pointer select-none" onclick="toggleKKMP()">
+            <h2 class="text-sm font-extrabold text-slate-800 flex items-center justify-between uppercase tracking-wide cursor-pointer select-none" onclick="window.toggleKKMP()">
                 <div class="flex items-center">
                     <svg class="w-5 h-5 mr-2 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span data-ru="Критерии качества медицинской помощи" data-en="Quality of Care Criteria">Критерии качества медицинской помощи</span>
@@ -869,27 +873,27 @@
             <div id="kkmp-content" class="mt-4 hidden border-t border-slate-100 pt-3">
                 <div class="space-y-2.5 mb-4">
                     <label class="flex items-start gap-3 p-1 cursor-pointer group">
-                        <input type="checkbox" onchange="updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
+                        <input type="checkbox" onchange="window.updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
                         <span class="text-[11px] text-slate-700 leading-tight font-medium" data-ru="<b>1. Первичный скрининг</b> (NRS/MNA/ESMO)." data-en="<b>1. Primary screening</b> (NRS/MNA/ESMO)."><b>1. Первичный скрининг</b> (NRS/MNA/ESMO).</span>
                     </label>
                     <label class="flex items-start gap-3 p-1 cursor-pointer group">
-                        <input type="checkbox" onchange="updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
+                        <input type="checkbox" onchange="window.updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
                         <span class="text-[11px] text-slate-700 leading-tight font-medium" data-ru="<b>2. Оценка БЭН</b> (белок, ИМТ, лимфоциты)." data-en="<b>2. Evaluated malnutrition</b> (protein, BMI, lymphs)."><b>2. Оценка БЭН</b> (белок, ИМТ, лимфоциты).</span>
                     </label>
                     <label class="flex items-start gap-3 p-1 cursor-pointer group">
-                        <input type="checkbox" onchange="updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
+                        <input type="checkbox" onchange="window.updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
                         <span class="text-[11px] text-slate-700 leading-tight font-medium" data-ru="<b>3. Предоперационная НП</b> при тяжелой БЭН." data-en="<b>3. Preoperative NP</b> for severe malnutrition."><b>3. Предоперационная НП</b> при тяжелой БЭН.</span>
                     </label>
                     <label class="flex items-start gap-3 p-1 cursor-pointer group">
-                        <input type="checkbox" onchange="updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
+                        <input type="checkbox" onchange="window.updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
                         <span class="text-[11px] text-slate-700 leading-tight font-medium" data-ru="<b>4. Раннее ЭП</b> (нет противопоказаний)." data-en="<b>4. Early EN</b> (no contraindications)."><b>4. Раннее ЭП</b> (нет противопоказаний).</span>
                     </label>
                     <label class="flex items-start gap-3 p-1 cursor-pointer group">
-                        <input type="checkbox" onchange="updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
+                        <input type="checkbox" onchange="window.updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
                         <span class="text-[11px] text-slate-700 leading-tight font-medium" data-ru="<b>5. Своевременное ПП</b> (если ЭП не усваивается)." data-en="<b>5. Timely PN</b> (if EN ineffective)."><b>5. Своевременное ПП</b> (если ЭП не усваивается).</span>
                     </label>
                     <label class="flex items-start gap-3 p-1 cursor-pointer group">
-                        <input type="checkbox" onchange="updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
+                        <input type="checkbox" onchange="window.updateKKMP()" class="kkmp-check mt-0.5 w-5 h-5 text-slate-800 rounded border-2 border-slate-300 group-hover:border-slate-500 transition-colors cursor-pointer">
                         <span class="text-[11px] text-slate-700 leading-tight font-medium" data-ru="<b>6. Динамическая оценка</b> на 7–10 сутки." data-en="<b>6. Dynamic assessment</b> on day 7-10."><b>6. Динамическая оценка</b> на 7–10 сутки.</span>
                     </label>
                 </div>
@@ -903,28 +907,23 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Медицинский дисклеймер (Внизу вкладки) -->
-        <div class="mx-4 mt-6 mb-2 p-3 bg-yellow-50 rounded-xl border border-yellow-200 shadow-sm">
-            <p class="text-[9px] leading-relaxed text-yellow-800 text-center font-medium" data-ru="⚠️ ВНИМАНИЕ: Калькулятор носит исключительно справочный характер. Результаты расчетов требуют клинической верификации лечащим врачом." data-en="⚠️ DISCLAIMER: For informational purposes only. Calculation results require clinical verification by a physician.">⚠️ ВНИМАНИЕ: Калькулятор носит исключительно справочный характер. Результаты расчетов требуют клинической верификации лечащим врачом.</p>
-        </div>
     </div>
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav sm:rounded-b-[2rem]">
-        <button class="nav-item active" onclick="switchTab('patient', this)">
+        <button class="nav-item active" onclick="window.switchTab('patient', this)">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
             <span data-ru="Пациент" data-en="Patient">Пациент</span>
         </button>
-        <button class="nav-item" onclick="switchTab('energy', this)">
+        <button class="nav-item" onclick="window.switchTab('energy', this)">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
             <span data-ru="Энергия" data-en="Energy">Энергия</span>
         </button>
-        <button class="nav-item" onclick="switchTab('macro', this)">
+        <button class="nav-item" onclick="window.switchTab('macro', this)">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
             <span data-ru="Терапия" data-en="Therapy">Терапия</span>
         </button>
-        <button class="nav-item" onclick="switchTab('monitor', this)">
+        <button class="nav-item" onclick="window.switchTab('monitor', this)">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
             <span data-ru="Контроль" data-en="Monitor">Контроль</span>
         </button>
@@ -932,6 +931,30 @@
 </div>
 
 <script>
+    // Экспорт функций в глобальную область видимости (для корректной работы inline-обработчиков в blob/iframe)
+    window.setLang = setLang;
+    window.setGender = setGender;
+    window.switchScreeningTool = switchScreeningTool;
+    window.runScreening = runScreening;
+    window.calculateBEN = calculateBEN;
+    window.switchContraTab = switchContraTab;
+    window.togglePreop = togglePreop;
+    window.toggleKKMP = toggleKKMP;
+    window.updateKKMP = updateKKMP;
+    window.checkMetabolism = checkMetabolism;
+    window.assessGI = assessGI;
+    window.calculateNitrogenBalance = calculateNitrogenBalance;
+    window.syncSliderToVolume = syncSliderToVolume;
+    window.autoSetRatio = autoSetRatio;
+    window.updateAutoRatioFromDropdown = updateAutoRatioFromDropdown;
+    window.selectBrand = selectBrand;
+    window.onProtocolChange = onProtocolChange;
+    window.togglePropofol = togglePropofol;
+    window.syncCRRT = syncCRRT;
+    window.calculateAll = calculateAll;
+    window.switchTab = switchTab;
+    window.copyEmail = copyEmail;
+
     let lang = 'ru';
     let gender = 'male';
     window.currentNitrogenBalance = 0;
@@ -966,16 +989,25 @@
         textArea.select();
         try {
             document.execCommand('copy');
-            const originalHtml = btn.getAttribute('data-' + lang); 
+            const originalHtml = btn.getAttribute('data-' + lang) || "✉️ makariy.mendibaev@yandex.ru"; 
             const copiedText = lang === 'ru' ? "✅ Скопировано!" : "✅ Copied!";
             btn.innerHTML = copiedText;
             btn.classList.add('text-green-600');
             setTimeout(() => {
-                btn.innerHTML = btn.getAttribute('data-' + lang); 
+                btn.innerHTML = originalHtml; 
                 btn.classList.remove('text-green-600');
             }, 2000);
         } catch (err) {}
         document.body.removeChild(textArea);
+    }
+
+    function syncCRRT(sourceEl) {
+        const isChecked = sourceEl.checked;
+        const cb1 = document.getElementById('comorb-crrt');
+        const cb2 = document.getElementById('nb-crrt');
+        if (cb1 && cb1 !== sourceEl) cb1.checked = isChecked;
+        if (cb2 && cb2 !== sourceEl) cb2.checked = isChecked;
+        calculateAll();
     }
 
     const tDict = {
@@ -1064,6 +1096,7 @@
     const protocols = {
         ru: {
             general: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4"><li><b>Алгоритм старта:</b> Начинать с 10-15 ккал/кг (≤50% от цели) в 1-2 сутки. Увеличивать на 5-10 ккал/кг каждые 24ч. Полный объем — к 4-7 дню.</li><li>Раннее ЭП (300 мл/сут или 10-20 мл/ч) в первые 24-48 ч для сохранения барьера ЖКТ. При недокорме - парентеральная коррекция.</li></ul>` },
+            abd_surgery: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-900"><li><b>Раннее ЭП:</b> Старт в первые 24ч после операции, если нет шока и ишемии кишки. Наличие анастомоза НЕ является противопоказанием к ЭП.</li><li>При высоком риске несостоятельности — трофическое ЭП + парентеральное питание.</li></ul>` },
             pneumonia: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-900"><li><b>Умеренный стресс:</b> потребность в энергии 25-30 ккал/кг.</li><li><b>Дыхательная недостаточность:</b> избегать перекорма углеводами (увеличивают продукцию CO2). Оптимизировать долю жировых эмульсий.</li></ul>` },
             sepsis: { protRange: "1.3 - 2.0", protCalc: [1.3, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-900"><li><b>Абдоминальный сепсис:</b> На фоне выраженного системного воспаления стандартное ЭП не покрывает потребности. Для снижения дисфункции органов (SOFA) показано раннее применение высокобелкового ПП.</li><li><b>Острая фаза:</b> Старт с трофического ЭП (10-15 ккал/кг). Дефицит белка восполнять внутривенно.</li></ul>` },
             polytrauma: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-red-900"><li><b>Тяжелый гиперкатаболизм:</b> массивная потеря азота с мочой и экссудатами.</li><li>Показана интенсивная белковая дотация (высокобелковое ПП в центральные вены).</li><li>Строгий контроль калия и фосфора при наращивании калорий (риск рефидинг-синдрома).</li></ul>` },
@@ -1076,12 +1109,13 @@
             sbs: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-emerald-900"><li>Энергия 30-40 ккал/кг/сут.</li><li>Основа ранней фазы — парентеральное питание.</li><li>Энтеральное: постепенный ввод олигомерных (пептидных) смесей.</li></ul>` },
             ckd_nodialysis: { protRange: "0.6 - 0.8", protCalc: [0.6, 0.8], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-gray-700"><li><b>Без диализа:</b> Ограничение белка для замедления прогрессирования ХБП.</li><li>Энергия: 30-35 ккал/кг для предотвращения белково-энергетической недостаточности.</li><li>Ограничение калия (K), натрия (Na), фосфора (P). Специализированные почечные смеси.</li></ul>` },
             aki_ihd: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-teal-800"><li><b>Интермиттирующий диализ (ИГД):</b> Потери аминокислот ~10-15 г за сеанс.</li><li>Необходима компенсация белка и водорастворимых витаминов в дни диализа.</li></ul>` },
-            aki_crrt: { protRange: "1.5 - 1.7", protCalc: [1.5, 1.7], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-teal-900"><li><b>On CRRT:</b> Protein 1.5-1.7 g/kg (up to 2.0 in high-volume). Account for AA loss in effluent.</li><li><b>Danger:</b> washout of water-soluble vitamins (B1, C, folates) and trace elements (Se, Cu). Strict IV supplementation!</li></ul>` },
-            obesity: { protRange: "2.0 (на ИМТ)", protCalc: [2.0, 2.0], fatRange: "0.8 - 1.0", notes: `<ul class="list-disc pl-4 text-pink-900"><li>Hypocaloric high-protein nutrition.</li><li>Protein: 2.0 g/kg of <b>ideal</b> body weight.</li><li>Thromboprophylaxis dosing calculated on total (actual) body weight.</li></ul>` },
-            rehab: { protRange: "1.3 - 2.0", protCalc: [1.3, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-indigo-900"><li>Energy demand increases during kinesiotherapy.</li><li>ICU-AW prevention requires protein (≥1.3 g/kg) during physical loading.</li><li>Mandatory 3-swallow test for dysphagia before starting oral feeding.</li></ul>` }
+            aki_crrt: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-800"><li><b>ПЗПТ:</b> Клиренс нутриентов через мембраны диализаторов приводит к тяжелому гиперкатаболизму. Потери АК в фильтре достигают 15-20 г/сут.</li><li>Обязательна непрерывная компенсация (доза белка увеличена до 1.5-2.0 г/кг, рекомендовано высокобелковое ПП). Строго восполнять водорастворимые витамины.</li></ul>` },
+            obesity: { protRange: "2.0 (на ИМТ)", protCalc: [2.0, 2.0], fatRange: "0.8 - 1.0", notes: `<ul class="list-disc pl-4 text-pink-900"><li>Гипокалорийное питание с высоким белком.</li><li>Белок: 2.0 г/кг <b>идеальной</b> массы тела. Парентеральная коррекция показана при дефиците.</li><li>Тромбопрофилактика на общую (фактическую) массу.</li></ul>` },
+            rehab: { protRange: "1.3 - 2.0", protCalc: [1.3, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-indigo-900"><li>Энергопотребность возрастает при кинезиотерапии.</li><li>Профилактика ПНМКС требует белка (не менее 1.3 г/кг) на фоне мышечной нагрузки.</li><li>Обязательный тест 3-х глотков на дисфагию перед началом перорального питания.</li></ul>` }
         },
         en: {
             general: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4"><li><b>Start Algorithm:</b> 10-15 kcal/kg (≤50% goal) on day 1-2. Increase by 5-10 kcal/kg daily. Full volume by day 4-7.</li><li>Early EN (300 ml/d or 10-20 ml/h) in first 24-48h to preserve gut barrier.</li></ul>` },
+            abd_surgery: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-900"><li><b>Early EN:</b> Start within 24h post-op if no shock/bowel ischemia. Anastomosis is NOT a contraindication.</li><li>If high risk of leak: trophic EN + PN.</li></ul>` },
             pneumonia: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-900"><li><b>Moderate stress:</b> energy requirement 25-30 kcal/kg.</li><li><b>Respiratory failure:</b> avoid carbohydrate overfeeding (increases CO2 production). Optimize fat ratio.</li></ul>` },
             sepsis: { protRange: "1.3 - 2.0", protCalc: [1.3, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-red-900"><li><b>Acute phase (shock):</b> Start trophic EN (10-15 kcal/kg or 10-20 ml/h).</li><li><b>Stepwise increase:</b> Add 5 kcal/kg (or +10-20 ml/h) every 24-48h based on tolerance. Reach goal strictly by day 4-7 to avoid overfeeding!</li><li><b>Thiamine (B1) deficit:</b> High risk! Mandatory IV supplementation.</li></ul>` },
             polytrauma: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-red-900"><li><b>Severe hypermetabolism:</b> massive nitrogen loss. Intensive protein supplementation required.</li></ul>` },
@@ -1094,7 +1128,7 @@
             sbs: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-emerald-900"><li>Energy 30-40 kcal/kg/d.</li><li>Early phase base is parenteral nutrition.</li><li>Enteral: gradual intro of oligomeric (peptide) formulas.</li></ul>` },
             ckd_nodialysis: { protRange: "0.6 - 0.8", protCalc: [0.6, 0.8], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-gray-700"><li><b>No dialysis:</b> Protein restriction to slow CKD progression.</li><li>Energy: 30-35 kcal/kg to prevent malnutrition.</li><li>Restrict K, Na, P. Specialized renal formulas.</li></ul>` },
             aki_ihd: { protRange: "1.2 - 1.5", protCalc: [1.2, 1.5], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-teal-800"><li><b>Intermittent HD:</b> Amino acid loss ~10-15g per session.</li><li>Compensate protein and water-soluble vitamins on dialysis days.</li></ul>` },
-            aki_crrt: { protRange: "1.5 - 1.7", protCalc: [1.5, 1.7], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-teal-900"><li><b>On CRRT:</b> Protein 1.5-1.7 g/kg (up to 2.0 in high-volume). Account for AA loss in effluent.</li><li><b>Danger:</b> washout of water-soluble vitamins (B1, C, folates) and trace elements (Se, Cu). Strict IV supplementation!</li></ul>` },
+            aki_crrt: { protRange: "1.5 - 2.0", protCalc: [1.5, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-blue-800"><li><b>On CRRT:</b> Protein up to 2.0 g/kg in high-volume. Account for AA loss in effluent.</li><li><b>Danger:</b> washout of water-soluble vitamins and trace elements. Strict IV supplementation!</li></ul>` },
             obesity: { protRange: "2.0 (on IBW)", protCalc: [2.0, 2.0], fatRange: "0.8 - 1.0", notes: `<ul class="list-disc pl-4 text-pink-900"><li>Hypocaloric high-protein nutrition.</li><li>Protein: 2.0 g/kg of <b>ideal</b> body weight.</li><li>Thromboprophylaxis dosing calculated on total (actual) body weight.</li></ul>` },
             rehab: { protRange: "1.3 - 2.0", protCalc: [1.3, 2.0], fatRange: "1.0 - 1.5", notes: `<ul class="list-disc pl-4 text-indigo-900"><li>Energy demand increases during kinesiotherapy.</li><li>ICU-AW prevention requires protein (≥1.3 g/kg) during physical loading.</li><li>Mandatory 3-swallow test for dysphagia before starting oral feeding.</li></ul>` }
         }
@@ -1132,7 +1166,7 @@
         const contentEl = document.getElementById('screen-' + tool);
         if (contentEl) contentEl.classList.remove('hidden');
         
-        runScreening();
+        runScreening(false);
     }
 
     function getLabPemSeverity() {
@@ -1333,6 +1367,23 @@
         }
     }
 
+    function togglePropofol() {
+        const isChecked = document.getElementById('has-propofol')?.checked;
+        const box = document.getElementById('propofol-input-box');
+        if (box) {
+            if (isChecked) {
+                box.classList.remove('hidden');
+                box.classList.add('flex');
+            } else {
+                box.classList.add('hidden');
+                box.classList.remove('flex');
+                const rateInput = document.getElementById('propofol-rate');
+                if(rateInput) rateInput.value = '';
+            }
+        }
+        calculateAll();
+    }
+
     function toggleKKMP() {
         const content = document.getElementById('kkmp-content');
         const chevron = document.getElementById('kkmp-chevron');
@@ -1352,20 +1403,16 @@
         let checkedCount = 0;
         checkboxes.forEach(cb => { if(cb.checked) checkedCount++; });
         
-        const kkmpText = document.getElementById('kkmp-text');
-        const kkmpProgress = document.getElementById('kkmp-progress');
-        const kkmpSuccess = document.getElementById('kkmp-success');
-        
-        if (kkmpText) kkmpText.innerHTML = (lang === 'ru') ? `Соответствие ККМП: ${checkedCount}/6` : `Quality Score: ${checkedCount}/6`;
-        if (kkmpProgress) kkmpProgress.style.width = `${(checkedCount / 6) * 100}%`;
+        document.getElementById('kkmp-text').innerHTML = (lang === 'ru') ? `Соответствие ККМП: ${checkedCount}/6` : `Quality Score: ${checkedCount}/6`;
+        document.getElementById('kkmp-progress').style.width = `${(checkedCount / 6) * 100}%`;
         
         if (checkedCount === 6) {
-            if (kkmpSuccess) kkmpSuccess.classList.remove('hidden');
-            if (kkmpProgress) kkmpProgress.className = 'bg-green-500 h-2 w-full transition-all duration-500 ease-out';
+            document.getElementById('kkmp-success').classList.remove('hidden');
+            document.getElementById('kkmp-progress').className = 'bg-green-500 h-2 w-full transition-all duration-500 ease-out';
         } else {
-            if (kkmpSuccess) kkmpSuccess.classList.add('hidden');
-            if (kkmpProgress) kkmpProgress.className = 'bg-blue-500 h-2 transition-all duration-500 ease-out';
-            if (kkmpProgress) kkmpProgress.style.width = `${(checkedCount / 6) * 100}%`;
+            document.getElementById('kkmp-success').classList.add('hidden');
+            document.getElementById('kkmp-progress').className = 'bg-blue-500 h-2 transition-all duration-500 ease-out';
+            document.getElementById('kkmp-progress').style.width = `${(checkedCount / 6) * 100}%`;
         }
     }
 
@@ -1441,13 +1488,13 @@
         const highRiskScreening = getMalnutritionRisk(bmiVal);
         const labPemSev = getLabPemSeverity();
         
-        const isMalnourished = bmiVal < 18.5 || factorDef > 1.0 || highRiskScreening || labPemSev >= 3;
+        const isMalnourished = bmiVal < 18.5 || factorDef > 1.0 || highRiskScreening || labPemSev >= 2;
         
         if (iap === 'acs' || absContra) {
             if (isEarlyPhase && !isMalnourished) {
                 safeSet('gi-recommendation', (lang === 'ru') ? "<span class='text-red-600 font-bold'>ПРОТИВОПОКАЗАНИЯ К ЭП (Ранняя фаза):</span> Пациентам без исходной БЭН показан <b>ГОЛОД (1-3 сутки)</b> с базисной инфузией. Старт ПП откладывается до 4-5 суток." : "<span class='text-red-600 font-bold'>EN CONTRAINDICATED (Early Phase):</span> Absolute starvation (1-3 days) for well-nourished patients. Delay PN to days 4-5.");
             } else if (isEarlyPhase && isMalnourished) {
-                safeSet('gi-recommendation', (lang === 'ru') ? "<span class='text-red-600 font-bold'>ПРОТИВОПОКАЗАНИЯ К ЭП (Высокий риск / БЭН):</span> Показан немедленный старт ПП (в первые 24-48 ч)." : "<span class='text-red-600 font-bold'>EN CONTRAINDICATED (Malnutrition/High Risk):</span> Start PN immediately (24-48h).");
+                safeSet('gi-recommendation', (lang === 'ru') ? "<span class='text-red-600 font-bold'>ПРОТИВОПОКАЗАНИЯ К ЭП (Клинически значимая БЭН):</span> Показан немедленный старт ПП (в первые 24-48 ч)." : "<span class='text-red-600 font-bold'>EN CONTRAINDICATED (Malnutrition/High Risk):</span> Start PN immediately (24-48h).");
             } else {
                 safeSet('gi-recommendation', t('gi_full_pn'));
             }
@@ -1602,7 +1649,7 @@
     function onProtocolChange() {
         const protocolKey = document.getElementById('protocol-select')?.value || 'general';
         const injMap = {
-            general: "1.0", pneumonia: "1.2", sepsis: "1.5", polytrauma: "1.6", pancreatitis: "1.2",
+            general: "1.0", abd_surgery: "1.3", pneumonia: "1.2", sepsis: "1.5", polytrauma: "1.6", pancreatitis: "1.2",
             burns: "2.0", tbi: "1.7", gib: "1.0", oncology: "1.0", cirrhosis: "1.0", sbs: "1.0",
             ckd_nodialysis: "1.0", aki_ihd: "1.2", aki_crrt: "1.3", obesity: "1.0", rehab: "1.2"
         };
@@ -1611,23 +1658,6 @@
             const options = Array.from(injSelect.options).map(opt => opt.value);
             if (options.includes(injMap[protocolKey])) {
                 injSelect.value = injMap[protocolKey];
-            }
-        }
-        calculateAll();
-    }
-
-    function togglePropofol() {
-        const isChecked = document.getElementById('has-propofol')?.checked;
-        const box = document.getElementById('propofol-input-box');
-        if (box) {
-            if (isChecked) {
-                box.classList.remove('hidden');
-                box.classList.add('flex');
-            } else {
-                box.classList.add('hidden');
-                box.classList.remove('flex');
-                const rateInput = document.getElementById('propofol-rate');
-                if(rateInput) rateInput.value = '';
             }
         }
         calculateAll();
@@ -1679,18 +1709,8 @@
             }
         }
         
-        // Автообновление шкалы NRS-2002 в зависимости от ИМТ
-        const nrsNutrEl = document.getElementById('nrs-nutr');
-        if (nrsNutrEl) {
-            let currentNutr = parseInt(nrsNutrEl.value) || 0;
-            let suggestedNutr = 0;
-            if (bmi > 0 && bmi < 18.5) suggestedNutr = 3;
-            else if (bmi >= 18.5 && bmi <= 20.5) suggestedNutr = 2;
-            
-            if (suggestedNutr > currentNutr) {
-                nrsNutrEl.value = suggestedNutr;
-            }
-        }
+        const nrsBmiEl = document.getElementById('nrs-bmi');
+        if (nrsBmiEl) nrsBmiEl.checked = (bmi > 0 && bmi < 20.5);
 
         let bmr = 0;
         if (gender === 'male') {
@@ -1723,8 +1743,8 @@
 
         updateProtocolAndMeds(calcWeight, aee, bmi, ibw);
         
-        calculateBEN();
         runScreening(true);
+        calculateBEN();
         checkMetabolism();
         calculateNitrogenBalance();
     }
@@ -1743,6 +1763,7 @@
         const isDM = document.getElementById('comorb-dm')?.checked;
         const isHF = document.getElementById('comorb-hf')?.checked;
         const isCKD = document.getElementById('comorb-ckd')?.checked;
+        const isCRRT = document.getElementById('comorb-crrt')?.checked;
 
         if (isDM) {
             extraNotes += "<li class='text-red-800'><b>СД / Стресс-гипергликемия:</b> Препарат выбора для парентеральной коррекции — <b>10% АМ</b> (не содержит углеводов, не усугубляет гипергликемию). Жесткий контроль глюкозы (6-8 ммоль/л).</li>";
@@ -1754,6 +1775,9 @@
         }
         if (isCKD) {
             extraNotes += "<li class='text-amber-800'><b>ХБП:</b> Коррекция белка в зависимости от фазы и диализа. Тщательный контроль K, P, Mg.</li>";
+        }
+        if (isCRRT) {
+            extraNotes += "<li class='text-teal-800'><b>ПЗПТ (CRRT):</b> Учтены дополнительные потери аминокислот в контуре (+15 г/сут к целевому белку).</li>";
         }
         
         if (extraNotes) {
@@ -1774,15 +1798,23 @@
         safeSet('fat-range', p.fatRange + " " + (lang === 'ru' ? "г/кг" : "g/kg"));
 
         const weightForProtein = protocolKey === 'obesity' ? ibw : calcWeight;
-        const protMin = Math.round(weightForProtein * p.protCalc[0]);
-        const protMax = Math.round(weightForProtein * p.protCalc[1]);
-        safeSet('prot-val', `${protMin}-${protMax}`);
+        let crrtProteinBonus = isCRRT ? 15 : 0;
+        
+        const protMin = Math.round(weightForProtein * p.protCalc[0]) + crrtProteinBonus;
+        const protMax = Math.round(weightForProtein * p.protCalc[1]) + crrtProteinBonus;
+        
+        if (isCRRT) {
+            safeSet('prot-val', `${protMin}-${protMax} <span class="text-[10px] font-normal text-teal-300">(+15${u('g')} ${lang==='ru'?'ПЗПТ':'CRRT'})</span>`);
+        } else {
+            safeSet('prot-val', `${protMin}-${protMax}`);
+        }
 
         const fatMin = Math.round(calcWeight * parseFloat(p.fatRange.split('-')[0] || 1.0));
         const fatMax = Math.round(calcWeight * parseFloat(p.fatRange.split('-')[1] || 1.5));
         safeSet('fat-val', `${fatMin}-${fatMax}`);
 
-        const enRatio = parseInt(document.getElementById('en-ratio')?.value) || 0;
+        const enRatioSlider = document.getElementById('en-ratio');
+        const enRatio = enRatioSlider ? parseInt(enRatioSlider.value) : 100;
         const pnRatio = 100 - enRatio;
         
         safeSet('en-pct-disp', enRatio + '%');
@@ -1844,7 +1876,7 @@
         const factorDef = parseFloat(document.getElementById('factor-def')?.value) || 1.0;
         const highRiskScreening = getMalnutritionRisk(bmi);
         const labPemSev = getLabPemSeverity();
-        const isMalnourished = bmi < 18.5 || factorDef > 1.0 || highRiskScreening || labPemSev >= 3;
+        const isMalnourished = bmi < 18.5 || factorDef > 1.0 || highRiskScreening || labPemSev >= 2;
         
         const isHypercatabolic = protocolKey === 'burns' || protocolKey === 'polytrauma' || protocolKey === 'aki_crrt' || document.getElementById('nb-crrt')?.checked;
 
@@ -1995,9 +2027,9 @@
                 if(glucoseDetails) glucoseDetails.style.opacity = '1';
                 if(glucTypeEl) glucTypeEl.disabled = false;
                 
-                // Клинические расчеты глюкозы (5% ~200 ккал/л, 10% ~400 ккал/л, 20% ~800 ккал/л)
-                const glucTypeVal = parseFloat(glucTypeEl?.value) || 0.2;
-                const glucVol = Math.round(remainingForGluc / (glucTypeVal * 10)); // e.g. 0.2 kcal/ml * 10 = 2 kcal per 10ml = 200 kcal/L
+                // Клинические расчеты глюкозы
+                const glucTypeVal = parseFloat(glucTypeEl?.value) || 0.17;
+                const glucVol = Math.round(remainingForGluc / glucTypeVal);
                 safeSet('pn-glucose-vol', `~ ${glucVol}${u('ml_day')} (${remainingForGluc} ккал)`);
             } else {
                 if(glucoseDetails) glucoseDetails.style.opacity = '0.5';
@@ -2024,7 +2056,9 @@
             targetTab.classList.add('active');
             targetTab.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        element.classList.add('active');
+        if (element) {
+            element.classList.add('active');
+        }
     }
 
     window.onload = () => {
